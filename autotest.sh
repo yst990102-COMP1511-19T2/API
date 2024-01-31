@@ -23,11 +23,14 @@ test -f "$autotest" || {
 	exit 1
 }
 
+parameters="
+	default_compilers = {'c': [['gcc', '-Werror']]}
+"
+
 # if ASSIGNDIR is set, assume we are being run as give's dryrun script and create !dryrun_record
-if test -z "$ASSIGNDIR"
-then
-	python3 -I "$autotest" --exercise_directory "./activity" --parameters "$parameters" "$@"
+if test -z "$ASSIGNDIR"; then
+	python3 -I "$autotest" --exercise_directory "/home/yst990102/COMP1511/API/activity" --parameters "$parameters" "$@"
 else
-	python3 -I -u "$autotest" --exercise_directory "./activity" --parameters "$parameters" "$@" |
-	tee '!dryrun_record'
+	python3 -I -u "$autotest" --exercise_directory "/home/yst990102/COMP1511/API/activity" --parameters "$parameters" "$@" |
+		tee '!dryrun_record'
 fi
