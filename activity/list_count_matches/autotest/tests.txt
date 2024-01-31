@@ -6,7 +6,7 @@ files=list_count_matches.c
 compiler_args=-Dmain=_main list_count_matches.c test_list_count_matches.c -o test_list_count_matches
 command=./test_list_count_matches
 
-pre_compile_command="../../check_arrays_not_used.sh list_count_matches.c;./check_at_most_one_call_malloc.sh list_count_matches.c"
+pre_compile_command="./check_arrays_not_used.sh list_count_matches.c;./check_at_most_one_call_malloc.sh list_count_matches.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_count_matches - description="./list_count_matches -" expected_stdout="count_matches([],[])\ncount_matches returned: 0\n0 0\n"

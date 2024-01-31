@@ -10,7 +10,7 @@ files=count_even_list.c
 compiler_args=-Dmain=_main count_even_list.c test_count_even_list.c -o test_count_even_list
 command=./test_count_even_list
 
-pre_compile_command="../../check_arrays_not_used.sh count_even_list.c;./check_at_most_one_call_malloc.sh count_even_list.c"
+pre_compile_command="./check_arrays_not_used.sh count_even_list.c;./check_at_most_one_call_malloc.sh count_even_list.c"
 pre_compile_command_shell=1
 
 5 8 9 7 9 3 2 3 8 4

@@ -10,7 +10,7 @@ files=list_delete_last.c
 compiler_args=-Dmain=_main list_delete_last.c test_list_delete_last.c -o test_list_delete_last
 command=./test_list_delete_last
 
-pre_compile_command="../check_arrays_not_used.sh list_delete_last.c;./check_at_most_one_call_malloc.sh list_delete_last.c"
+pre_compile_command="./check_arrays_not_used.sh list_delete_last.c;./check_at_most_one_call_malloc.sh list_delete_last.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_delete_last  description="./list_delete_last " expected_stdout="delete_last([])\ndelete_last returned: []\n"

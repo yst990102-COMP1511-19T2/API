@@ -6,7 +6,7 @@ files=list_insert_nth.c
 compiler_args=-Dmain=_main list_insert_nth.c test_list_insert_nth.c -o test_list_insert_nth
 command=./test_list_insert_nth
 
-pre_compile_command="../check_arrays_not_used.sh list_insert_nth.c"
+pre_compile_command="./check_arrays_not_used.sh list_insert_nth.c"
 pre_compile_command_shell=1
 
 0 10

@@ -10,7 +10,7 @@ files=list_length.c
 compiler_args=-Dmain=_main list_length.c test_list_length.c -o test_list_length
 command=./test_list_length
 
-pre_compile_command="../check_arrays_not_used.sh list_length.c;../check_at_most_one_call_malloc.sh list_length.c"
+pre_compile_command="./check_arrays_not_used.sh list_length.c;./check_at_most_one_call_malloc.sh list_length.c"
 pre_compile_command_shell=1
 
 13  11 15 19 11 14

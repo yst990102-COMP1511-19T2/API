@@ -2,7 +2,7 @@ max_cpu=20
 files=spiral.c
 command=./spiral
 
-pre_compile_command="../check_arrays_not_used.sh spiral.c"
+pre_compile_command="./check_arrays_not_used.sh spiral.c"
 pre_compile_command_shell=1
 
 spiral_0 stdin=5 description=5 expected_stdout="Enter size: *****\n----*\n***-*\n*---*\n*****\n"

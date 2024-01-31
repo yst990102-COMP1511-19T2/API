@@ -3,7 +3,7 @@ ignore_case=1
 ignore_white_space=1
 command=./order3_challenge1
 
-pre_compile_command="../check_features_used.sh order3_challenge1.c"
+pre_compile_command="./check_features_used.sh order3_challenge1.c"
 pre_compile_command_shell=1
 
 order3_0 stdin="1\n2\n3\n" description="1 2 3" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 1 2 3\n"

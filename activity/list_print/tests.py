@@ -7,7 +7,7 @@ files=list_print.c
 compiler_args=-Dmain=_main list_print.c test_list_print.c -o test_list_print
 command=./test_list_print
 
-pre_compile_command="../check_arrays_not_used.sh list_print.c;../check_at_most_one_call_malloc.sh list_print.c"
+pre_compile_command="./check_arrays_not_used.sh list_print.c;./check_at_most_one_call_malloc.sh list_print.c"
 pre_compile_command_shell=1
 
 3 1 4 1 5 9

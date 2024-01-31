@@ -9,7 +9,7 @@ files=list_intersection_size.c
 compiler_args=-Dmain=_main list_intersection_size.c test_list_intersection_size.c -o test_list_intersection_size
 command=./test_list_intersection_size
 
-pre_compile_command="../check_arrays_not_used.sh list_intersection_size.c"
+pre_compile_command="./check_arrays_not_used.sh list_intersection_size.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_intersection_size - description="./list_intersection_size -" expected_stdout="intersection_size([],[])\nintersection_size returned: 0\n0 0\n"

@@ -3,7 +3,7 @@ ignore_case=1
 command=./danish_flag
 files=danish_flag.c
 
-pre_compile_command="../check_arrays_not_used.sh danish_flag.c"
+pre_compile_command="./check_arrays_not_used.sh danish_flag.c"
 pre_compile_command_shell=1
 
 danishFlag_1 stdin='1\n' description='1' expected_stdout="Enter the flag size: ##  #####\n         \n         \n##  #####\n"

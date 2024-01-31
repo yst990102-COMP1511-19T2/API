@@ -9,7 +9,7 @@ files=list_increasing.c
 compiler_args=-Dmain=_main list_increasing.c test_list_increasing.c -o test_list_increasing
 command=./test_list_increasing
 
-pre_compile_command="../check_arrays_not_used.sh list_increasing.c;./check_at_most_one_call_malloc.sh list_increasing.c"
+pre_compile_command="./check_arrays_not_used.sh list_increasing.c;./check_at_most_one_call_malloc.sh list_increasing.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_increasing 13 11 14 11 15 19 description="./list_increasing 13 11 14 11 15 19" expected_stdout="increasing([13, 11, 14, 11, 15, 19])\nincreasing returned: 0\n"

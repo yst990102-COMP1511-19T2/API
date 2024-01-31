@@ -7,7 +7,7 @@ files=list_get_nth.c
 compiler_args=-Dmain=_main list_get_nth.c test_list_get_nth.c -o test_list_get_nth
 command=./test_list_get_nth
 
-pre_compile_command="../check_arrays_not_used.sh list_get_nth.c;../check_at_most_one_call_malloc.sh list_get_nth.c"
+pre_compile_command="./check_arrays_not_used.sh list_get_nth.c;./check_at_most_one_call_malloc.sh list_get_nth.c"
 pre_compile_command_shell=1
 
 0 56

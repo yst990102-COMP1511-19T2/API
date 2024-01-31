@@ -6,7 +6,7 @@ files=list_count_even.c
 compiler_args=-Dmain=_main list_count_even.c test_list_count_even.c -o test_list_count_even
 command=./test_list_count_even
 
-pre_compile_command="../../check_arrays_not_used.sh list_count_even.c"
+pre_compile_command="./check_arrays_not_used.sh list_count_even.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_count_even 3 1 4 1 5 9 2 6 5 3 description="./list_count_even 3 1 4 1 5 9 2 6 5 3" expected_stdout="count_even([3, 1, 4, 1, 5, 9, 2, 6, 5, 3])\ncount_even returned: 3\n"

@@ -7,7 +7,7 @@ files=most_frequent_list.c
 compiler_args=-Dmain=_main most_frequent_list.c test_most_frequent_list.c -o test_most_frequent_list
 command=./test_most_frequent_list
 
-pre_compile_command="../check_arrays_not_used.sh most_frequent_list.c;../check_at_most_one_call_malloc.sh most_frequent_list.c"
+pre_compile_command="./check_arrays_not_used.sh most_frequent_list.c;./check_at_most_one_call_malloc.sh most_frequent_list.c"
 pre_compile_command_shell=1
 
 655 10 204 8192 76 38 204 43912 204

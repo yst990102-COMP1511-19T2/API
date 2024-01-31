@@ -3,7 +3,7 @@ ignore_case=1
 ignore_blank_lines=1
 compare_only_characters=0123456789
 
-pre_compile_command="../check_features_used.sh order3_challenge1.c"
+pre_compile_command="./check_features_used.sh order3_challenge1.c"
 pre_compile_command_shell=1
 
 command=./order3_challenge1

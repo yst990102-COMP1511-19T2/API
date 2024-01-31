@@ -7,7 +7,7 @@ files=list_delete_first.c
 compiler_args=-Dmain=_main list_delete_first.c test_list_delete_first.c -o test_list_delete_first
 command=./test_list_delete_first
 
-pre_compile_command="../../check_arrays_not_used.sh list_delete_first.c;./check_at_most_one_call_malloc.sh list_delete_first.c"
+pre_compile_command="./check_arrays_not_used.sh list_delete_first.c;./check_at_most_one_call_malloc.sh list_delete_first.c"
 pre_compile_command_shell=1
 
 3 1 4 1 5 9 2 6 5 3

@@ -10,7 +10,7 @@ files=list_intersection_size.c
 compiler_args=-Dmain=_main list_intersection_size.c test_list_intersection_size.c -o test_list_intersection_size
 command=./test_list_intersection_size
 
-pre_compile_command="../check_arrays_not_used.sh list_intersection_size.c;../check_at_most_one_call_malloc.sh list_intersection_size.c"
+pre_compile_command="./check_arrays_not_used.sh list_intersection_size.c;./check_at_most_one_call_malloc.sh list_intersection_size.c"
 pre_compile_command_shell=1
 
 -

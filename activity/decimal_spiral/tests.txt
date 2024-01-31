@@ -2,7 +2,7 @@ max_cpu=20
 files=decimal_spiral.c
 command=./decimal_spiral
 
-pre_compile_command="../check_arrays_not_used.sh decimal_spiral.c"
+pre_compile_command="./check_arrays_not_used.sh decimal_spiral.c"
 pre_compile_command_shell=1
 
 decimal_spiral_0 stdin=5 description=5 expected_stdout="Enter size: 65432\n----1\n210-0\n3---9\n45678\n"

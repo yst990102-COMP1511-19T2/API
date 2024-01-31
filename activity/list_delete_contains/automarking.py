@@ -10,7 +10,7 @@ files=list_delete_contains.c
 compiler_args=-Dmain=_main list_delete_contains.c test_list_delete_contains.c -o test_list_delete_contains
 command=./test_list_delete_contains
 
-pre_compile_command="../check_arrays_not_used.sh list_delete_contains.c;../check_at_most_one_call_malloc.sh list_delete_contains.c"
+pre_compile_command="./check_arrays_not_used.sh list_delete_contains.c;./check_at_most_one_call_malloc.sh list_delete_contains.c"
 pre_compile_command_shell=1
 
 5 5 8 9 7 9 3 2 3 8 4

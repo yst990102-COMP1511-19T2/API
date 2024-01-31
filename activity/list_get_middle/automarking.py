@@ -10,7 +10,7 @@ files=list_get_middle.c
 compiler_args=-Dmain=_main list_get_middle.c test_list_get_middle.c -o test_list_get_middle
 command=./test_list_get_middle
 
-pre_compile_command="../check_arrays_not_used.sh list_get_middle.c;../check_at_most_one_call_malloc.sh list_get_middle.c"
+pre_compile_command="./check_arrays_not_used.sh list_get_middle.c;./check_at_most_one_call_malloc.sh list_get_middle.c"
 pre_compile_command_shell=1
 
 13  11 15 19 11 14

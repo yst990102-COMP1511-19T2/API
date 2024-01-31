@@ -7,7 +7,7 @@ files=list_increasing.c
 compiler_args=-Dmain=_main list_increasing.c test_list_increasing.c -o test_list_increasing
 command=./test_list_increasing
 
-pre_compile_command="../check_arrays_not_used.sh list_increasing.c;../check_at_most_one_call_malloc.sh list_increasing.c"
+pre_compile_command="./check_arrays_not_used.sh list_increasing.c;./check_at_most_one_call_malloc.sh list_increasing.c"
 pre_compile_command_shell=1
 
 3 1 4 1 5 9

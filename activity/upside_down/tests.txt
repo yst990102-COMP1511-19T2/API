@@ -4,7 +4,7 @@ ignore_case=1
 upside_down=1
 command=./upside_down 
 
-pre_compile_command="../check_features_used.sh upside_down.c"
+pre_compile_command="./check_features_used.sh upside_down.c"
 pre_compile_command_shell=1
 
 up_0 stdin="1.1 2.2 3.3" expected_stdout="Please enter three numbers: up\n"

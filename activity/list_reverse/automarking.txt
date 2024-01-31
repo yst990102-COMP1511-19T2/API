@@ -10,7 +10,7 @@ files=list_reverse.c
 compiler_args=-Dmain=_main list_reverse.c test_list_reverse.c -o test_list_reverse
 command=./test_list_reverse
 
-pre_compile_command="../check_arrays_not_used.sh list_reverse.c;./check_at_most_one_call_malloc.sh list_reverse.c"
+pre_compile_command="./check_arrays_not_used.sh list_reverse.c;./check_at_most_one_call_malloc.sh list_reverse.c"
 pre_compile_command_shell=1
 
 1 command=./test_list_reverse  description="./list_reverse " expected_stdout="list_reverse([])\nreverse returned: []\n"

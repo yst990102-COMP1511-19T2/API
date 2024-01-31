@@ -7,7 +7,7 @@ files=list_count_favourite.c
 compiler_args=-Dmain=_main list_count_favourite.c test_list_count_favourite.c -o test_list_count_favourite
 command=./test_list_count_favourite
 
-pre_compile_command="../check_arrays_not_used.sh list_count_favourite.c;../check_at_most_one_call_malloc.sh list_count_favourite.c"
+pre_compile_command="./check_arrays_not_used.sh list_count_favourite.c;./check_at_most_one_call_malloc.sh list_count_favourite.c"
 pre_compile_command_shell=1
 
 3 1 4 1 5 9

@@ -7,7 +7,7 @@ files=list_contains.c
 compiler_args=-Dmain=_main list_contains.c test_list_contains.c -o test_list_contains
 command=./test_list_contains
 
-pre_compile_command="../check_arrays_not_used.sh list_contains.c;../check_at_most_one_call_malloc.sh list_contains.c"
+pre_compile_command="./check_arrays_not_used.sh list_contains.c;./check_at_most_one_call_malloc.sh list_contains.c"
 pre_compile_command_shell=1
 
 12 16 7 8 12 13 19 21 12

@@ -6,7 +6,7 @@ files=list_insert_tail.c
 compiler_args=-Dmain=_main list_insert_tail.c test_list_insert_tail.c -o test_list_insert_tail
 command=./test_list_insert_tail
 
-pre_compile_command="../check_arrays_not_used.sh list_insert_tail.c"
+pre_compile_command="./check_arrays_not_used.sh list_insert_tail.c"
 pre_compile_command_shell=1
 
 10
