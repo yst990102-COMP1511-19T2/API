@@ -24,7 +24,7 @@ test -f "$autotest" || {
 }
 
 parameters="
-	default_compilers = {'c': [['gcc', '-Werror']]}
+	default_compilers = {'c': [['dcc', '-Werror']]}
 "
 
 # if ASSIGNDIR is set, assume we are being run as give's dryrun script and create !dryrun_record
