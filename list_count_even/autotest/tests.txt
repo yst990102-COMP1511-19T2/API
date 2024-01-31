@@ -1,0 +1,21 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=list_count_even.c
+compiler_args=-Dmain=_main list_count_even.c test_list_count_even.c -o test_list_count_even
+command=./test_list_count_even
+
+pre_compile_command="../../check_arrays_not_used.sh list_count_even.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_count_even 3 1 4 1 5 9 2 6 5 3 description="./list_count_even 3 1 4 1 5 9 2 6 5 3" expected_stdout="count_even([3, 1, 4, 1, 5, 9, 2, 6, 5, 3])\ncount_even returned: 3\n"
+2 command=./test_list_count_even 1 1 1 1 1 description="./list_count_even 1 1 1 1 1" expected_stdout="count_even([1, 1, 1, 1, 1])\ncount_even returned: 0\n"
+3 command=./test_list_count_even 8 1 2 3 description="./list_count_even 8 1 2 3" expected_stdout="count_even([8, 1, 2, 3])\ncount_even returned: 2\n"
+4 command=./test_list_count_even 1 1 1 1 1 1 1 1 1 1 2 description="./list_count_even 1 1 1 1 1 1 1 1 1 1 2" expected_stdout="count_even([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2])\ncount_even returned: 1\n"
+5 command=./test_list_count_even 2 1 3 5 7 9 description="./list_count_even 2 1 3 5 7 9" expected_stdout="count_even([2, 1, 3, 5, 7, 9])\ncount_even returned: 1\n"
+6 command=./test_list_count_even 10 11 12 13 14 15 16 17 description="./list_count_even 10 11 12 13 14 15 16 17" expected_stdout="count_even([10, 11, 12, 13, 14, 15, 16, 17])\ncount_even returned: 4\n"
+7 command=./test_list_count_even 11 12 13 14 15 16 17 18 description="./list_count_even 11 12 13 14 15 16 17 18" expected_stdout="count_even([11, 12, 13, 14, 15, 16, 17, 18])\ncount_even returned: 4\n"
+8 command=./test_list_count_even 10 11 12 13 14 15 16 description="./list_count_even 10 11 12 13 14 15 16" expected_stdout="count_even([10, 11, 12, 13, 14, 15, 16])\ncount_even returned: 4\n"
+9 command=./test_list_count_even 11 12 13 14 15 16 17 description="./list_count_even 11 12 13 14 15 16 17" expected_stdout="count_even([11, 12, 13, 14, 15, 16, 17])\ncount_even returned: 3\n"
+10 command=./test_list_count_even  description="./list_count_even " expected_stdout="count_even([])\ncount_even returned: 0\n"

@@ -1,0 +1,15 @@
+
+
+max_cpu=3
+files=vector_permutation.c
+ignore_case=1
+ignore_white_space=1
+ignore_blank_lines=1
+command=./vector_permutation
+
+1 stdin="4\n42 43 44 45\n3 1 2 0\n" description="4  42 43 44 45  3 1 2 0" expected_stdout="Enter vector length: Enter vector: Enter permutation: 45 43 44 42 \n"
+2 stdin="6\n40 41 42 43 44 45\n0 1 2 3 4 5\n" description="6  40 41 42 43 44 45  0 1 2 3 4 5" expected_stdout="Enter vector length: Enter vector: Enter permutation: 40 41 42 43 44 45 \n"
+3 stdin="6\n40 41 42 43 44 45\n5 4 3 2 1 0\n" description="6  40 41 42 43 44 45  5 4 3 2 1 0" expected_stdout="Enter vector length: Enter vector: Enter permutation: 45 44 43 42 41 40 \n"
+4 stdin="1\n1024\n0\n" description="1  1024 0" expected_stdout="Enter vector length: Enter vector: Enter permutation: 1024 \n"
+5 stdin="5\n48 36 48 24 12\n4 3 1 0 2\n" description="5  48 36 48 24 12  4 3 1 0 2" expected_stdout="Enter vector length: Enter vector: Enter permutation: 12 24 36 48 48 \n"
+6 stdin="5\n48 36 48 24 12\n4 3 5 0 2\n" description="5  48 36 48 24 12  4 3 5 0 2" expected_stdout="Enter vector length: Enter vector: Enter permutation: Invalid permutation\n"

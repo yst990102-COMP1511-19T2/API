@@ -1,0 +1,13 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=0123456789to
+files=dice_range.c
+command=dice_range
+0 stdin="6 2"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: Your dice range is 2 to 12.\nThe average value is 7.000000\n"
+1 stdin="8 3"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: Your dice range is 3 to 24.\nThe average value is 13.500000\n"
+2 stdin="3 8"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: Your dice range is 8 to 24.\nThe average value is 16.000000\n"
+3 stdin="725 30"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: Your dice range is 30 to 21750.\nThe average value is 10890.000000\n"
+4 stdin="6 0"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: These dice will not produce a range.\n"
+5 stdin="0 6"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: These dice will not produce a range.\n"
+6 stdin="-7 -4"  expected_stdout="Enter the number of sides on your dice: Enter the number of dice being rolled: These dice will not produce a range.\n"

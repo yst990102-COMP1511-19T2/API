@@ -1,0 +1,17 @@
+max_cpu=3
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=marchapril0123456789
+
+files=easter.c
+command=easter
+easter_0 stdin="1898\n" expected_stdout="Enter year: Easter is April 10 in 1898.\n"
+easter_1 stdin="1918\n" expected_stdout="Enter year: Easter is March 31 in 1918.\n"
+easter_2 stdin="2116\n" expected_stdout="Enter year: Easter is March 29 in 2116.\n"
+easter_3 stdin="2150\n" expected_stdout="Enter year: Easter is April 12 in 2150.\n"
+easter_4 stdin="2202\n" expected_stdout="Enter year: Easter is April 11 in 2202.\n"
+easter_5 stdin="1897\n" expected_stdout="Enter year: Easter is April 18 in 1897.\n"
+easter_6 stdin="1917\n" expected_stdout="Enter year: Easter is April 8 in 1917.\n"
+easter_7 stdin="2117\n" expected_stdout="Enter year: Easter is April 18 in 2117.\n"
+easter_8 stdin="2151\n" expected_stdout="Enter year: Easter is April 4 in 2151.\n"
+easter_9 stdin="2203\n" expected_stdout="Enter year: Easter is April 3 in 2203.\n"

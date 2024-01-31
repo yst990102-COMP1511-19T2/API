@@ -1,0 +1,9 @@
+max_cpu=10
+files=map_digits.c
+
+0 command=./map_digits ABCDEFGHIJ stdin="0123456789\nAndrew rocks!\n6 * 7 = 42\nThis is week 9 of COMP1511\n"  expected_stdout="ABCDEFGHIJ\nAndrew rocks!\nG * H = EC\nThis is week J of COMPBFBB\n"
+1 command=./map_digits andrewrock stdin="two 4 eight 16 thirtytwo 64\n"  expected_stdout="two e eight nr thirtytwo re\n"
+2 command=./map_digits zyzuvtsrqp stdin="1\n2\n4 8 16\n32 64\n128 256"  expected_stdout="y\nz\nv q ys\nuz sv\nyzq zts"
+3 command=./map_digits asdfghjklq stdin="if I've said it once I've said it 100 times\n"  expected_stdout="if I've said it once I've said it saa times\n"
+4 command=./map_digits abcdefghij stdin="0123456789abcdefghijklmnopqrstuvwxyz" expected_stdout="abcdefghijabcdefghijklmnopqrstuvwxyz"
+5 command=./map_digits dnujmik123 stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n"  expected_stdout="ABCDEFGHIJKLMNOPQRSTUVWXYZdnujmik123d!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n"

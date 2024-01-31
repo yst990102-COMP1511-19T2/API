@@ -1,0 +1,224 @@
+#!/usr/bin/env python3.7
+import re
+import sys
+
+from collections import namedtuple as NamedTuple
+
+Result = NamedTuple('Result', 'passed failed')
+TestCase = NamedTuple('TestCase', 'group name status') 
+DISTRIBUTION = {
+    "stage_one": 50,
+    "stage_two_new_tower": 5,
+    "stage_two_new_enemy": 5,
+    "stage_two_new_tower_enemy": 5,
+    "stage_two_advance_enemy": 5,
+    "stage_three_damage": 5,
+    "stage_three_lc_damage": 5,
+    "stage_four__h": 4,
+    "stage_four_lc__h": 0,
+    "stage_four__p": 3,
+    "stage_four_lc__p": 0,
+    "stage_four__u": 3,
+    "stage_four_lc__u": 0,
+    "stage_five__b": 2,
+    "stage_five_lc__b": 0,
+    "stage_five__i": 2,
+    "stage_five_lc__i": 0,
+    "stage_five__p": 1,
+    "stage_five_lc__p": 0,
+    "stage_five__state_machine": 5,
+    "stage_five_lc__state_machine": 0,
+}
+
+DESCRIPTION = {
+    "stage_one": "Stage One (printing + adding towers)",
+    "stage_two_new_tower": "Stage Two (adding towers)",
+    "stage_two_new_enemy": "Stage Two (adding enemy)",
+    "stage_two_new_tower_enemy": "Stage Two (adding both)",
+    "stage_two_advance_enemy": "Stage Two (advance enemy)",
+    "stage_three_damage": "Stage Three (deal damage)",
+    "stage_three_lc_damage": " --- With Leak Checking",
+    "stage_four__h": "Stage Four (Buff HP)",
+    "stage_four_lc__h": " --- With Leak Checking",
+    "stage_four__p": "Stage Four (Buff Tower Power)",
+    "stage_four_lc__p": " --- With Leak Checking",
+    "stage_four__u": "Stage Four (Buff Uses)",
+    "stage_four_lc__u": " --- With Leak Checking",
+    "stage_five__b": "Stage Five (Bounce Effect)",
+    "stage_five_lc__b": " --- With Leak Checking",
+    "stage_five__i": "Stage Five (Ice Effect)",
+    "stage_five_lc__i": " --- With Leak Checking",
+    "stage_five__p": "Stage Five (Printing Correctly)",
+    "stage_five_lc__p": " --- With Leak Checking",
+    "stage_five__state_machine": "Stage Five (General Tests)",
+    "stage_five_lc__state_machine": " --- With Leak Checking",
+}
+
+assert(sum([DISTRIBUTION[x] for x in DISTRIBUTION]) == 100)
+
+
+# x% of a group means y% of above mark for (x, y) elem of PIECEWISE
+PIECEWISE = {
+    0: 0,
+    10: 20,
+    25: 60,
+    50: 75,
+    75: 90,
+    100: 100,
+}
+
+
+def piece_wise_linear(x, mapping):
+    if isinstance(mapping, dict):
+        mapping = mapping.items()
+    mapping = sorted(mapping)
+    x0, mapped_x0 = mapping.pop(0)
+    if x < x0:
+        return mapped_x0
+    while mapping:
+        x1, mapped_x1 = mapping.pop(0)
+        if x <= x1:
+            return mapped_x0 + (x - x0)/(x1 - x0) * (mapped_x1 - mapped_x0)
+        x0, mapped_x0 = x1, mapped_x1
+    return mapped_x0
+
+
+def parse_summary_line(summary_line):
+    summary_line = re.sub(r'\s+', ' ', summary_line)
+    (passed, failed, not_run) = (0, 0, 0)
+    m = re.search(r'(\d+) tests passed', summary_line)
+    if m:
+        passed = int(m.group(1))
+    m = re.search(r'(\d+) tests failed', summary_line)
+    if m:
+        failed = int(m.group(1))
+    m = re.search(r'(\d+) tests could', summary_line)
+    if m:
+        not_run = int(m.group(1))
+    return (passed, failed, not_run)
+
+
+def find_test_case_lines():
+    test_cases = []
+    pre_lines = ""
+    pre_done = False
+    for line in sys.stdin:
+        match = re.match('Test ([^ ]*) \(./castle_defense\) - (.*)', line)
+        if match is not None:
+            pre_done = True
+            name, result = match.groups([1, 2])
+            parts = name.split('__')
+            name = parts[0]
+            if parts[1] in ['h', 'p', 'u', 'b', 'i', 'p', 'state_machine']:
+                name += '__' + parts[1]
+                parts = '__'.join(parts[2:])
+            else:
+                parts = '__'.join(parts[1:])
+            test_cases.append(TestCase(name, parts, result))
+        if not pre_done:
+            pre_lines += line
+    return (pre_lines, test_cases)
+
+
+def get_test_group_counts(test_cases):
+    test_group_counts = {}
+    for case in test_cases:
+        if case.group not in test_group_counts:
+            test_group_counts[case.group] = Result(0, 0)
+
+        count = test_group_counts[case.group]
+
+        if 'passed' in case.status:
+            count = Result(count.passed + 1, count.failed)
+            test_group_counts[case.group] = count
+        else:
+            count = Result(count.passed, count.failed + 1)
+            test_group_counts[case.group] = count
+
+    return test_group_counts
+
+
+def get_marks(group, worth):
+    total = group.passed + group.failed
+    test_pctg = (group.passed * 100) / total
+    return piece_wise_linear(test_pctg, PIECEWISE) * (worth / 100)
+
+TABLE_START = f"""
+|-{'-'*40}-|-{'-'*12}-|-{'-'*12}-|
+| {"Test Name":40} | {"Tests Passed":12} | {"% Gained":12} |
+|-{'-'*40}-|-{'-'*12}-|-{'-'*12}-|
+""".strip()
+
+
+def main():
+    pre_lines, test_cases = find_test_case_lines()
+    test_group_counts = get_test_group_counts(test_cases)
+    mark = 0
+    table = TABLE_START
+    if set(DISTRIBUTION.keys()) != set(test_group_counts.keys()):
+        print("Could not complete marking, compilation error follows:\n")
+        print(pre_lines)
+
+        return
+    for test in DISTRIBUTION:
+        lc_worth = DISTRIBUTION[test.replace('lc_', '')]
+        worth = DISTRIBUTION[test]
+        group = test_group_counts[test]
+        total = group.passed + group.failed
+        added_mark = get_marks(group, worth)
+        for lc_test in DISTRIBUTION:
+            if 'lc_' in lc_test and lc_test.replace('lc_', '') == test:
+                lc_group = test_group_counts[lc_test]
+                lc_added_mark = get_marks(lc_group, worth)
+                max_mark = max(added_mark, lc_added_mark)
+                added_mark = (added_mark + lc_added_mark + max_mark) / 3
+                break
+        else:
+            lc_group = None
+        mark += added_mark
+        flag = " "
+        if group.passed != total and group.failed != total:
+            flag = "*"
+            # if lc_group and lc_group.passed != group.passed:
+            #     flag = "*"
+        if worth > 0:
+            test_desc = f"{flag}{group.passed}/{total}"
+            allocation_desc = f"{added_mark:.1f}/{worth}"
+            table += f"\n| {DESCRIPTION[test]:40} | {test_desc:12} | {allocation_desc:12} |"
+        else:
+            test_desc = f" {group.passed}/{total}"
+            allocation_desc = "^^^^^"
+            table += f"\n| {DESCRIPTION[test]:40} | {test_desc:12} | {allocation_desc:12} |"
+
+    scaled_mark = mark * 70/100
+    print(f"""
+Messages from compilation:
+
+{pre_lines or "Compilation was successful - no output."}
+
+Marking Summary:
+
+{table}
+
+(* indicates test passed some, but not all tests)
+(** indicates memory leaks caused some test failures )
+
+NOTE: The following mark may be slightly different to the sum of
+the "Mark Allocation" column above. This is due to rounding, not
+a mistake. We will not change marks because of rounding.
+
+Sum of percentage points gained: {mark:.1f}/100
+
+This mark gets scaled to be out of 70:
+
+Mark for automarking tests: {scaled_mark:.1f}/70
+            """)
+    if mark < 40:
+        print("""
+Tutors will manually adjust the marks for assignments with low automarking marks
+to ensure the overall mark for the assignment is appropriate.
+        """)
+
+
+if __name__ == "__main__":
+    main()

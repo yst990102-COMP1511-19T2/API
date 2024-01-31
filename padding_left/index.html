@@ -1,0 +1,84 @@
+{{ copy_a_file(name="padding_left.c", change_function="pad_left") }}
+<p>
+<p>
+<b>padding_left</b> is written using the following structs that cannot be changed:
+<p>
+<pre>
+// A node in a linked list of characters.
+struct character_node {
+    char data;
+    struct character_node *next;
+};
+</pre>
+<p>
+The <b>character_node</b> struct holds a character, as part of a linked list of characters.
+<p>
+<b>pad_left</b> is given a pointer to a <b>character_node</b>, which is the
+first element in a list of characters. It is also given a character to "pad" with.
+
+<p>
+When you "pad" a character list, you iterate over the list and "push" every character along one.
+This means that the second character becomes whatever the first character was. The third becomes
+whatever the second was, and so on.
+The first character becomes <b>pad_character</b>, and what was previously the last character is
+"forgotten".
+</p>
+<p>
+For example if a list of characters called <b>characters</b> looks like this:
+<p>
+<pre>
+abcdef
+</pre>
+<p>
+Then the following function is called:
+<p>
+<pre>
+pad_left(characters, 't');
+</pre>
+<p>
+The list <b>characters</b> would be:
+<p>
+<pre>
+tabcde
+</pre>
+<div class="alert alert-success"><strong>Hint: </strong>
+You will need to use multiple temporary character variables to complete this exercise!</div>
+<h4>Examples</h4>
+<pre class="command_line">
+<kbd class="shell">dcc .c -o padding_left padding_left</kbd>
+<kbd class="shell">./padding_left lights</kbd>
+<kbd>a</kbd>
+alight
+<kbd>m</kbd>
+maligh
+<kbd>&gt;</kbd>
+&gt;malig
+<kbd>&gt;</kbd>
+&gt;&gt;mali
+<span class="eof"></span>
+</pre>
+<pre class="command_line">
+<kbd class="shell">dcc .c -o padding_left padding_left</kbd>
+<kbd class="shell">./padding_left cello</kbd>
+<kbd>x</kbd>
+xcell
+<kbd>e</kbd>
+excel
+<span class="eof"></span>
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+<b>struct character_node</b> cannot be edited. It must be
+used as is.
+<p>
+The <b>string_to_characters</b>, <b>print_characters</b>, and
+<b>free_characters</b> functions will help you test and run your program.
+They cannot be edited and must be used as it is. <i>You should not use them 
+yourself in <b>pad_left</b></i>
+<p>
+<b>pad_left</b> cannot return a new head, so you cannot add to the head of the list.
+You should complete this task solely by moving around data -
+you will not need to malloc yourself.
+<p>
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

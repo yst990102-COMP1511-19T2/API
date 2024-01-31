@@ -1,0 +1,63 @@
+{{ copy_a_file(name="common_elements.c", change_function="common_elements") }}
+
+<b>common_elements</b> should  copy  the values in the first source array which are also found in the second source array, into the
+third array.
+<p>
+In other words,  all of the elements that appear in both of the <b>source1</b> and <b>source2</b> should be copied
+to the third <b>destination</b> array, in the order that they appear in the first array.
+
+<b>common_elements</b> should return a single integer: the number of elements copied to the <b>destination</b> array.
+<p>
+For example, if the source arrays contained the following 6 elements:
+<p>
+source1: <b>1, 4, 1, 5, 9, 2</b>
+<p>
+source2: <b>1, 1, 8, 2, 5, 3</b>
+<p>
+<b>common_elements</b> should copy these 4 values to the <b>destination</b> array: <b>1, 1, 5, 2</b>
+<p>
+The value 4 and 9 do not get copied because they do not occur in the second array.
+<p>
+<b>common_elements</b> should return the integer <b>4</b>, because there were 4 values copied.
+<p>
+<b>common_elements</b> should copy the elements in the order that they appear in the first array.
+<p>
+If a value in the first array occurs one or more times in the second array, each occurrence
+of those values in the first array should be copied.
+<p>
+It doesn't matter how many times the values occur in the second array, as long as the values
+occur at least once.
+
+For example. if the two arrays contained the following 5 elements:
+<p>
+source1: <b>1, 2, 3, 2, 1</b>
+<p>
+source2: <b>1, 2, 3, 4, 5 </b>
+<p>
+Your function should copy all five values (<b>1, 2, 3, 2, 1</b>) from <b>source1</b> to the <b>destination</b> array
+{{{
+
+}}}
+as all of the values (<b>1, 2, 3</b>) appeared at least once in <b>source2</b> and it
+should return 5 because because 5 values were copied.
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+
+You can assume the two source arrays contain only positive integers.
+<p>
+You can assume that all three arrays are the same size (<b>length</b>) and <b>length</b> is &gt; 0.
+<p>
+You cannot assume anything about the number of common elements, i.e. there may not be any
+common elements between both arrays, or conversely, the entire contents of the first array
+may also be present in the second array.
+<p>
+<b>common_elements</b> should return a single integer.
+<p>
+<b>common_elements</b> should not change the array it is given.
+<p>
+<b>common_elements</b> should not call scanf (or getchar or fgets).
+<p>
+<b>common_elements</b> should not print anything. It should not call printf.
+<p>
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

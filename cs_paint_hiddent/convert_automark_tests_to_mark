@@ -1,0 +1,194 @@
+#!/usr/bin/env python3.7
+import re
+import sys
+
+from collections import namedtuple as NamedTuple
+
+Result = NamedTuple('Result', 'passed failed')
+TestCase = NamedTuple('TestCase', 'group name status') 
+DISTRIBUTION = {
+    'large_input': 2,
+    'none': 2,
+    'points': 20,
+    'single_line': 20,
+    'multi_lines': 10,
+    'invalid_single_lines': 2,
+    'boundaries': 4,
+    # ~ 60
+    'rect_points': 2,
+    'single_rect': 4,
+    'multi_rects': 2,
+    'point_colors': 1,
+    'line_colors': 2,
+    'rect_colors': 2,
+    'multi_colors': 1,
+    'invalid_colors': 2,
+    # ~ 76
+    'copy_paste': 7,
+    'invalid_copy_paste': 2,
+    # ~ 85
+    'brush_line': 5,
+    'brush_line_reset': 4,
+    'brush_line_reset_multiple': 4,
+    'brush_lines_invalid': 2,
+}
+
+DESCRIPTION = {
+    'large_input': "Input w/ Many Lines",
+    'none': "No Input",
+    'points': "Lines Drawing Points",
+    'single_line': "Drawing One Line",
+    'multi_lines': "Drawing Many Lines",
+    'invalid_single_lines': "Not Drawing an Invalid Line",
+    'boundaries': "Drawing Along Boundaries",
+    # ~ 60
+    'rect_points': "Using Rectangles to Draw Points",
+    'single_rect': "Drawing One Rectangle",
+    'multi_rects': "Drawing Many Rectangles",
+    'point_colors': "Drawing Points w/ Color",
+    'line_colors': "Drawing Lines w/ Color",
+    'rect_colors': "Drawing Rectangles w/ Color",
+    'multi_colors': "Drawing Multiple Colors",
+    'invalid_colors': "Drawing Invalid Colors",
+    # ~ 76
+    'copy_paste': "Copy Paste",
+    'invalid_copy_paste': "Invalid Copy Paste",
+    # ~ 85
+    'brush_line': "Drawing Line w/ Brush",
+    'brush_line_reset': "Using Brush then Resetting",
+    'brush_line_reset_multiple': "Using Brush Many Times",
+    'brush_lines_invalid': "Drawing Invalid Lines w/ Brush",
+    'brush_rect': "Brush doesn't affect Rectangle",
+}
+
+assert(sum([DISTRIBUTION[x] for x in DISTRIBUTION]) == 100)
+
+
+# x% of a group means y% of above mark for (x, y) elem of PIECEWISE
+PIECEWISE = {
+    0: 0,
+    25: 60,
+    50: 75,
+    75: 90,
+    100: 100,
+}
+
+
+def piece_wise_linear(x, mapping):
+    if isinstance(mapping, dict):
+        mapping = mapping.items()
+    mapping = sorted(mapping)
+    x0, mapped_x0 = mapping.pop(0)
+    if x < x0:
+        return mapped_x0
+    while mapping:
+        x1, mapped_x1 = mapping.pop(0)
+        if x <= x1:
+            return mapped_x0 + (x - x0)/(x1 - x0) * (mapped_x1 - mapped_x0)
+        x0, mapped_x0 = x1, mapped_x1
+    return mapped_x0
+
+
+def parse_summary_line(summary_line):
+    summary_line = re.sub(r'\s+', ' ', summary_line)
+    (passed, failed, not_run) = (0, 0, 0)
+    m = re.search(r'(\d+) tests passed', summary_line)
+    if m:
+        passed = int(m.group(1))
+    m = re.search(r'(\d+) tests failed', summary_line)
+    if m:
+        failed = int(m.group(1))
+    m = re.search(r'(\d+) tests could', summary_line)
+    if m:
+        not_run = int(m.group(1))
+    return (passed, failed, not_run)
+
+
+def find_test_case_lines():
+    test_cases = []
+    for line in sys.stdin:
+        match = re.match('Test (\w*)______(\w*) \(./cs_paint\) - (.*)', line)
+        if match is not None:
+            test_cases.append(TestCase(*match.groups([1, 2, 3])))
+    return test_cases
+
+
+def get_test_group_counts(test_cases):
+    test_group_counts = {}
+    for case in test_cases:
+        if case.group not in test_group_counts:
+            test_group_counts[case.group] = Result(0, 0)
+
+        count = test_group_counts[case.group]
+
+        if 'passed' in case.status:
+            count = Result(count.passed + 1, count.failed)
+            test_group_counts[case.group] = count
+        else:
+            count = Result(count.passed, count.failed + 1)
+            test_group_counts[case.group] = count
+
+    return test_group_counts
+
+
+def get_marks(group, worth):
+    total = group.passed + group.failed
+    test_pctg = (group.passed * 100) / total
+    return piece_wise_linear(test_pctg, PIECEWISE) * (worth / 100)
+
+TABLE_START = f"""
+|-{'-'*40}-|-{'-'*12}-|-{'-'*12}-|
+| {"Test Name":40} | {"Tests Passed":12} | {"% Gained":12} |
+|-{'-'*40}-|-{'-'*12}-|-{'-'*12}-|
+""".strip()
+
+
+def main():
+    test_cases = find_test_case_lines()
+    test_group_counts = get_test_group_counts(test_cases)
+    mark = 0
+    table = TABLE_START
+    if set(DISTRIBUTION.keys()) ^ set(['brush_rect']) != set(test_group_counts.keys()):
+        sys.stderr.write("Could not complete marking - tests not present!\n")
+        print("Did not mark.")
+        return
+    for test in DISTRIBUTION:
+        worth = DISTRIBUTION[test]
+        group = test_group_counts[test]
+        total = group.passed + group.failed
+        added_mark = get_marks(group, worth)
+        mark += added_mark
+        flag = " "
+        if added_mark > 0 and added_mark < worth:
+            flag = "*"
+        test_desc = f"{flag}{group.passed}/{total}"
+        allocation_desc = f"{added_mark:.1f}/{worth}"
+        table += f"\n| {DESCRIPTION[test]:40} | {test_desc:12} | {allocation_desc:12} |"
+
+    scaled_mark = mark * 80/100
+    print(f"""
+Marking Summary:
+
+{table}
+
+(* indicates test passed some, but not all tests)
+
+NOTE: The following mark may be slightly different to the sum of
+the "Mark Allocation" column above. This is due to rounding, not
+a mistake. We will not change marks because of rounding.
+
+Sum of percentage points gained: {mark:.1f}/100
+
+This mark gets scaled to be out of 80:
+
+Mark for automarking tests: {scaled_mark:.1f}/80
+            """)
+    if mark < 50:
+        print("""
+Tutors will manually adjust the marks for assignments with low automarking marks
+to ensure the overall mark for the assignment is appropriate.
+        """)
+
+
+if __name__ == "__main__":
+    main()

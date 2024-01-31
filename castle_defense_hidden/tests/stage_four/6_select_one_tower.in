@@ -1,0 +1,8 @@
+
+t Lair OneTower 1 1
+t Lair TwoTower 1 1
+p
+b OneTower p 1
+b TwoTower u 2
+p
+q

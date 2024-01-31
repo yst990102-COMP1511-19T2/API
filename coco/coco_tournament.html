@@ -1,0 +1,42 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+{{course_code}} Coco Marking Tournament - Round {{last_round_number}}
+{% endblock %}
+
+{% block body_contents %}
+<p>
+<table class="table table-bordered table-condensed  table-striped">
+<tr><th>Position<th>Name<th>Average<br>Tournament Points<th>Number of Rounds<br>Averaged
+{% for (position, average, n, name) in table_rows %}
+<tr><td>{% if position < 0 %}-{% else %}{{position}}{% endif %}<td>{{name}}<td>{{"%.4f" % average}}<td>{{n}}
+{% endfor %}
+</table>
+<p>
+<ul>
+<li>
+The full output from your Coco player can be found  <a href="{{url_root}}coco_tournament/me/">here</a>.
+<li>
+No more then the last {{max_rounds_counted}} rounds were included in the above table.
+<li>
+The  leader board is <a href="{{url_root}}coco_tournament/">here</a>.
+<li>
+You can also see  <a href="{{url_root}}coco_tournament/rounds/100">who is hot</a> - players score  for the most recent 100 rounds.
+<li>
+Submit your Coco player with <b>give</b> to take part.
+<li>
+Note you need to pass the coco autotest to take part in  the tournament.
+ and you need to successfully complete {{min_rounds_counted}} rounds before you appear on the leader board.
+<li>
+There is a 30 second CPU limit on your player completing a play.
+<li>
+There are 6 tournament points distributed for each game.
+The winner of each game receives 3 tournament points, the second placed
+player receives 2 tournament points and the third placed player receives 1 tournament point.
+In the event of ties, the points are split among the tied players.
+for example, if there are two players tied for first, each receives 2.5 tournament points.
+<li>
+Questions in class forum.
+</ul>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+
+max_cpu=3
+no_reproduce_command=1
+
+files=list_intersection_size.c
+compiler_args=-Dmain=_main list_intersection_size.c test_list_intersection_size.c -o test_list_intersection_size
+command=./test_list_intersection_size
+
+pre_compile_command="../check_arrays_not_used.sh list_intersection_size.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_intersection_size - description="./list_intersection_size -" expected_stdout="intersection_size([],[])\nintersection_size returned: 0\n0 0\n"
+2 command=./test_list_intersection_size 42 - 42 description="./list_intersection_size 42 - 42" expected_stdout="intersection_size([42],[42])\nintersection_size returned: 1\n1 1\n"
+3 command=./test_list_intersection_size 42 - 43 description="./list_intersection_size 42 - 43" expected_stdout="intersection_size([42],[43])\nintersection_size returned: 0\n1 1\n"
+4 command=./test_list_intersection_size 42 - description="./list_intersection_size 42 -" expected_stdout="intersection_size([42],[])\nintersection_size returned: 0\n1 0\n"
+5 command=./test_list_intersection_size - 43 description="./list_intersection_size - 43" expected_stdout="intersection_size([],[43])\nintersection_size returned: 0\n0 1\n"
+6 command=./test_list_intersection_size 1 2 3 - description="./list_intersection_size 1 2 3 -" expected_stdout="intersection_size([1, 2, 3],[])\nintersection_size returned: 0\n3 0\n"
+7 command=./test_list_intersection_size 1 2 3 - 1 description="./list_intersection_size 1 2 3 - 1" expected_stdout="intersection_size([1, 2, 3],[1])\nintersection_size returned: 1\n3 1\n"
+8 command=./test_list_intersection_size 1 2 3 - 1 2 description="./list_intersection_size 1 2 3 - 1 2" expected_stdout="intersection_size([1, 2, 3],[1, 2])\nintersection_size returned: 2\n3 2\n"
+9 command=./test_list_intersection_size 1 2 3 - 3 2 description="./list_intersection_size 1 2 3 - 3 2" expected_stdout="intersection_size([1, 2, 3],[3, 2])\nintersection_size returned: 2\n3 2\n"
+10 command=./test_list_intersection_size 1 2 3 - 1 3 description="./list_intersection_size 1 2 3 - 1 3" expected_stdout="intersection_size([1, 2, 3],[1, 3])\nintersection_size returned: 2\n3 2\n"
+11 command=./test_list_intersection_size 1 2 3 - 1 2 3 description="./list_intersection_size 1 2 3 - 1 2 3" expected_stdout="intersection_size([1, 2, 3],[1, 2, 3])\nintersection_size returned: 3\n3 3\n"
+12 command=./test_list_intersection_size 3 2 1 - 3 2 1 description="./list_intersection_size 3 2 1 - 3 2 1" expected_stdout="intersection_size([3, 2, 1],[3, 2, 1])\nintersection_size returned: 3\n3 3\n"
+13 command=./test_list_intersection_size 1 4 5 9 2 - 1 2 3 5 8 description="./list_intersection_size 1 4 5 9 2 - 1 2 3 5 8" expected_stdout="intersection_size([1, 4, 5, 9, 2],[1, 2, 3, 5, 8])\nintersection_size returned: 3\n5 5\n"
+14 command=./test_list_intersection_size 1 4 5 9 2 - 1 3 5 8 2 description="./list_intersection_size 1 4 5 9 2 - 1 3 5 8 2" expected_stdout="intersection_size([1, 4, 5, 9, 2],[1, 3, 5, 8, 2])\nintersection_size returned: 3\n5 5\n"
+15 command=./test_list_intersection_size 1 4 5 9 2 - 3 5 8 2 description="./list_intersection_size 1 4 5 9 2 - 3 5 8 2" expected_stdout="intersection_size([1, 4, 5, 9, 2],[3, 5, 8, 2])\nintersection_size returned: 2\n5 4\n"
+16 command=./test_list_intersection_size 1 2 3 4 5 6 7 8 - 4 6 8 2 1 3 description="./list_intersection_size 1 2 3 4 5 6 7 8 - 4 6 8 2 1 3" expected_stdout="intersection_size([1, 2, 3, 4, 5, 6, 7, 8],[4, 6, 8, 2, 1, 3])\nintersection_size returned: 6\n8 6\n"

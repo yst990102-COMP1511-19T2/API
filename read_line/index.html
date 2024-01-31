@@ -1,0 +1,55 @@
+In the next few activities,
+you'll be building some functions
+that deal with strings.
+<p>
+Remember that a string is an array of values representing characters,
+where the last character is followed by the special value 0 often written as <code>'\0'</code> in C.
+We refer to this zero marking the end of the string as the <strong>null terminator</strong>.
+<p>
+{{ copy_a_file(name="read_line.c", change_function="read_line") }}
+
+<b>read_line</b> takes an array, which we call a "buffer",
+the size of that array,
+and shhould read a line of text
+  from standard input using <b>getchar</b> into the buffer.
+<p>
+Assume a line of text will always end with the newline character, <code>\n</code>.
+You should not write the newline into the buffer.
+<p>
+If more characters are available to be read
+than there is array space to read it into,
+you should stop after you have filled the array.
+<p>
+You should never lose characters, except for the newline.
+<p>
+You should always make sure that,
+when your function returns,
+you have null-terminated the buffer.
+<h4>Testing</h4>
+
+<b>read_line.c</b> also contains a simple <b>main</b> function which allows you to test your <b>read_line</b> function.
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>read_line</b> function will be called directly in marking.  The main function is only to let you test your <b>read_line</b> function
+<p>
+Here is how <b>read_line.c</b> should behave after you add the correct code to the function <b>read_line</b>:
+
+
+<pre class="command_line">
+<kbd class="shell">dcc read_line.c -o read_line</kbd>
+<kbd class="shell">./read_line</kbd>
+<kbd>hello world</kbd>
+&lt;hello world&gt;
+</pre>
+
+<p class="alert alert-info">If you're uncertain about where to start,
+you may like to try the <b>Parrot</b>,
+<b>String Length</b>,
+and <b>Array Functions</b>
+revision exercises.
+
+<p>
+
+

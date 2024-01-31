@@ -1,0 +1,13 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+
+files=multiply.c
+command=./multiply
+
+0 stdin="5 17\n" description="5*17" expected_stdout="85\n"
+1 stdin="15 57\n" description="15*57" expected_stdout="855\n"
+2 stdin="-999 999\n" description="-999*999" expected_stdout="998001\n"
+3 stdin="-5 -167\n" description="-5*-167" expected_stdout="835\n"
+4 stdin="10007 0\n" description="10007*0" expected_stdout="zero\n"
+5 stdin="-10007 0\n" description="-10007*0" expected_stdout="zero\n"

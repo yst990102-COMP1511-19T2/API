@@ -1,0 +1,8 @@
+max_cpu=3
+command=./hollow_triangle
+files=hollow_triangle.c
+hollow_triangle_0 stdin="4\n" description=3 expected_stdout="Enter size: *\n**\n* *\n****\n"
+hollow_triangle_1 stdin="6\n" description=6 expected_stdout="Enter size: *\n**\n* *\n*  *\n*   *\n******\n"
+hollow_triangle_2 stdin="9\n" description=9 expected_stdout="Enter size: *\n**\n* *\n*  *\n*   *\n*    *\n*     *\n*      *\n*********\n"
+hollow_triangle_3 stdin="12\n" description=12 expected_stdout="Enter size: *\n**\n* *\n*  *\n*   *\n*    *\n*     *\n*      *\n*       *\n*        *\n*         *\n************\n"
+hollow_triangle_4 stdin="20\n" description=20 expected_stdout="Enter size: *\n**\n* *\n*  *\n*   *\n*    *\n*     *\n*      *\n*       *\n*        *\n*         *\n*          *\n*           *\n*            *\n*             *\n*              *\n*               *\n*                *\n*                 *\n********************\n"

@@ -1,0 +1,23 @@
+<p>Now create and open a new file called <code>negative.c</code> for this exercise.</p>
+<pre class="command_line">
+<kbd class="shell">gedit negative.c &amp;</kbd>
+</pre>
+<p>Write a program that uses <code>scanf</code> to get a number from a user and prints
+"Don't be so negative!" if they entered a negative number.<br/>
+If the number is positive, the program should print "You have entered a positive number."<br/>
+If the user enters the number 0, the program should print
+"You have entered zero."<br/>
+Note: you can assume that the number will always be a whole number (i.e. an integer)<br/>
+Your program should behave as follows:</p>
+<pre class="command_line">
+<kbd class="shell">dcc -o negative negative.c</kbd>
+<kbd class="shell">./negative</kbd>
+3
+You have entered a positive number.
+<kbd class="shell">./negative</kbd>
+-3
+Don't be so negative!
+<kbd class="shell">./negative</kbd>
+0
+You have entered zero.
+</pre>

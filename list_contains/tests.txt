@@ -1,0 +1,20 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=list_contains.c
+compiler_args=-Dmain=_main list_contains.c test_list_contains.c -o test_list_contains
+command=./test_list_contains
+
+pre_compile_command="../check_arrays_not_used.sh list_contains.c;./check_at_most_one_call_malloc.sh list_contains.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_contains 12 16 7 8 12 13 19 21 12 description="./list_contains 12 16 7 8 12 13 19 21 12" expected_stdout="contains(12, [16, 7, 8, 12, 13, 19, 21, 12])\ncontains returned: 1\n"
+2 command=./test_list_contains 16 16 7 8 12 13 19 21 12 description="./list_contains 16 16 7 8 12 13 19 21 12" expected_stdout="contains(16, [16, 7, 8, 12, 13, 19, 21, 12])\ncontains returned: 1\n"
+3 command=./test_list_contains 42 16 7 8 12 13 19 21 12 description="./list_contains 42 16 7 8 12 13 19 21 12" expected_stdout="contains(42, [16, 7, 8, 12, 13, 19, 21, 12])\ncontains returned: 0\n"
+4 command=./test_list_contains 7 16 7 8 12 13 19 21 12 description="./list_contains 7 16 7 8 12 13 19 21 12" expected_stdout="contains(7, [16, 7, 8, 12, 13, 19, 21, 12])\ncontains returned: 1\n"
+5 command=./test_list_contains 21 16 7 8 12 13 19 21 12 description="./list_contains 21 16 7 8 12 13 19 21 12" expected_stdout="contains(21, [16, 7, 8, 12, 13, 19, 21, 12])\ncontains returned: 1\n"
+6 command=./test_list_contains 4 1 2 3 4 description="./list_contains 4 1 2 3 4" expected_stdout="contains(4, [1, 2, 3, 4])\ncontains returned: 1\n"
+7 command=./test_list_contains 45 56 description="./list_contains 45 56" expected_stdout="contains(45, [56])\ncontains returned: 0\n"
+8 command=./test_list_contains 46 46 description="./list_contains 46 46" expected_stdout="contains(46, [46])\ncontains returned: 1\n"
+9 command=./test_list_contains 10 description="./list_contains 10" expected_stdout="contains(10, [])\ncontains returned: 0\n"

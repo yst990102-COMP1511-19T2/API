@@ -1,0 +1,55 @@
+{{ copy_a_file(name="list_print.c", change_function="print") }}
+
+<b>print</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>print</b> so that it prints the elements in the list
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+<b>print</b> should print <b>1 -&gt; 7 -&gt; 8 -&gt; 9 -&gt; 13 -&gt; 19 -&gt; 21 -&gt; 42 -&gt; X</b>
+<h4>Testing</h4>
+<b>list_print.c</b> also contains a <b>main</b> function which allows you to test your <b>print</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_print(head)</b>
+</li></li></li></ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_print</b> function will be called directly in marking.  The main function is only to let you test your <b>list_print</b> function
+<p>
+Here is how you use main function allows you to test <b>list_print</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc list_print.c -o list_print</kbd>
+<kbd class="shell">./list_print 1 2 4 8 16 32 64 128 256</kbd>
+1 -&gt; 2 -&gt; 4 -&gt; 8 -&gt; 16 -&gt; 32 -&gt; 64 -&gt; 128 -&gt; 256 -&gt; X
+<kbd class="shell">./list_print 2 4 6 5 8 9</kbd>
+2 -&gt; 4 -&gt; 6 -&gt; 5 -&gt; 8 -&gt; 9 -&gt; X
+<kbd class="shell">./list_print 42 4</kbd>
+42 -&gt; 4 -&gt; X
+<kbd class="shell">./list_print 43</kbd>
+43 -&gt; X
+<kbd class="shell">./list_print</kbd>
+X
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>print</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>print</b> should not use arrays.
+<p>
+<b>print</b> should not call malloc.
+<p>
+<b>print</b> should not call scanf (or getchar or fgets).
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p>

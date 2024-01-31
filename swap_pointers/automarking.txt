@@ -1,0 +1,14 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=swap_pointers.c
+compiler_args=-Dmain=_main swap_pointers.c test_swap_pointers.c -o test_swap_pointers
+command=./test_swap_pointers
+
+0a  command=./test_swap_pointers 2 1 description="swap_pointers(2, 1)" expected_stdout="1 2\n"
+1a  command=./test_swap_pointers 92 584 description="swap_pointers(92, 584)" expected_stdout="584, 92\n"
+2a  command=./test_swap_pointers 420 69 description="swap_pointers(420, 69)" expected_stdout="69 420\n"

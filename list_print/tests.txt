@@ -1,0 +1,17 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=list_print.c
+compiler_args=-Dmain=_main list_print.c test_list_print.c -o test_list_print
+command=./test_list_print
+
+pre_compile_command="../check_arrays_not_used.sh list_print.c;./check_at_most_one_call_malloc.sh list_print.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_print 3 1 4 1 5 9 description="./list_print 3 1 4 1 5 9" expected_stdout="print([3, 1, 4, 1, 5, 9])\n3 -> 1 -> 4 -> 1 -> 5 -> 9 -> X\n"
+2 command=./test_list_print 3 4 5 9 description="./list_print 3 4 5 9" expected_stdout="print([3, 4, 5, 9])\n3 -> 4 -> 5 -> 9 -> X\n"
+3 command=./test_list_print 1 2 description="./list_print 1 2" expected_stdout="print([1, 2])\n1 -> 2 -> X\n"
+4 command=./test_list_print 42 description="./list_print 42" expected_stdout="print([42])\n42 -> X\n"
+5 command=./test_list_print  description="./list_print " expected_stdout="print([])\nX\n"
+6 command=./test_list_print 1 2 3 4 5 6 7 8 9 10 description="./list_print 1 2 3 4 5 6 7 8 9 10" expected_stdout="print([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> X\n"

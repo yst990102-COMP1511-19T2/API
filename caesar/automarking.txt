@@ -1,0 +1,14 @@
+max_cpu=10
+ignore_white_space=1
+ignore_blank_lines=1
+files=caesar.c
+
+0 command=./caesar 0 stdin="Beauty is truth, truth beauty" expected_stdout="Beauty is truth, truth beauty"
+1 command=./caesar 1 stdin="I like the way this Snrub thinks!" expected_stdout="J mjlf uif xbz uijt Tosvc uijolt!"
+2 command=./caesar 2 stdin="If anyone needs me,\nI'll be in my room." expected_stdout="Kh cpaqpg pggfu og,\nK'nn dg kp oa tqqo."
+3 command=./caesar 6 stdin="I call the big one 'Bitey.'" expected_stdout="O igrr znk hom utk 'Hozke.'"
+4 command=./caesar 14 stdin="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree." expected_stdout="Gwadgcb, Vcasf Gwadgcb\nVs'g hvs ufsohsgh uim wb vwghcfm\n Tfca hvs\n Hckb ct Gdfwbutwszr\n Vs'g opcih hc vwh o qvsghbih hfss."
+5 command=./caesar 19 stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" expected_stdout="TUVWXYZABCDEFGHIJKLMNOPQRS!@#$%^&*()tuvwxyzabcdefghijklmnopqrs_-+={}[]:;<>,.?/\n"
+6 command=./caesar -19 stdin="Well, that's certainly specious reasoning, Dad.\n... Thank you, honey.\n" expected_stdout="Dlss, aoha'z jlyahpusf zwljpvbz ylhzvupun, Khk.\n... Aohur fvb, ovulf.\n"
+7 command=./caesar 200 stdin="Come, family. Let us all bathe in TV's warm glowing glowy glow" expected_stdout="Ugew, xseadq. Dwl mk sdd tslzw af LN'k osje ydgoafy ydgoq ydgo"
+8 command=./caesar -200 stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." expected_stdout="Jmicbg qa bzcbp, bzcbp jmicbg,\n- bpib qa itt Gm svwe wv mizbp, ivl itt gm vmml bw svwe."

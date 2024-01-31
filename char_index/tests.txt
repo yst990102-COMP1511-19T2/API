@@ -1,0 +1,9 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+command=./char_index
+files=char_index.c
+
+ci_0 stdin='Hello, world!\nl\n' expected_stdout="Enter a line: Enter a character: Index of character 'l': 2\n"
+ci_1 stdin='abc\na\n' expected_stdout="Enter a line: Enter a character: Index of character 'a': 0\n"
+ci_2 stdin='abc\nd\n' expected_stdout="Enter a line: Enter a character: Character 'd' is not in the string.\n"

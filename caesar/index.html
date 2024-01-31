@@ -1,0 +1,73 @@
+
+Write a C program <code>caesar.c</code> which reads characters from its input
+and writes the  characters to its output encrypted with a <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a>.
+<p>
+A <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a> shifts each letter a certain
+number of positions in the alphabet.
+<p>
+The number of positions to shift will be given to your program as a command line argument.
+<p>
+Characters other than letters should not be encrypted.
+<p>
+Your program should stop only at the end of input.
+<p>
+Your program should contain at least one function other than main.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">./caesar 1</kbd>
+<kbd>This life well it's slipping right through my hands</kbd>
+Uijt mjgf xfmm ju't tmjqqjoh sjhiu uispvhi nz iboet
+<kbd>These days turned out nothing like I had planned</kbd>
+Uiftf ebzt uvsofe pvu opuijoh mjlf J ibe qmboofe
+<span class="eof"></span>
+<kbd class="shell">./caesar 10</kbd>
+<kbd>abcdefghijklmnopqrstuvwxyz</kbd>
+klmnopqrstuvwxyzabcdefghij
+<kbd>ABCDEFGHIJKLMNOPQRSTUVWXYZ</kbd>
+KLMNOPQRSTUVWXYZABCDEFGHIJ
+<span class="eof"></span>
+<kbd class="shell">./caesar -42</kbd>
+<kbd>Control well it's slipping right through my hands</kbd>
+Myxdbyv govv sd'c cvszzsxq bsqrd drbyeqr wi rkxnc
+<kbd>These days?</kbd>
+Droco nkic?
+<span class="eof"></span>
+</pre>
+<b>Hint</b>: handle upper and lower case letters separately
+<p>
+<b>Hint</b>: use <code>%</code>
+<p>
+<b>Hint</b>: use <code>atoi</code> to convert the first command-line argument to an int.
+<p>
+<b>Hint</b>:make sure you understand this <a href="{{url_root}}code/characters_and_strings/sum_arguments.c">example program</a> which uses  a <code>atoi</code> to convert  command-line arguments to an ints.
+<p>
+<b>Hint</b>: create a function with a prototype like this:
+
+<pre class="program">
+int encrypt(int character, int shift);
+</pre>
+
+which returns the character shifted by the specified amount
+
+<h4>Manually Cracking a Caesar Cipher</h4>
+
+Here is some (New Zealand) English  text that has been encrypted with a Caesar cipher.
+<pre>
+Z uf dp drbvlg ze jfdvsfup vcjv'j tri
+Nv fiuvi uzwwvivek uizebj rk kyv jrdv srij
+Z befn rsflk nyrk pfl uzu reu Z nreer jtivrd kyv kilky
+Jyv kyzebj pfl cfmv kyv svrty, pfl'iv jlty r urde czri
+</pre>
+
+Use the program you have just written to discover  the secret text?
+<p>
+<b>Hint:</b>: try different shifts until you see English.
+
+<div></div>
+<p>
+You program will only be tested with an appropriate command line argument -
+but a good programmer would check the command line argument is present and appropriate.
+
+</p></p></p></p></p></p></p></p></p></p></p></p>

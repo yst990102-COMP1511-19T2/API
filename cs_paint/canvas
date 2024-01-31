@@ -1,0 +1,447 @@
+#!/usr/bin/env python3
+
+import atexit
+import argparse
+import getpass
+import glob
+import io
+import os
+import re
+import subprocess
+import shutil
+import sys
+import tempfile
+import signal
+import zipfile
+
+def cleanup(temp_dir=None):
+    if temp_dir and re.search('^/tmp/', temp_dir):
+        shutil.rmtree(temp_dir)
+
+temp_dir = tempfile.mkdtemp()
+atexit.register(cleanup, temp_dir=temp_dir)
+
+def signal_handler(sig, frame):
+        print('You pressed Ctrl+C, program terminating.')
+        sys.exit(0)
+
+
+signal.signal(signal.SIGINT, signal_handler)
+
+
+def valid_source_file(file_name):
+    if file_name[-2:].lower() == '.c':
+        if os.path.exists(file_name):
+            return file_name
+    elif file_name.lower() == 'solution':
+        return file_name
+    else:
+        raise argparse.ArgumentError("Source file must either be a '.c' file, or the word 'solution'")
+
+
+def valid_test_files(file_name):
+    if file_name.endswith('.in') or file_name.endswith('.txt'):
+        return file_name
+    raise argparse.ArgumentError("If you provide test files, they must end in '.in' or '.txt'")
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    'source_file',
+    help=(
+        "Your source file (ending in .c) containing your program, "
+        "or the word 'solution' to use the template solution."),
+    type=valid_source_file
+)
+parser.add_argument(
+    'test_files',
+    help="The list of test files (which must end in .txt or .in) to run.",
+    nargs='*',
+    type=valid_test_files
+)
+parser.add_argument(
+    '--show-numbers', '-n',
+    action='store_true',
+    help=(
+        "This will skip converting the output of your program into a canvas. "
+        "You will see numbers, as opposed to shaded blocks."
+    )
+)
+parser.add_argument(
+    '--debug',
+    action='store_true',
+    help=(
+        "Show debug info."
+    )
+)
+parser.add_argument(
+    "--compiler",
+    help="Choose the compilation command",
+    default="dcc"
+)
+parser.add_argument(
+    "--optimise",
+    action="store_true",
+    help="use optimisation to make the binaries run faster"
+)
+parser.add_argument(
+    "--borderless", '-b',
+    action="store_true",
+    help=(
+        "Don't show the border around canvases "
+        "(borders only show on valid canvases made from files)"
+    )
+)
+parser.add_argument(
+    '--disable-terminal-colors', '-c',
+    action='store_true',
+    help=(
+        "Don't print ANSI escape codes to force the colors "
+        "to be displayed as white-on-black"
+    )
+)
+parser.add_argument(
+    "--upload_url",
+    default='http://cgi.cse.unsw.edu.au/~cs1511/19T2/cgi/autotest_upload.cgi',
+    help="URL for upload of results"
+)
+
+# section... appropriated from coco_referee
+def save_source_files():
+    args.source_file_contents = {}
+    bytes_to_be_uploaded =0
+    for source_file in args.source_files:
+        if not source_file.endswith('.c'):
+            continue
+        basename = os.path.basename(source_file)
+        if basename in args.source_file_contents:
+            continue
+        try:
+            bytes_to_be_uploaded += os.path.getsize(source_file)
+            if bytes_to_be_uploaded > args.upload_max_bytes:
+                break
+            with open(source_file, encoding='ascii') as f:
+                args.source_file_contents[basename] = f.read()
+        except (OSError, UnicodeDecodeError) as e:
+            if args.debug:
+                print(str(e))
+
+def get_zid():
+    try:
+        # os.getlogin() may fail,
+        # unclear if pwd.getpwuid(os.getuid())[0] would be better
+        # we aren't trusting the zid anyway
+        account = getpass.getuser()
+
+        if account == 'andrewt':
+            return 'z9300162'
+        if account == 'tfpk':
+            return 'z5205060'
+        if re.search(r'^z\d{7}$', account):
+            return account
+    except OSError as e:
+        if args.debug:
+            print(e)
+        pass
+
+
+UPLOAD_EXERCISE_ACTIVITY_NAME = 'cs_paint_canvas'
+
+
+def upload_source(input_file_path, source_code):
+    if not args.source_file or not args.upload_url or not requests_post:
+        return
+    zid = get_zid()
+    if not zid:
+        if args.debug:
+            print("Could not find user zid")
+        return
+    buffer = io.BytesIO()
+    zf = zipfile.ZipFile(buffer, 'w', compression=zipfile.ZIP_LZMA)
+    try:
+        zf.write(input_file_path)
+        zf.write(source_code)
+    except AttributeError as e:
+        if args.debug:
+            print(e)
+        pass
+    zf.close()
+    buffer.seek(0)
+    parameters = {
+        "zid": zid,
+        "exercise": UPLOAD_EXERCISE_ACTIVITY_NAME
+    }
+    if args.debug:
+        print(args.upload_url)
+    r = requests_post(args.upload_url, data=parameters, files={"zip": ("zip", buffer)})
+    if args.debug:
+        print(r.text)
+
+
+def cleanup(temp_dir=None):
+    if temp_dir and re.search('^/tmp/', temp_dir):
+        shutil.rmtree(temp_dir)
+
+
+def compile_cs_paint(args, binary='cs_paint'):
+    print("Compiling CS Paint...")
+
+
+    path = args.source_file
+
+    if not os.path.isfile(path):
+        print(f"Error opening file? {path}")
+        print("It looks like you didn't provide a c file to use...")
+        sys.exit(1)
+
+    try:
+        shutil.copy(path, temp_dir)
+    except IOError:
+        print(f"Error copying file: {path}", file=sys.stderr)
+        sys.exit(1)
+    cwd = os.getcwd()
+    os.chdir(temp_dir)
+
+    source_files = glob.glob('*.c')
+    compiler = [args.compiler, '-o', binary, '-lm']
+    try:
+        command = compiler + source_files
+        if args.optimise:
+            command += ["-O2"]
+        print(' '.join(command))
+        subprocess.check_call(command)
+    except subprocess.CalledProcessError:
+        sys.exit(1)
+
+    real_path = os.path.realpath(binary)
+    os.chdir(cwd)
+    return real_path
+
+# --- this stuff was me (tfpk)
+
+
+def get_default_binary():
+    address = "/web/cs1511/19T2/activities/cs_paint/cs_paint"
+    if not os.path.exists(address):
+        return None
+    return address
+
+def get_signature(file_name):
+    try:
+        return os.path.getmtime(file_name)
+    except Exception:
+        print(f"Could not find file: {file_name}")
+        return False
+
+
+TIMEOUT = 5
+
+def get_warning_text(text):
+    start = "\033[1m"
+    end = "\033[0;0m"
+
+    return (start + text + end)
+
+def get_warning_text_bytes(text):
+    return get_warning_text(text).encode('utf-8')
+
+
+LR_LINE = b'\xe2\x95\x90'
+UP_LINE = b'\xe2\x95\x91'
+
+UP_TICK = b'\xe2\x95\xa7'
+DOWN_TICK = b'\xe2\x95\xa4'
+RIGHT_TICK = b'\xe2\x95\x9f'
+LEFT_TICK = b'\xe2\x95\xa2'
+
+CORNERS = [b'\xe2\x95\x94', b'\xe2\x95\x97', b'\xe2\x95\x9a', b'\xe2\x95\x9d']
+
+N_ROWS = 20
+N_COLS = 36
+
+def group(l, n):
+    return list(map(bytes, zip(*[l[i::n] for i in range(n)])))
+
+
+def replace_every_nth(string, periodicity, replace_with, times):
+    new_string = b""
+    for i, character in enumerate(group(string, 3)):
+        if i % periodicity == 0 and i > 0:
+            character = replace_with
+        new_string += character * times
+    return new_string
+
+
+def add_border(canvas):
+    lines = canvas.split(b'\n')
+    lines = filter(len, lines)
+
+    vertical_line = LR_LINE * N_COLS
+    horizontal_line = UP_LINE * N_ROWS
+
+    top_row = replace_every_nth(vertical_line, 6, DOWN_TICK, 2)
+    bottom_row = top_row.replace(DOWN_TICK, UP_TICK)
+
+    left_row = CORNERS[0] + replace_every_nth(horizontal_line, 5, RIGHT_TICK, 1) + CORNERS[2]
+    right_row = CORNERS[1] + replace_every_nth(horizontal_line, 5, LEFT_TICK, 1) + CORNERS[3]
+    left_row = group(left_row, 3)
+    right_row = group(right_row, 3)
+
+    lines = [top_row, *lines, bottom_row]
+    for i, line in enumerate(lines):
+        lines[i] = left_row[i] + line + right_row[i]
+
+    return b'\n'.join(lines) + b'\n'
+
+def add_colors(program_output):
+    white_on_black = "\033[0;37;1;40m"
+    reset = "\033[0m"
+    colored = [''.join(white_on_black + line + reset) for line in
+            program_output.split("\n")]
+    return '\n'.join(colored)
+
+def nice_output(output, borderless=False):
+    original_output = output
+    ALLOWED_CHARS = set('01234 \r\n')
+    decode_output = output.decode('utf-8')
+
+    replace = {
+        b'0 ': b' '*2,
+        b'1 ': b'\xe2\x96\x91' * 2,
+        b'2 ': b'\xe2\x96\x92' * 2,
+        b'3 ': b'\xe2\x96\x93' * 2,
+        b'4 ': b'\xe2\x96\x88' * 2,
+    }
+
+    for (replacee, replacer) in replace.items():
+        output = output.replace(replacee, replacer)
+
+    if not output.decode('utf-8').strip():
+        return output + get_warning_text_bytes("You had no output.\n")
+    elif not set(decode_output) < ALLOWED_CHARS:
+        invalid_chars = str(list(set(decode_output) - ALLOWED_CHARS))
+        warning = get_warning_text_bytes(
+            "Your output contained invalid characters (they were " + invalid_chars + '):\n'
+        )
+        output = (
+            warning + b"Raw Output: \n" + original_output + b"\n" +
+            b"Canvas (may be distorted):\n" + output
+        )
+    elif not borderless:
+        output = add_border(output)
+
+    return output
+
+
+def is_valid_text(text):
+    return re.match(r'[\d\s]*', text)
+
+
+def run_binary(file_name, binary, nice=True, borderless=False):
+    subprocess_args = {}
+
+    # subprocess.Popen needs to be given stdin=None to be interactive,
+    # and subprocess.PIPE to process the given input.
+    # so, we set it to None here, and then if we do manage to open
+    # a file, set it to subprocess.PIPE there.
+    stdin = None
+
+    if file_name:
+        with open(file_name, 'r') as f:
+            input_text = f.read()
+        if not is_valid_text(input_text):
+            print(get_warning_text(f'Input file "{file_name}" contains invalid characters.'))
+            return
+        subprocess_args['input'] = input_text.encode('utf-8')
+        subprocess_args['timeout'] = TIMEOUT
+        stdin = subprocess.PIPE
+
+
+    command = binary
+
+    try:
+        program = subprocess.Popen(
+            command,
+            stdin=stdin,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        output, errors = program.communicate(**subprocess_args)
+        program_output = output + errors
+    except subprocess.TimeoutExpired:
+        print("Program did not complete - your input was invalid, or you had an infinite loop.")
+        return
+
+    if errors:
+        print("Your program crashed: ")
+        print(program_output.decode('utf-8'))
+        return
+
+    if nice:
+        program_output = nice_output(program_output, borderless=borderless)
+
+
+    program_output = program_output.decode('utf-8')
+
+    if not args.disable_terminal_colors:
+        program_output = add_colors(program_output)
+
+    print(program_output)
+
+    #colored = [''.join(white_on_black + line + reset) for line in
+    #        program_output.decode('utf-8').split("\n")]
+    #print('\n'.join(colored))
+    #print(x + program_output.decode('utf-8') + end)
+
+
+if __name__ == '__main__':
+    global requests_post
+    try:
+        import requests
+        requests_post = requests.post
+    except ImportError:
+        if args.debug:
+            print("requests module not found.")
+        requests_post = None
+
+    args = parser.parse_args()
+
+    if not args.test_files:
+        args.test_files = [None]
+
+    if args.source_file == 'solution':
+        binary = get_default_binary()
+        if not binary:
+            print(get_warning_text("Could not find template solution!"))
+            sys.exit(1)
+    else:
+        binary = compile_cs_paint(args)
+
+    for input_file in args.test_files:
+        if len(args.test_files) > 1:
+            print(f"==> {input_file} <==")
+
+        if input_file is None and sys.stdin.isatty():
+            print(
+                "You have run canvas without specifying any tests.\n"
+                "You may quit this program with Control + C\n"
+                "You can type lines below, and then press Control + D "
+                "to see what output those lines produce."
+            )
+            input_file = temp_dir + '/temp_input.in'
+            open(input_file, 'w').write(sys.stdin.read())
+        try:
+            if args.source_file != 'solution':
+                upload_source(input_file, args.source_file)
+        except Exception as e:
+            if args.debug:
+                print(e)
+            pass
+
+        run_binary(
+            input_file,
+            binary,
+            nice=(not args.show_numbers),
+            borderless=args.borderless
+        )
+        

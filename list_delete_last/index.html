@@ -1,0 +1,73 @@
+{{ copy_a_file(name="list_delete_last.c", change_function="delete_last") }}
+
+Note <b>list_delete_last.c</b> uses the following familiar data type:
+
+<pre class="program">
+struct node {
+    struct node *next;
+    int          data;
+};
+</pre>
+<b>delete_last</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>delete_last</b> so that it deletes the last node from list.
+<p>
+<b>delete_last</b> should return a pointer to the new list.
+<p>
+If the list is now empty <b>delete_last</b> should return <b>NULL</b>.
+<p>
+<b>delete_last</b> should call <b>free</b> to free the memory of the node it deletes.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+16, 7, 8, 12, 13, 19, 21, 12
+</pre>
+<p>
+<b>delete_last</b> should return a pointer to a list with these elements:
+<p>
+<pre>
+16, 7, 8, 12, 13, 19, 21
+</pre>
+<h4>Testing</h4>
+<b>list_delete_last.c</b> also contains a <b>main</b> function which allows you to test your <b>delete_last</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>delete_last(head)</b>
+<li> prints the result.
+</li></li></li></li></ul>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>delete_last</b> function will be called directly in marking.  The main function is only to let you test your <b>delete_last</b> function
+<p>
+<pre class="command_line">
+<kbd class="shell">cp -n {{activity_directory}}list_delete_last.c .</kbd>
+<kbd class="shell">dcc list_delete_last.c -o list_delete_last</kbd>
+<kbd class="shell">./list_delete_last 16 7 8 12 13 19 21 12</kbd>
+[16, 7, 8, 12, 13, 19, 21]
+<kbd class="shell">./list_delete_last 2 4 6 2 4 6</kbd>
+[2, 4, 6, 2, 4]
+<kbd class="shell">./list_delete_last 42</kbd>
+[]
+<kbd class="shell">./list_delete_last</kbd>
+[]
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>delete_last</b> should call <b>free</b> to free the memory for the node it deletes
+<p>
+<b>delete_first</b> should not change the data fields of list nodes.
+<p>
+<b>delete_last</b> should not use arrays.
+<p>
+<b>delete_last</b> should not call malloc.
+<p>
+<b>delete_last</b> should not call scanf (or getchar or fgets).
+<p>
+<b>delete_last</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

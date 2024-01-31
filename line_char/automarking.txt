@@ -1,0 +1,15 @@
+max_cpu=10
+ingore_white_space=1
+ignore_blank_lines=1
+ignore_case=1
+
+command=./line_char
+files=line_char.c
+
+
+0 stdin="good bye cruel world\n0\n" expected_stdout="The character in position 0 is 'g'\n"
+1 stdin="good bye cruel world\n7\n" expected_stdout="The character in position 7 is 'e'\n"
+2 stdin="good bye cruel world\n8\n" expected_stdout="The character in position 8 is ' '\n"
+3 stdin="good bye cruel world\n9\n" expected_stdout="The character in position 9 is 'c'\n"
+4 stdin="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\n50\n" expected_stdout="The character in position 50 is 'y'\n"
+5 stdin="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\n100\n" expected_stdout="The character in position 100 is 'w'\n"

@@ -1,0 +1,12 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+Farnarkle Round {{round}} Output for {{zid}}
+{% endblock %}
+
+{% block body_contents %}
+<p>
+<pre>
+{{raw_output}}
+</pre>
+{% endblock %}

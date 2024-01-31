@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=string_copy.c
+compiler_args=-Dmain=_main string_copy.c test_string_copy.c -o test_string_copy
+command=./test_string_copy
+
+1 command=./test_string_copy hello-world "16" description='string_copy source="hello-world" destination_size=16' expected_stdout="<hello-world>\n"
+2 command=./test_string_copy hello-world "8" description='string_copy source="hello-world" destination_size=8' expected_stdout="<hello-w>\n"
+3 command=./test_string_copy hello-world "1" description='string_copy source="hello-world" destination_size=1' expected_stdout="<>\n"
+4 command=./test_string_copy abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "32" description='string_copy source="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" destination_size=32' expected_stdout="<abcdefghijklmnopqrstuvwxyzABCDE>\n"
+5 command=./test_string_copy abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "64" description='string_copy source="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" destination_size=64' expected_stdout="<abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ>\n"

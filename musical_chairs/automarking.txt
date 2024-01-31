@@ -1,0 +1,14 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+no_reproduce_command=1
+compilers="dcc:dcc --valgrind --leak-check"
+
+files=musical_chairs.c
+compiler_args=-Dmain=_main -Dbe_seated=_be_seated musical_chairs.c test_musical_chairs.c -o test_musical_chairs
+command=./test_musical_chairs
+
+0a  command=./test_musical_chairs RobbS RickardS SansaS EddardS BranS  description="musical_chairs(Starks)" stdin="2\n2\n2\n-1\n" expected_stdout="RickardS\nEddardS\nRobbS\n"
+1a  command=./test_musical_chairs a b c d e description="musical_chairs(ABC)" stdin="3\n2\n15\n-1\n" expected_stdout="c\ne\nd\n"
+1a  command=./test_musical_chairs Elrond Arwen Celeborn Galadriel Thraduil Legolas description="musical_chairs(Elven)" stdin="1\n12\n3\n5\n-1n" expected_stdout="Elrond\nCeleborn\nLegolas\nGaladriel\n"

@@ -1,0 +1,41 @@
+{{ copy_a_file(name="struct_create.c", change_function="struct_create") }}
+
+<b>struct_create</b> is written using the following struct that cannot be changed:
+<p>
+<pre>
+struct numbers {
+    int first;
+    int second;
+};
+</pre>
+<p>
+<b>struct_create</b> should take two integers as input and return a pointer 
+to a struct numbers variable that it has created. Its first input should be 
+stored in the first field and its second input should be stored in the second 
+field.
+<p>
+For example if the integers are:
+<p>
+<pre>
+int a = 1;
+int b = 2;
+</pre>
+<p>
+and the function is called like this:
+<p>
+<pre>
+struct numbers* n = struct_create(a, b);
+</pre>
+<b>n</b> will now be pointing at a struct that has n-&gt;first == 1 and n-&gt;second == 2.
+
+<p>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+<b>struct numbers</b> cannot be edited. It must be used as it is.
+<p>
+<b>struct_create</b> should call malloc() to allocate memory.
+<p>
+<b>struct_create</b> should not print anything. It should not call printf.
+<p>
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p>

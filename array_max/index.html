@@ -1,0 +1,25 @@
+{{ copy_a_file(name="array_max.c", change_function="array_max") }}
+
+You are to implement
+the <b>array_max</b>
+function which should return the largest value in the
+array.
+<p>
+The file <code>array_max.c</code> contains a main function
+which reads values into an array and calls <b>array_max</b>.
+<p>
+
+Here is how <b>array_max.c</b> should behave after you add the correct code to the function <b>array_max</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc array_max.c -o array_max</kbd>
+<kbd class="shell">./array_max</kbd>
+Enter array size: <kbd>5</kbd>
+Enter array values: <kbd>1 2 3 4 5</kbd>
+Maximum value is 5.
+<kbd class="shell">./array_max</kbd>
+Enter array size: <kbd>6</kbd>
+Enter array values: <kbd>-1 -3 -9 -17 -2 -8</kbd>
+Maximum value is -1.
+</pre>
+</p></p>

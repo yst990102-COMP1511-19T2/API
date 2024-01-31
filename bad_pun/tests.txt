@@ -1,0 +1,2 @@
+files=bad_pun.c
+0 command="./bad_pun" expected_stdout="Hello, it is good to C you!\n"

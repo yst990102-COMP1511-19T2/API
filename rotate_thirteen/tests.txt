@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=rotate_thirteen.c
+compiler_args=-Dmain=_main rotate_thirteen.c test_rotate_thirteen.c -o test_rotate_thirteen
+command=./test_rotate_thirteen
+
+1 command=./test_rotate_thirteen "" description='rotate_thirteen("")' expected_stdout="\n"
+2 command=./test_rotate_thirteen "hello" description='rotate_thirteen("hello")' expected_stdout="uryyb\n"
+3 command=./test_rotate_thirteen "hello world" description='rotate_thirteen("hello world")' expected_stdout="uryyb jbeyq\n"
+4 command=./test_rotate_thirteen "hello-world" description='rotate_thirteen("hello-world")' expected_stdout="uryyb-jbeyq\n"
+5 command=./test_rotate_thirteen "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" description='rotate_thirteen("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")' expected_stdout="nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM\n"

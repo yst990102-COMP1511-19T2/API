@@ -1,0 +1,10 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+files=easter.c
+command=easter
+easter_0 stdin="1888\n" expected_stdout="Enter year: Easter is April 1 in 1888.\n"
+easter_1 stdin="1999\n" expected_stdout="Enter year: Easter is April 4 in 1999.\n"
+easter_2 stdin="2015\n" expected_stdout="Enter year: Easter is April 5 in 2015.\n"
+easter_3 stdin="2030\n" expected_stdout="Enter year: Easter is April 21 in 2030.\n"
+easter_4 stdin="2222\n" expected_stdout="Enter year: Easter is March 31 in 2222.\n"

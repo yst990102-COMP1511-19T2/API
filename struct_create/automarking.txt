@@ -1,0 +1,14 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=struct_create.c
+compiler_args=-Dmain=_main struct_create.c test_struct_create.c -o test_struct_create
+command=./test_struct_create
+
+0a  command=./test_struct_create 1 2 description="struct_create(2, 1)" expected_stdout="1 2\n"
+1a  command=./test_struct_create 584 92 description="struct_create(92, 584)" expected_stdout="584, 92\n"
+2a  command=./test_struct_create 420 69 description="struct_create(420, 69)" expected_stdout="420 69\n"

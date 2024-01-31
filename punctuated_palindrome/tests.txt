@@ -1,0 +1,12 @@
+max_cpu=10
+files=punctuated_palindrome.c
+command=./punctuated_palindrome
+
+0 stdin="Do geese see God?\n" expected_stdout="Enter a string: String is a palindrome\n"
+1 stdin="Do ducks see God?\n" expected_stdout="Enter a string: String is not a palindrome\n"
+2 stdin="Madam, I'm Adam\n" expected_stdout="Enter a string: String is a palindrome\n"
+3 stdin="Madam, I'm Andrew\n" expected_stdout="Enter a string: String is not a palindrome\n"
+4 stdin="Eva, can I stab bats in a cave?\n" expected_stdout="Enter a string: String is a palindrome\n"
+5 stdin="Eva, can I stab cats in a cave?\n" expected_stdout="Enter a string: String is not a palindrome\n"
+6 stdin="Mr. Owl ate my metal worm\n" expected_stdout="Enter a string: String is a palindrome\n"
+7 stdin="Mr. Owl at my metal worm\n" expected_stdout="Enter a string: String is not a palindrome\n"

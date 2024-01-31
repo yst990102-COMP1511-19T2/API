@@ -1,0 +1,8 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+files=dating_range.c
+command=dating_range
+dating_range_0 stdin="11\n" expected_stdout="Enter your age: You are too young to be dating.\n"
+dating_range_1 stdin="22\n" expected_stdout="Enter your age: Your dating range is 18 to 30 years old.\n"
+dating_range_2 stdin="44\n" expected_stdout="Enter your age: Your dating range is 29 to 74 years old.\n"

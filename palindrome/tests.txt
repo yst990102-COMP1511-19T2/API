@@ -1,0 +1,16 @@
+max_cpu=10
+files=palindrome.c
+command=./palindrome
+
+0 stdin="kayak\n" expected_stdout="Enter a string: String is a palindrome\n"
+1 stdin="canoe\n" expected_stdout="Enter a string: String is not a palindrome\n"
+2 stdin="repaper\n" expected_stdout="Enter a string: String is a palindrome\n"
+3 stdin="repacker\n" expected_stdout="Enter a string: String is not a palindrome\n"
+4 stdin="do do do od od od\n" expected_stdout="Enter a string: String is a palindrome\n"
+5 stdin="od od od do do do\n" expected_stdout="Enter a string: String is a palindrome\n"
+6 stdin="0123210\n" expected_stdout="Enter a string: String is a palindrome\n"
+7 stdin="0133210\n" expected_stdout="Enter a string: String is not a palindrome\n"
+8 stdin="\n" expected_stdout="Enter a string: String is a palindrome\n"
+9 stdin="0123310\n" expected_stdout="Enter a string: String is not a palindrome\n"
+10 stdin="01233210\n" expected_stdout="Enter a string: String is a palindrome\n"
+11 stdin="01234210\n" expected_stdout="Enter a string: String is not a palindrome\n"

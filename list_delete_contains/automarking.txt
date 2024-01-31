@@ -1,0 +1,28 @@
+# generated from automarking.py by /home/cs1511/public_html/19T1/scripts/autotest_update_from_solution
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+compilers="dcc:dcc --valgrind:dcc --leak-check"
+files=list_delete_contains.c
+compiler_args=-Dmain=_main list_delete_contains.c test_list_delete_contains.c -o test_list_delete_contains
+command=./test_list_delete_contains
+
+pre_compile_command="../check_arrays_not_used.sh list_delete_contains.c;./check_at_most_one_call_malloc.sh list_delete_contains.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_delete_contains 5 5 8 9 7 9 3 2 3 8 4 description="./list_delete_contains 5 5 8 9 7 9 3 2 3 8 4" expected_stdout="delete_contains(5, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ndelete_contains returned: [8, 9, 7, 9, 3, 2, 3, 8, 4]\n"
+2 command=./test_list_delete_contains 5 5 8 9 7 9 3 2 3 8 4 description="./list_delete_contains 5 5 8 9 7 9 3 2 3 8 4" expected_stdout="delete_contains(5, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ndelete_contains returned: [8, 9, 7, 9, 3, 2, 3, 8, 4]\n"
+3 command=./test_list_delete_contains 8 5 8 9 7 9 3 2 3 8 4 description="./list_delete_contains 8 5 8 9 7 9 3 2 3 8 4" expected_stdout="delete_contains(8, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ndelete_contains returned: [5, 9, 7, 9, 3, 2, 3, 8, 4]\n"
+4 command=./test_list_delete_contains 9 5 8 9 7 9 3 2 3 8 4 description="./list_delete_contains 9 5 8 9 7 9 3 2 3 8 4" expected_stdout="delete_contains(9, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ndelete_contains returned: [5, 8, 7, 9, 3, 2, 3, 8, 4]\n"
+5 command=./test_list_delete_contains 4 5 8 9 7 9 3 2 3 8 4 description="./list_delete_contains 4 5 8 9 7 9 3 2 3 8 4" expected_stdout="delete_contains(4, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ndelete_contains returned: [5, 8, 9, 7, 9, 3, 2, 3, 8]\n"
+6 command=./test_list_delete_contains 15 3 5 7 9 11 13 15 description="./list_delete_contains 15 3 5 7 9 11 13 15" expected_stdout="delete_contains(15, [3, 5, 7, 9, 11, 13, 15])\ndelete_contains returned: [3, 5, 7, 9, 11, 13]\n"
+7 command=./test_list_delete_contains 1 1 2 3 description="./list_delete_contains 1 1 2 3" expected_stdout="delete_contains(1, [1, 2, 3])\ndelete_contains returned: [2, 3]\n"
+8 command=./test_list_delete_contains 2 1 2 3 description="./list_delete_contains 2 1 2 3" expected_stdout="delete_contains(2, [1, 2, 3])\ndelete_contains returned: [1, 3]\n"
+9 command=./test_list_delete_contains 3 1 2 3 description="./list_delete_contains 3 1 2 3" expected_stdout="delete_contains(3, [1, 2, 3])\ndelete_contains returned: [1, 2]\n"
+10 command=./test_list_delete_contains 4 1 2 3 description="./list_delete_contains 4 1 2 3" expected_stdout="delete_contains(4, [1, 2, 3])\ndelete_contains returned: [1, 2, 3]\n"
+11 command=./test_list_delete_contains 6 5 description="./list_delete_contains 6 5" expected_stdout="delete_contains(6, [5])\ndelete_contains returned: [5]\n"
+12 command=./test_list_delete_contains 6 6 description="./list_delete_contains 6 6" expected_stdout="delete_contains(6, [6])\ndelete_contains returned: []\n"
+13 command=./test_list_delete_contains 45 description="./list_delete_contains 45" expected_stdout="delete_contains(45, [])\ndelete_contains returned: []\n"

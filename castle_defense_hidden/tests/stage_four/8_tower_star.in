@@ -1,0 +1,9 @@
+
+t Lair TowerTower 1 1
+t Lair Tower_Tower 1 1
+t Lair Tower_of_Doom 1 1
+p
+b *Tower p 1
+b *Tow?r u 1
+p
+q

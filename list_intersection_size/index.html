@@ -1,0 +1,87 @@
+{{copy_a_file("list_intersection_size.c", change_function="intersection_size")}}
+
+Note <b>list_intersection_size.c</b> uses the following familiar data type:
+
+<pre class="program">
+struct node {
+    struct node *next;
+    int          data;
+};
+</pre>
+<b>intersection_size</b> is given two arguments, <b>head1</b> and <b>head2</b>, which are pointers to the first node of linked lists.
+<p>
+Add code to <b>intersection_size</b> so that its returns the number of values that occur in both linked list.
+<p>
+Assume no value occurs more than once in either linked list.
+<p>
+For example, if the two lists contain these values:
+<p>
+<pre>
+3, 1, 4
+2, 7, 1, 8, 3
+</pre>
+<p>
+<b>intersection_size</b> should return <b>2</b>, because these 2 elements occur in both lists:
+<p>
+<pre>
+1, 3
+</pre>
+<p>
+<h4>Testing</h4>
+<b>list_intersection_size.c</b> also contains a <b>main</b> function which allows you to test your <b>intersection_size</b> function.
+<p>
+This main function:
+<ul>
+<li> uses a command line argument of "-" to separate the values for two linked lists.
+<li> converts the command-line arguments before the "-" to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head1</b>
+<li> converts the command-line arguments after the "-" to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head2</b>
+<li> calls <b>intersection_size(head1, head2)</b>
+<li> prints the result.
+</li></li></li></li></li></li></li></ul>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>intersection_size</b> function will be called directly in marking.  The main function is only to let you test your <b>intersection_size</b> function
+<p>
+Here is how the main function allows you to test <b>intersection_size</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">cp -n {{activity_directory}}list_intersection_size.c .</kbd>
+<kbd class="shell">dcc list_intersection_size.c -o list_intersection_size</kbd>
+<kbd class="shell">./list_intersection_size 3 1 4 - 2 7 1 8 3</kbd>
+2
+<kbd class="shell">./list_intersection_size 16 7 8 12 - 13 19 21 12</kbd>
+1
+<kbd class="shell">./list_intersection_size 2 4 6 - 2 4 6</kbd>
+3
+<kbd class="shell">./list_intersection_size 3 5 7 11 13 - 15 17 19 23 29</kbd>
+0
+<kbd class="shell">./list_intersection_size 1 2 3 4 - 3 2 1</kbd>
+3
+<kbd class="shell">./list_intersection_size - 1 2 3 4</kbd>
+0
+<kbd class="shell">./list_intersection_size 4 3 2 1 -</kbd>
+0
+<kbd class="shell">./list_intersection_size -</kbd>
+0
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>intersection_size</b> should return a single integer.
+<p>
+No value will occur more than once in either linked list.
+<p>
+<b>intersection_size</b> should not change the linked lists it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>intersection_size</b> should not use arrays.
+<p>
+<b>intersection_size</b> should not call malloc.
+<p>
+<b>intersection_size</b> should not call scanf (or getchar or fgets).
+<p>
+<b>intersection_size</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

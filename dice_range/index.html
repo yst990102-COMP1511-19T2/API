@@ -1,0 +1,39 @@
+We will often roll multiple dice at the same time. 
+<p>
+Write a C program <code>dice_range.c</code> that reads the number of sides on a set of dice and how many of them are being rolled.
+It then outputs the range of possible totals that these dice can produce as well as the average value.
+<p>
+Hint: use the examples below to clarify the expected behaviour of your program.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o dice_range dice_range.c</kbd>
+<kbd class="shell">./dice_range</kbd>
+Enter the number of sides on your dice: <kbd>6</kbd>
+Enter the number of dice being rolled: <kbd>2</kbd>
+Your dice range is 2 to 12. 
+The average value is 7.000000
+<kbd class="shell">./dice_range</kbd>
+Enter the number of sides on your dice: <kbd>8</kbd>
+Enter the number of dice being rolled: <kbd>3</kbd>
+Your dice range is 3 to 24.
+The average value is 13.500000
+<kbd class="shell">./dice_range</kbd>
+Enter the number of sides on your dice: <kbd>20</kbd>
+Enter the number of dice being rolled: <kbd>4</kbd>
+Your dice range is 4 to 80. 
+The average value is 42.000000
+</pre>
+
+You'll also need to check for invalid dice or situations where the range is empty. Those situations should produce these results:
+<pre class="command_line">
+<kbd class="shell">./dice_range</kbd>
+Enter the number of sides on your dice: <kbd>-5</kbd>
+Enter the number of dice being rolled: <kbd>4</kbd>
+These dice will not produce a range.
+<kbd class="shell">./dice_range</kbd>
+Enter the number of sides on your dice: <kbd>6</kbd>
+Enter the number of dice being rolled: <kbd>0</kbd>
+These dice will not produce a range.</pre>
+</p></p></p>

@@ -1,0 +1,15 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+Coco Rounds for {{zid}}
+{% endblock %}
+
+{% block body_contents %}
+<p>
+<table class="table table-bordered table-condensed  table-striped">
+    <tr><th>Round<th>Tournament Points <a href="https://cgi.cse.unsw.edu.au/~cs1511/19T2/assignments/ass1/index.html#coco-tournament">[?]</a><th>Full Game Details
+{% for (score, round, round_name) in rounds %}
+<tr><td>{{round_name}}<td>{{score}}<td><a href="{{round}}">details</a>
+{% endfor %}
+</table>
+{% endblock %}

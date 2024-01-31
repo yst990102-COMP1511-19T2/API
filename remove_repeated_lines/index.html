@@ -1,0 +1,47 @@
+Write a C program <code>remove_repeated_lines.c</code> which reads lines and prints them
+unless it has seen exactly the same line previously.
+<p>
+In other words it doesn't print repeated lines.  It prints our only the first occurrence of any line.
+<p>
+It should stop when it reaches the end of input.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o remove_repeated_lines remove_repeated_lines.c</kbd>
+<kbd class="shell">./remove_repeated_lines</kbd>
+<kbd>one</kbd>
+one
+<kbd>hello world</kbd>
+hello world
+<kbd>two</kbd>
+two
+<kbd>one</kbd>
+<kbd>hello world</kbd>
+<kbd>two</kbd>
+<kbd>hello</kbd>
+hello
+<span class="eof"></span>
+<kbd class="shell">./remove_repeated_lines</kbd>
+<kbd>Na, na, na, na, na</kbd>
+Na, na, na, na, na
+<kbd>Na, na, na</kbd>
+Na, na, na
+<kbd>Na, na, na, na, na</kbd>
+<kbd>Na, na, na</kbd>
+<kbd>Do, do, do, do, do,</kbd>
+Do, do, do, do, do,
+<kbd>Do, do, do</kbd>
+Do, do, do
+<kbd>Do, do, do, do, do,</kbd>
+<kbd>Do, do, do</kbd>
+<span class="eof"></span>
+<kbd class="shell"></kbd>
+</pre>
+
+You can assume lines will contain at most 256 characters.
+<p>
+You assume at most 256 lines will be read before end-of-input.
+<p>
+You can assume lines are terminated with a newline ('\n') character,
+</p></p></p></p></p>

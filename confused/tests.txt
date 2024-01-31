@@ -1,0 +1,3 @@
+max_cpu=3
+files=confused.c
+0 command=./confused expected_stdout=":-/\n"

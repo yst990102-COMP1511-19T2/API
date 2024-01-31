@@ -1,0 +1,71 @@
+{{ copy_a_file(name="whale_summary.c", change_function="whale_summary") }}
+<p>
+
+The main function in <b>whale_summary.c</b>has this code:
+
+<pre class="program">
+whale_summary(n_sightings, whale_sightings);
+</pre>
+
+Your task in this exercise is to complete <b>whale_summary</b>
+<p>
+Do <b>not</b>  change any other function.
+<p>
+<b>whale_summary</b> should <b>print</b> for every whale species how many pods were seen and how
+many total whales were seen of that species.
+
+<p>
+Match the example output form EXACTLY, except you may print the lines in any order.
+<p>
+When you have completed the function <b>whale_summary</b> this is how <b>whale_summary.c</b> should behave:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o whale_summary whale_summary.c</kbd>
+<kbd class="shell">./whale_summary whales.txt</kbd>
+59 Pygmy right whale pods containing 1260 whales
+55 Southern right whale pods containing 1252 whales
+68 Striped dolphin pods containing 1337 whales
+62 Common dolphin pods containing 1232 whales
+51 Blue whale pods containing 1171 whales
+58 Dwarf sperm whale pods containing 1272 whales
+52 Spinner dolphin pods containing 1118 whales
+43 Indo-Pacific humpbacked dolphin pods containing 897 whales
+50 Long-finned pilot whale pods containing 996 whales
+68 Short-finned pilot whale pods containing 1344 whales
+49 Dwarf minke whale pods containing 1080 whales
+53 Orca pods containing 1245 whales
+57 Pygmy sperm whale pods containing 1346 whales
+55 Humpback whale pods containing 1071 whales
+65 Fin whale pods containing 1251 whales
+53 Coastal bottlenose dolphin pods containing 1169 whales
+55 Sei whale pods containing 929 whales
+47 Bryde's whale pods containing 1023 whales
+</pre>
+
+You may assume there are at most 256 different whale species.
+<p>
+If <b>autotest</b> gives you an uninitialized variable error, you can
+reproduce this by compiling and running with <code>dcc --valgrind</code>, e.g.:
+
+<pre class="command_line">
+<kbd class="shell">dcc --valgrind -o whale_summary whale_summary.c</kbd>
+<kbd class="shell">./whale_summary whales.txt</kbd>
+Runtime error: uninitialized variable accessed.
+
+Execution stopped here in whale_summary(n_sightings=1000, sightings=0x1ffee9fbf0) in whale_summary.c at line 113:
+....
+</pre>
+
+Beware the error may reported later than you expect.
+<p>
+Look back through your code for a variable, such as an array element, that has not
+been assigned an initial value before it is used.
+<p>
+<b>Hint:</b> if you are having trouble debugging your code watch  COMP1511 tutor Peter Kydd explain how to add debugging printfs:
+<p>
+<iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="360" src="https://www.youtube.com/embed/ACioUxo_Ip8?list=PLbSaCpDlfd6ouxTlu8oIvH2gi4SR1TmpI" width="640"></iframe>
+<p>
+<b>Hint:</b> if you are having trouble with an uninitialized variable errors maybe Peter's explanation here will help:
+<p>
+<iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="360" src="https://www.youtube.com/embed/kPkwyNEUWt0?list=PLbSaCpDlfd6ouxTlu8oIvH2gi4SR1TmpI" width="640"></iframe>
+</p></p></p></p></p></p></p></p></p></p></p>

@@ -1,0 +1,77 @@
+{{ copy_a_file(name="list_get_nth.c", change_function="get_nth") }}
+
+<b>get_nth</b> is given  two  arguments, an int <b>n</b> and <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>get_nth</b> so that its returns the <b>n</b>-th element the linked element of the linked list.
+<p>
+The elements are counted in the same manner as array elements (zero-based),
+so the first element in the list is regarded as at position 0, the second element position 1 and so on.
+<p>
+<b>get_nth</b> can assume that the list contains at least <code>n + 1</code> elements.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+if <b>n</b> is 1 <b>get_nth</b> should return <b>7</b>.
+
+<h4>Testing</h4>
+
+<b>list_get_nth.c</b> also get_nth a <b>main</b> function which allows you to test your <b>get_nth</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the first command-line argument to <b>n</b>
+<li> converts the remaining command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_get_nth(n, head)</b>
+<li> prints the result.
+</ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_get_nth</b> function will be called directly in marking.  The main function is only to let you test your <b>list_get_nth</b> function
+<p>
+Here is how you use main function allows you to test <b>list_get_nth</b>:
+<p>
+
+<pre class="command_line">
+<kbd class="shell">dcc list_get_nth.c -o list_get_nth</kbd>
+<kbd class="shell">./list_get_nth 0  5 6 7 8</kbd>
+5
+<kbd class="shell">./list_get_nth 1  5 6 7 8</kbd>
+6
+<kbd class="shell">./list_get_nth 2  5 6 7 8</kbd>
+7
+<kbd class="shell">./list_get_nth 3  5 6 7 8</kbd>
+8
+<kbd class="shell">./list_get_nth 0  42</kbd>
+42
+</pre>
+
+
+
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+
+<b>get_nth</b> should return a singleinteger.
+<p>
+<b>get_nth</b> can assume <b>n</b> is non-negative.
+<p>
+<b>get_nth</b> can assume the linked list contains at least <b>n + 1</b> elements.
+<p>
+<b>get_nth</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>get_nth</b> should not use arrays.
+<p>
+<b>get_nth</b> should not call malloc.
+<p>
+<b>get_nth</b> should not call scanf (or getchar or fgets).
+<p>
+<b>get_nth</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.

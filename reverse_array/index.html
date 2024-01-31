@@ -1,0 +1,77 @@
+<p>
+Write a C program, <code>reverse_array.c</code>,  which reads integers line by line,
+and when it reaches the end of input, prints those integers in reverse order, line by line.
+</p>
+<p>
+You will never be given more than <code>100</code> integers to print out.
+<p>
+The output from your program should look <b>exactly</b> like this:
+</p>
+<pre class="command_line">
+<kbd class="shell">dcc reverse_array.c -o reverse_array</kbd>
+<kbd class="shell">./reverse_array</kbd>
+Enter numbers forwards:
+<kbd>10</kbd>
+<kbd>50</kbd>
+<kbd>20</kbd>
+<kbd>40</kbd> <span class="eof"></span>
+Reversed:
+40
+20
+50
+10
+<kbd class="shell">./reverse_array</kbd>
+Enter numbers forwards:
+<kbd>-5</kbd>
+<kbd>-4</kbd>
+<kbd>-3</kbd>
+<kbd>-2</kbd>
+<kbd>-1</kbd> <span class="eof"></span>
+Reversed:
+-1
+-2
+-3
+-4
+-5
+</pre>
+<!--<div class="alert alert-secondary">-->
+{{ start_alert("secondary") }}
+<h4>Need a Hint?</h4>
+<p>
+The result from calling <code>scanf</code> can be assigned to an integer, like so:
+<pre class="program"><code class="lang-clike">
+int scanned_in_value;
+int result = scanf("%d", &amp;scanned_in_value);
+</code></pre></p></p>
+
+<p>
+<code>result</code> will be equal to the number of variables that scanf
+successfully scanned in.
+<p>
+<strong>Explanation</strong><br/>
+In the code sample above, if the user does enter a number, scanf will be able to
+read this in to the variable <code>scanned_in_value</code>, and thus it will
+have successfully scanned in one value, so the variable <code>result</code> will
+contain the value 1.
+<p>
+If the user had not entered a valid number (for example if they typed in a word
+instead), there would be no integer there for scanf to read into
+<code>scanned_in_value</code>, so scanf would not successfully scan in any
+values, and so the variable <code>result</code> would contain the value 0.
+<p>
+<strong>Detecting the end of input</strong><br/>
+The variable <code>result</code> can be used to determine whether your program
+has reached the end of the input (hint: if there aren't any values left for
+scanf to scan in, the <code>result</code> variable <em>won't</em> contain the
+number <code>1</code>).
+<p>
+If you have a <code>while</code> loop condition that checks the result of
+<code>scanf</code> to determine whether scanf was able to successfully scan the
+expected number of variables, you can use this information to keep scanning
+numbers until the user tells you to stop.
+<p>
+Note: on Mac/Linux, you can signal "end of input" on the command line by pressing
+<kbd>Control + D</kbd>
+{{ end_alert("secondary") }}
+<!--</div>-->
+</p></p></p></p></p></p>

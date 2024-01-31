@@ -1,0 +1,53 @@
+Write a C program <b>crack_caesar.c</b> which decrypts text encrypted by an unknown
+Caesar cipher.
+<p>
+Your program should make no assumptions about the language of the original text - don't assume its English. However, you can assume the English alphabet ('a'..'z').
+<p>
+Your program will be given as a command-line argument the name of a file containing a large amount of
+unencrypted text in the same language as the encrypted text.
+<p>
+For example for example your program might be given  <a href="{{activity_url}}wiki_sentences.txt">this file</a> containing 188k characters of English text
+<small>(wikipedia sentences from <a href="https://github.com/CrowdTruth/Short-Text-Corpus-For-Humor-Detection">here</a>)</small>
+<p>
+Your program will be given the encrypted text on standard input.
+It should print its decryption.
+<p>
+For example, here is some English text encrypted with a Caesar cipher with an unknown shift:
+
+<pre>
+Kyzj zj fli crjk xffuspv
+Z yrkv kf wvvc kyv cfmv svknvve lj uzv
+Slk zk'j fmvi
+Aljk yvri kyzj reu kyve Z'cc xf
+Pfl xrmv dv dfiv kf czmv wfi
+Dfiv kyre pfl'cc vmvi befn
+</pre>
+
+So for example:
+
+<pre class="command_line">
+<kbd class="shell">./crack_caesar wiki_sentences.txt</kbd>
+<kbd>Kyzj zj fli crjk xffuspv
+Z yrkv kf wvvc kyv cfmv svknvve lj uzv
+Slk zk'j fmvi
+Aljk yvri kyzj reu kyve Z'cc xf
+Pfl xrmv dv dfiv kf czmv wfi
+Dfiv kyre pfl'cc vmvi befn</kbd>
+<span class="eof"></span>
+This is our last goodbye
+I hate to feel the love between us die
+But it's over
+Just hear this and then I'll go
+You gave me more to live for
+More than you'll ever know
+</pre>
+
+You may assume the  encrypted text of stdin contains at most 10000 characters.
+<p>
+You may assume the unencrypted example text in the file  contains at most 250000 characters.
+<p>
+<b>Hint</b>: use <code>fopen</code> to open the file and <code>fgetc</code> to read the file.  If you haven't seen them in lectures yet, read this <a href="{{url_root}}code/reading_and_writing_files/cat_fgetc.c">example program</a> to see how to use this functions to read a file.
+<p>
+<b>Hint</b>: read all the encrypted text into an array, then decrypt it.
+
+</p></p></p></p></p></p></p></p>

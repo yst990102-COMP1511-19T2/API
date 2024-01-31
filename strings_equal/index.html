@@ -1,0 +1,28 @@
+<p>You've probably noticed that
+you can't use the comparison operator, <code>==</code>,
+to compare strings.
+So, how do we compare two strings?
+For this activity,
+you'll be writing a function to do exactly that:
+
+
+{{ copy_a_file(name="strings_equal.c", change_function="strings_equal") }}
+
+
+<p>It takes two strings, <code>string1</code> and <code>string2</code>,
+and, if they are element-for-element the same,
+it returns <em>1</em>, and <em>0</em> otherwise.
+You shouldn't ever read beyond
+the null-terminator of either string.
+
+{{ copy_a_file(name="strings_equal.c", change_function="strings_equal") }}
+
+<b>strings_equal.c</b> also contains a simple <b>main</b> function with  some simple <code>assert</code>-based tests
+to help you build your solution:
+
+{{ include_code("strings_equal.c", function_only="main") }}
+
+<p>
+Your <b>strings_equal</b> function will be called directly in marking.  The main function is only to let you test your <b>strings_equal</b> function
+<p>
+You can add more assert tests to  <b>main</b> to test your <b>strings_equal</b> function.

@@ -1,0 +1,32 @@
+
+<p>We use loops in C to do things multiple times. Here is an example of a loop
+that prints all the numbers from 1 to 17 on a new line in ascending order:</p>
+<pre class="program"><code class="lang-clike">
+//initialise counter to 1
+int counter = 1; 
+// loop until not &lt;= 17
+while (counter &lt;= 17) { 
+    // print counter
+    printf("%d\n", counter);
+    // increment counter
+    counter = counter + 1; 
+}
+</code></pre>
+<p>In this exercise you will use a loop to print a countdown from 10 to 0.
+Start by creating a file called <code>countdown.c</code>, and copying
+the above code. Modify this code so that the loop counts down from 10 until 0.</p>
+<h4 id="example">Example</h4>
+<pre class="command_line">
+<kbd class="shell">./countdown</kbd>
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+</pre>

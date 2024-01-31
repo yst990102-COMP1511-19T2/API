@@ -1,0 +1,25 @@
+max_cpu=180
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+
+files=farnarkle.c
+compiler_args=-Dmain=_main farnarkle.c farnarkle_ai_test.c -o farnarkle
+command=./farnarkle
+
+farnarkle_ai_0 stdin="1 2 3 4" description="hidden_tiles=1 2 3 4" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_1 stdin="8 7 6 5" description="hidden_tiles=8 7 6 5" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_2 stdin="5 5 5 5" description="hidden_tiles=5 5 5 5" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_3 stdin="1 8 8 8" description="hidden_tiles=1 8 8 8" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_4 stdin="7 2 7 3" description="hidden_tiles=7 2 7 3" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_5 stdin="7 2 7 7" description="hidden_tiles=7 2 7 7" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_6 stdin="7 2 7 2" description="hidden_tiles=7 2 7 2" expected_stdout="Farnarkle AI guessed the tiles\n"
+farnarkle_ai_7 stdin="2 2 7 2" description="hidden_tiles=2 2 7 2" expected_stdout="Farnarkle AI guessed the tiles\n"
+
+
+check_global_static_vars command=./test_global_static_variables.sh farnarkle.c expected_stdout=""
+
+#files=farnarkle.c
+#compiler_args=-Dmain=_main farnarkle.c farnarkle_ai_test.1c -o farnarkle_ai_test1
+#command=./farnarkle_ai_test1
+#farnarkle_ai_0 stdin="5 1 2 2 2 2 0 1 2 1 1 2 0 4 4 3 4 2 0 3 3 3 4 2 0" description="code=1 2 3 4 guesses=1 2 2 2,1 2 1 1,4 4 3 4,3 3 3 4" expected_stdout="1 2 3 4\n"

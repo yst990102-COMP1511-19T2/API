@@ -1,0 +1,7 @@
+max_cpu=3
+command=./reverse_lines
+files=reverse_lines.c
+0 stdin="Beauty is truth, truth beauty\n" expected_stdout="ytuaeb hturt ,hturt si ytuaeB\n"
+1 stdin="I like the way this Snrub thinks!\n" expected_stdout="!skniht burnS siht yaw eht ekil I\n"
+2 stdin="If anyone needs me,\nI'll be in my room.\n" expected_stdout=",em sdeen enoyna fI\n.moor ym ni eb ll'I\n"
+3 stdin="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree.\n" expected_stdout="nospmiS remoH ,nospmiS\nyrotsih ni yug tsetaerg eht s'eH\neht morF \ndleifgnirpS fo nwoT \n.eert tuntsehc a tih ot tuoba s'eH \n"

@@ -1,0 +1,7 @@
+max_cpu=10
+ignore_blank_lines=1
+compare_only_characters=":-/"
+
+files=confused.c
+
+0 command=./confused expected_stdout=":-/\n"

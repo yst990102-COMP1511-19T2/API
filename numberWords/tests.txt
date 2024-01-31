@@ -1,0 +1,12 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+command=./numberWords
+files=numberWords.c
+num_1 stdin='5\n' expected_stdout="Please enter an integer: You entered five.\n"
+num_2 stdin='4\n' expected_stdout="Please enter an integer: You entered four.\n"
+num_3 stdin='1\n' expected_stdout="Please enter an integer: You entered one.\n"
+less_1 stdin='0\n' expected_stdout="Please enter an integer: You entered a number less than one.\n"
+less_2 stdin='-1234\n' expected_stdout="Please enter an integer: You entered a number less than one.\n"
+greater_1 stdin='20\n' expected_stdout="Please enter an integer: You entered a number greater than five.\n"
+greater_2 stdin='9001\n' expected_stdout="Please enter an integer: You entered a number greater than five.\n"

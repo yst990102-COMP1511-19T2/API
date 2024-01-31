@@ -1,0 +1,83 @@
+{{ copy_a_file(name="list_delete_contains.c", change_function="delete_contains") }}
+
+Note <b>list_delete_contains.c</b> uses the following familiar data type:
+
+<pre class="program">
+struct node {
+    struct node *next;
+    int          data;
+};
+</pre>
+<b>delete_contains</b> is given  two argument, <b>value</b> and <b>head</b>.
+<b>value</b> is an int.
+<b>head</b> is the pointer to the first node in a linked list.
+<p>
+Add code to <b>delete_contains</b> so that it deletes the first node in the linked list
+that whose <i>data</i> field equals <b>value</b>.
+<p>
+If <b>value</b> does not occur in the linked list, the list should not be changed.
+<p>
+If <b>value</b> occurs more than once in the linked list, only the first occurrence should be deleted.
+<p>
+<b>delete_contains</b> should return a pointer to the new list.
+<p>
+If the list is now empty <b>delete_contains</b> should return <b>NULL</b>.
+<p>
+<b>delete_contains</b> should call <b>free</b> to free the memory of the node it deletes.
+<p>
+For example if <b>value</b> is <b>12</b> and the linked list contains these 8 elements:
+<p>
+<pre>
+16, 7, 8, 12, 13, 19, 21, 12
+</pre>
+<p>
+<b>delete_contains</b> should return a pointer to a list with these elements:
+<p>
+<pre>
+16, 7, 8, 13, 19, 21, 12
+</pre>
+<h4>Testing</h4>
+<b>list_delete_contains.c</b> also contains a <b>main</b> function which allows you to test your <b>delete_contains</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the first command-line argument to <b>value</b>
+<li> converts the remaining command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>delete_contains(value, head)</b>
+<li> prints the result.
+</li></li></li></li></li></ul>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>delete_contains</b> function will be called directly in marking.  The main function is only to let you test your <b>delete_contains</b> function
+<p>
+<pre class="command_line">
+<kbd class="shell">cp -n {{activity_directory}}list_delete_contains.c .</kbd>
+<kbd class="shell">dcc list_delete_contains.c -o list_delete_contains</kbd>
+<kbd class="shell">./list_delete_contains 12 16 7 8 12 13 19 21 12</kbd>
+[16, 7, 8, 13, 19, 21, 12]
+<kbd class="shell">./list_delete_contains 42 16 7 8 12 13 19 21 12</kbd>
+[16, 7, 8, 12, 13, 19, 21, 12]
+<kbd class="shell">./list_delete_contains 2 4 6 2 4 6</kbd>
+[4, 6, 4, 6]
+<kbd class="shell">./list_delete_contains 42 42</kbd>
+[]
+<kbd class="shell">./list_delete_contains 42</kbd>
+[]
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>delete_contains</b> should call <b>free</b> to free the memory for the node it deletes
+<p>
+<b>delete_first</b> should not change the data fields of list nodes.
+<p>
+<b>delete_contains</b> should not use arrays.
+<p>
+<b>delete_contains</b> should not call malloc.
+<p>
+<b>delete_contains</b> should not call scanf (or getchar or fgets).
+<p>
+<b>delete_contains</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

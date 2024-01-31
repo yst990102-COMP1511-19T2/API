@@ -1,0 +1,13 @@
+max_cpu=10
+ignore_case=1
+ignore_white_space=1
+ignore_blank_lines=1
+compare_only_characters="0123456789."
+command=./circle_facts
+files=circle_facts.c
+
+1 stdin='42\n' description='42' expected_stdout="Enter circle radius: Area          = 5541.769441\nCircumference = 263.893783\nDiameter      = 84.000000\n"
+2 stdin='16\n' description='16' expected_stdout="Enter circle radius: Area          = 804.247719\nCircumference = 100.530965\nDiameter      = 32.000000\n"
+3 stdin='4.2\n' description='4.2' expected_stdout="Enter circle radius: Area          = 55.417694\nCircumference = 26.389378\nDiameter      = 8.400000\n"
+4 stdin='100\n' description='100' expected_stdout="Enter circle radius: Area          = 31415.926536\nCircumference = 628.318531\nDiameter      = 200.000000\n"
+5 stdin='0.42\n' description='0.42' expected_stdout="Enter circle radius: Area          = 0.554177\nCircumference = 2.638938\nDiameter      = 0.840000\n"

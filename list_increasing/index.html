@@ -1,0 +1,65 @@
+{{ copy_a_file(name="list_increasing.c", change_function="increasing") }}
+
+<b>increasing</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>increasing</b> so that its returns 1 if the list is in increasing order - the value of each list element is larger than the element before.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+<b>increasing</b> should return <b>1</b> because  is is increasing order
+
+<h4>Testing</h4>
+<b>list_increasing.c</b> also contains a <b>main</b> function which allows you to test your <b>increasing</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_increasing(head)</b>
+<li> prints the result.
+</li></li></li></li></ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_increasing</b> function will be called directly in marking.  The main function is only to let you test your <b>list_increasing</b> function
+<p>
+Here is how you use main function allows you to test <b>list_increasing</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc list_increasing.c -o list_increasing</kbd>
+<kbd class="shell">./list_increasing 1 2 4 8 16 32 64 128 256</kbd>
+1
+<kbd class="shell">./list_increasing 2 4 6 5 8 9</kbd>
+0
+<kbd class="shell">./list_increasing 13 15 17 17 18 19</kbd>
+0
+<kbd class="shell">./list_increasing 2 4</kbd>
+1
+<kbd class="shell">./list_increasing 42</kbd>
+1
+<kbd class="shell">./list_increasing</kbd>
+1
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>increasing</b> should return a single integer.
+<p>
+<b>increasing</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>increasing</b> should not use arrays.
+<p>
+<b>increasing</b> should not call malloc.
+<p>
+<b>increasing</b> should not call scanf (or getchar or fgets).
+<p>
+You can assume the linked list only contains positive integers.
+<p>
+<b>increasing</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

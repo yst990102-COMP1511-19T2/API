@@ -1,0 +1,15 @@
+max_cpu=10
+files=word_count.c
+ignore_white_space=1
+ignore_blank_lines=1
+compare_only_characters=0123456789
+
+0 command=./word_count stdin="Are you saying 'Boo' or 'Boo-Urns'?\n" expected_stdout="1 lines 6 words 36 characters\n"
+1 command=./word_count stdin="In this house we obey the laws of thermodynamics" expected_stdout="0 lines 9 words 48 characters\n"
+2 command=./word_count stdin="Good thing I drink plenty of...\n\nmalk?\n\n" expected_stdout="4 lines 7 words 40 characters\n"
+3 command=./word_count stdin="I call the big-one Bitey." expected_stdout="0 lines 5 words 25 characters\n"
+4 command=./word_count stdin="\n Simpson\n,\nHomer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree." expected_stdout="7 lines 22 words 125 characters\n"
+5 command=./word_count stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" expected_stdout="1 lines 1 words 79 characters\n"
+6 command=./word_count stdin="Well,\nthat's certainly specious reasoning, Dad.\n... Thank you, honey." expected_stdout="2 lines 10 words 69 characters\n"
+7 command=./word_count stdin="\nCome,\n family. \nLet us all bathe in TV's\n warm glowing glowy glow\n" expected_stdout="5 lines 12 words 67 characters\n"
+8 command=./word_count stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." expected_stdout="1 lines 19 words 87 characters\n"

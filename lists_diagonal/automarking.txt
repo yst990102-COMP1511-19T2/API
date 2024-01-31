@@ -1,0 +1,17 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=lists_diagonal.c
+compiler_args=-Dmain=_main lists_diagonal.c test_lists_diagonal.c -o test_lists_diagonal
+command=./test_lists_diagonal
+
+0a  command=./test_lists_diagonal 4 0 0 0 4 0 0 0 4 description="has_diagonal(4 0 0 0 4 0 0 0 4)" expected_stdout="1\n"
+1a  command=./test_lists_diagonal 4 0 0 0 0 4 0 0 4 description="has_diagonal(4 0 0 0 0 4 0 0 4)" expected_stdout="0\n"
+2a  command=./test_lists_diagonal 3 0 0 3 description="has_diagonal(3 0 0 3)" expected_stdout="1\n"
+3a  command=./test_lists_diagonal 8 0 0 3 description="has_diagonal(8 0 0 3)" expected_stdout="0\n"
+4a  command=./test_lists_diagonal 5 0 0 0 0 0 5 0 0 0 0 0 5 0 0 0 0 0 5 0 0 0 0 0 5 description="has_diagonal(5 0 0 0 0 0 5 0 0 0 0 0 5 0 0 0 0 0 5 0 0 0 0 0 5)" expected_stdout="1\n"
+5a  command=./test_lists_diagonal 1 2 3 4 2 3 4 5 3 4 5 6 4 5 6 7 description="has_diagonal(1 2 3 4 2 3 4 5 3 4 5 6 4 5 6 7)" expected_stdout="0\n"

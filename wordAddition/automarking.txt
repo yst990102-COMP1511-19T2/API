@@ -1,0 +1,15 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=abcdefghijklmnopqrstuvwxyz1234567890=+-
+
+command=./wordAddition
+files=wordAddition.c
+all_words_1 stdin='1 7\n' expected_stdout="Please enter two integers: one + seven = eight\n"
+all_words_2 stdin='8 2\n' expected_stdout="Please enter two integers: eight + two = ten\n"
+all_words_3 stdin='9 3\n' expected_stdout="Please enter two integers: nine + three = 12\n"
+less_1 stdin='-2 5\n' expected_stdout="Please enter two integers: negative two + five = three\n"
+less_2 stdin='-10 7\n' expected_stdout="Please enter two integers: negative ten + seven = negative three\n"
+greater_1 stdin='42 -9\n' expected_stdout="Please enter two integers: 42 + negative nine = 33\n"
+greater_2 stdin='33 1\n' expected_stdout="Please enter two integers: 33 + one = 34\n"
+negative_1 stdin='10 -25\n' expected_stdout="Please enter two integers: ten + -25 = -15\n"

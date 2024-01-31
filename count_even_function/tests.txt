@@ -1,0 +1,14 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+
+files=count_even_function.c
+compiler_args=-Dmain=_main count_even_function.c test_count_even_function.c -o test_count_even_function
+program=test_count_even_function
+
+0  command=./test_count_even_function 3 1 4 1 5 9 2 6 5 3 description="count_even(10, {3,1,4,1,5,9,2,6,5,3})" expected_stdout="3\n"
+1  command=./test_count_even_function 1 1 1 1 1 description="count_even(5, {1, 1, 1, 1, 1})" expected_stdout="0\n"
+2  command=./test_count_even_function 8 1 2 3 description="count_even(4, {8, 1, 2, 3})" expected_stdout="2\n"
+3  command=./test_count_even_function 1 1 1 1 1 1 1 1 1 1 2 description="count_even(11, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2})" expected_stdout="1\n"
+4  command=./test_count_even_function 2 1 3 5 7 9 description="count_even(6, {2, 1, 3, 5, 7, 9})" expected_stdout="1\n"

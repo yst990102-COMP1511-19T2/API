@@ -1,0 +1,3 @@
+max_cpu=3
+files=smiley.c
+0 command=./smiley expected_stdout=":-)\n"

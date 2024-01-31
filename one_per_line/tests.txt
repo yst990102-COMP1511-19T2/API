@@ -1,0 +1,6 @@
+max_cpu=10
+files=one_per_line.c
+command=./one_per_line
+
+0 stdin="Cause the players gonna play, play, play, play, play\n" expected_stdout="Enter a string: C\na\nu\ns\ne\n \nt\nh\ne\n \np\nl\na\ny\ne\nr\ns\n \ng\no\nn\nn\na\n \np\nl\na\ny\n,\n \np\nl\na\ny\n,\n \np\nl\na\ny\n,\n \np\nl\na\ny\n,\n \np\nl\na\ny\n"
+1 stdin="And the haters gonna hate, hate, hate, hate, hate.\n" expected_stdout="Enter a string: A\nn\nd\n \nt\nh\ne\n \nh\na\nt\ne\nr\ns\n \ng\no\nn\nn\na\n \nh\na\nt\ne\n,\n \nh\na\nt\ne\n,\n \nh\na\nt\ne\n,\n \nh\na\nt\ne\n,\n \nh\na\nt\ne\n.\n"

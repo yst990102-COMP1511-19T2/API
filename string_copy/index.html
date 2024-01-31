@@ -1,0 +1,21 @@
+For this activity,
+you'll be writing the function <code>string_copy</code>
+<p>
+It takes a string in the <code>source</code> buffer,
+and copies it to the <code>destination</code> buffer,
+which is <code>dest_size</code> elements in size.
+If there are more characters in <code>source</code>
+than there is array space in <code>destination</code>,
+you should stop after you have filled the array.
+You should always make sure that
+your function null-terminates
+the <code>destination</code> array.
+
+{{ copy_a_file(name="string_copy.c", change_function="string_copy") }}
+
+<b>string_copy.c</b> also contains a simple <b>main</b> function with to help you test your <b>string_copy</b> function
+
+{{ include_code("string_copy.c", function_only="main") }}
+
+<p>
+Your <b>string_copy</b> function will be called directly in marking.  The main function is only to let you test your <b>string_copy</b> function

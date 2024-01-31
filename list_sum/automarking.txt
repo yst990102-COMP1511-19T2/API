@@ -1,0 +1,20 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_sum.c
+compiler_args=-Dmain=_main list_sum.c test_list_sum.c -o test_list_sum
+command=./test_list_sum
+
+pre_compile_command="../check_arrays_not_used.sh list_sum.c;./check_at_most_one_call_malloc.sh list_sum.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_sum 13  11 15 19 11 14 description="./list_sum 13  11 15 19 11 14" expected_stdout="sum([13, 11, 15, 19, 11, 14])\nsum returned: 83\n"
+2 command=./test_list_sum 13 19 14 15 description="./list_sum 13 19 14 15" expected_stdout="sum([13, 19, 14, 15])\nsum returned: 61\n"
+3 command=./test_list_sum 11 12 description="./list_sum 11 12" expected_stdout="sum([11, 12])\nsum returned: 23\n"
+4 command=./test_list_sum 11 11 12 13 description="./list_sum 11 11 12 13" expected_stdout="sum([11, 11, 12, 13])\nsum returned: 47\n"
+5 command=./test_list_sum 11 12 13 14 15 16 17 1 19 1 description="./list_sum 11 12 13 14 15 16 17 1 19 1" expected_stdout="sum([11, 12, 13, 14, 15, 16, 17, 1, 19, 1])\nsum returned: 119\n"
+6 command=./test_list_sum 11 12 13 14 15 16 17 18 1 19 1 description="./list_sum 11 12 13 14 15 16 17 18 1 19 1" expected_stdout="sum([11, 12, 13, 14, 15, 16, 17, 18, 1, 19, 1])\nsum returned: 137\n"

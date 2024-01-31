@@ -1,0 +1,18 @@
+max_cpu=10
+ignore_case=1
+ignore_white_space=1
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+
+command=./middle3
+
+0 stdin="11\n12\n13\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 12\n"
+1 stdin="199\n150\n11\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 150\n"
+2 stdin="2045\n2099\n2087\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 2087\n"
+3 stdin="1100\n14\n145\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 145\n"
+4 stdin="150\n160\n120\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 150\n"
+5 stdin="150\n130\n190\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 150\n"
+6 stdin="120\n120\n120\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 120\n"
+7 stdin="120\n120\n130\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 120\n"
+8 stdin="130\n130\n120\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 130\n"
+9 stdin="130\n120\n130\n" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 130\n"

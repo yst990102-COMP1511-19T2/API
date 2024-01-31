@@ -1,0 +1,30 @@
+<p class="alert alert-warning">You should make sure you have completed <b>show_array</b>
+before completing this task.
+
+{{ copy_a_file(name="scan_array.c", change_function="scan_array") }}
+
+Copy your <code>show_array</code> function code into <code>scan_array.c</code>.
+
+<p>
+Next, write the <b>scan_array</b> function, which is given an
+array and its size and reads in values from standard input
+to fill the array.
+<p>
+The file <code>scan_array.c</code> contains a main function
+which reads values into an array and calls <b>scan_array</b>.
+<p>
+
+Here is how <b>scan_array.c</b> should behave after you add the correct code to the function <b>scan_array</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc scan_array.c -o scan_array</kbd>
+<kbd class="shell">./scan_array</kbd>
+Enter array size: <kbd>3</kbd>
+Enter array values: <kbd>1 2 3</kbd>
+[1, 2, 3]
+<kbd class="shell">./scan_array</kbd>
+Enter array size: <kbd>1</kbd>
+Enter array values: <kbd>17</kbd>
+[17]
+</pre>
+

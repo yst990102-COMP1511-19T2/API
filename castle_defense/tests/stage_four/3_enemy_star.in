@@ -1,0 +1,14 @@
+
+e Lair EneMIESy2 1
+e Lair Enemy1 1
+e Lair Enemy2 1
+e Lair OtherEnemy 1
+b Enemy* h 1
+p
+b *Enemy h 2
+p
+b En*emy? h 2
+p
+b En*? h 2
+p
+q

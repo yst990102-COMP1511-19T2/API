@@ -1,0 +1,16 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+
+files=remove_duplicates_function.c
+compiler_args=-Dmain=_main remove_duplicates_function.c test_remove_duplicates_function.c -o test_remove_duplicates_function
+command=./test_remove_duplicates_function
+
+0  command=./test_remove_duplicates_function 1 1 2 2 3 3 4 4 5 5 description="remove_duplicates(10, {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}, XXX)"  expected_stdout="1 2 3 4 5 \nreturn value: 5\n"
+1  command=./test_remove_duplicates_function 3 1 4 1 5 9 2 6 5 3 description="remove_duplicates(10, {3, 1, 4, 1, 5, 9, 2, 6, 5, 3}, XXX)"  expected_stdout="3 1 4 5 9 2 6 \nreturn value: 7\n"
+2  command=./test_remove_duplicates_function 1 1 1 1 1 1 1 1 1 1 description="remove_duplicates(10, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, XXX)"  expected_stdout="1 \nreturn value: 1\n"
+3  command=./test_remove_duplicates_function 1 2 3 4 5 6 7 8 9 1 description="remove_duplicates(10, {1, 2, 3, 4, 5, 6, 7, 8, 9, 1}, XXX)" expected_stdout="1 2 3 4 5 6 7 8 9 \nreturn value: 9\n"
+4  command=./test_remove_duplicates_function 1 1 1 1 1 1 1 1 1 2 description="remove_duplicates(10, {1, 1, 1, 1, 1, 1, 1, 1, 1, 2}, XXX)"  expected_stdout="1 2 \nreturn value: 2\n"
+5  command=./test_remove_duplicates_function 1 description="remove_duplicates(1, {1}, XXX)" expected_stdout="1 \nreturn value: 1\n"
+6  command=./test_remove_duplicates_function 9 9 description="remove_duplicates(2, {9, 9}, XXX)" expected_stdout="9 \nreturn value: 1\n"

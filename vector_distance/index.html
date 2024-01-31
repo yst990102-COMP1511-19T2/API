@@ -1,0 +1,59 @@
+Write a program <code>vector_distance.c</code> that:
+
+<ul>
+<li> reads a positive integer <b>n</b>
+<li> reads <b>vector<sub>1</sub></b> of <b>n</b> integers <b>p<sub>0</sub></b> <b>p<sub>1</sub></b> ...  <b>p<sub>n - 1</sub></b>
+<li> reads <b>vector<sub>2</sub></b> of <b>n</b> integers <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n - 1</sub></b>
+<li> prints the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean Distance</a>
+between <b>vector<sub>1</sub></b>  and <b>vector<sub>2</sub></b>
+</li></li></li></li></ul>
+
+Match the example output below <b>EXACTLY</b>:
+
+<pre class="command_line">
+<kbd class="shell"> dcc -o vector_distance vector_distance.c</kbd>
+<kbd class="shell"> ./vector_distance</kbd>
+Enter vector length: <kbd>4</kbd>
+Enter vector 1: <kbd>3 6 0 1</kbd>
+Enter vector 2: <kbd>2 7 1 2</kbd>
+Euclidean distance = 2.000000
+<kbd class="shell"> ./vector_distance</kbd>
+Enter vector length: <kbd>5</kbd>
+Enter vector 1: <kbd>42 43 44 42 42</kbd>
+Enter vector 2: <kbd>42 43 44 42 42</kbd>
+Euclidean distance = 0.000000
+<kbd class="shell"> ./vector_distance</kbd>
+Enter vector length: <kbd>1</kbd>
+Enter vector 1: <kbd>20</kbd>
+Enter vector 2: <kbd>10</kbd>
+Euclidean distance =  10.000000
+<kbd class="shell"> ./vector_distance</kbd>
+Enter vector length: <kbd>3</kbd>
+Enter vector 1: <kbd>1 2 3</kbd>
+Enter vector 2: <kbd>3 2 1</kbd>
+Euclidean distance =  2.828427
+<kbd class="shell"> ./vector_distance</kbd>
+Enter vector length: <kbd>6</kbd>
+Enter vector 1: <kbd>1 2 3 5 7 11</kbd>
+Enter vector 2: <kbd>31 29 23 19 17 13</kbd>
+Euclidean distance =  48.259714
+</pre>
+<p>
+<b>Hint</b>: use two arrays to store the vectors
+<p>
+<b>Hint</b>: use a while loop and scanf to read the integers into each array
+<p>
+<b>Hint</b>: you will need <b>#include &lt;math.h&gt;</b> at the top of <code>vector_distance.c</code> so you can call C's <b>sqrt</b> function.
+
+
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+No error checking is necessary.
+<p>
+You can assume <b>n</b> is a positive integer less than 1000.
+<p>
+You can assume you are given two vectors of <b>n</b> integers.
+<p>
+You can assume your input contains nothing but integers.
+</p></p></p></p></p></p></p>

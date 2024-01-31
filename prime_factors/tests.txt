@@ -1,0 +1,13 @@
+max_cpu=30
+ignore_case=1
+ignore_white_space=1
+command=./prime_factors
+files=prime_factors.c
+0 stdin="6\n" description=6 expected_stdout="Enter number: The prime factorization of 6 is:\n2 * 3 = 6\n"
+1 stdin="30\n" description=30 expected_stdout="Enter number: The prime factorization of 30 is:\n2 * 3 * 5 = 30\n"
+2 stdin="2048\n" description=2048 expected_stdout="Enter number: The prime factorization of 2048 is:\n2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 = 2048\n"
+3 stdin="22500\n" description=6 expected_stdout="Enter number: The prime factorization of 22500 is:\n2 * 2 * 3 * 3 * 5 * 5 * 5 * 5 = 22500\n"
+4 stdin="22501\n" description=30 expected_stdout="Enter number: 22501 is prime\n"
+5 stdin="1013\n" description=1013 expected_stdout="Enter number: 1013 is prime\n"
+6 stdin="1015\n" description=1015 expected_stdout="Enter number: The prime factorization of 1015 is:\n5 * 7 * 29 = 1015\n"
+7 stdin="496\n" description=496 expected_stdout="Enter number: The prime factorization of 496 is:\n2 * 2 * 2 * 2 * 31 = 496\n"

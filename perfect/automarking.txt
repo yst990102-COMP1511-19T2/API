@@ -1,0 +1,13 @@
+max_cpu=30
+ignore_case=1
+ignore_white_space=1
+ignore_blank_lines=1
+compare_only_characters="0123456789notperfect"
+command=./perfect
+files=perfect.c
+
+469 stdin=469 description=469 expected_stdout="Enter number: The factors of 469 are:\n1\n7\n67\n469\nSum of factors = 544\n469 is not a perfect number\n"
+496 stdin=496 description=496 expected_stdout="Enter number: The factors of 496 are:\n1\n2\n4\n8\n16\n31\n62\n124\n248\n496\nSum of factors = 992\n496 is a perfect number\n"
+8182 stdin=8182 description=8182 expected_stdout="Enter number: The factors of 8182 are:\n1\n2\n4091\n8182\nSum of factors = 12276\n8182 is not a perfect number\n"
+8218 stdin=8218 description=8218 expected_stdout="Enter number: The factors of 8218 are:\n1\n2\n7\n14\n587\n1174\n4109\n8218\nSum of factors = 14112\n8218 is not a perfect number\n"
+8281 stdin=8281 description=8281 expected_stdout="Enter number: The factors of 8281 are:\n1\n7\n13\n49\n91\n169\n637\n1183\n8281\nSum of factors = 10431\n8281 is not a perfect number\n"

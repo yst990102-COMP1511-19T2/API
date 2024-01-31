@@ -1,0 +1,70 @@
+
+t Lair Bouncer 1 4
+t Lair not_Bounce 1 4
+t Lair Normal 1 4
+t Lair Bounce 1 4
+t Lair ToBounce 1 4
+f Bounc?* b
+e Lair AlphaEnemy 15
+e Lair BetaEnemy 15
+e Lair GammaEnemy 15
+n
+d
+p
+n
+d
+p
+e Lair AAlphaEnemy 15
+n
+d
+p
+n
+d
+p
+e Bouncer KappaEnemy 2
+e Normal MuEnemy 2
+n
+d
+p
+f ToBounce* b
+e Lair UpsilonEnemy 1
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+n
+d
+p
+q

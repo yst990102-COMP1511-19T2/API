@@ -1,0 +1,14 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+compilers="dcc:dcc --valgrind --leak-check"
+
+files=padding_left.c
+compiler_args=-Dmain=_main -Dstring_to_characters=_stc -Dprint_characters=_pc -Dfree_characters=_fc  padding_left.c test_padding_left.c -o padding_left
+
+0  command=./padding_left "" description='pad_left("", "a")' stdin="a\n" expected_stdout="\n"
+1  command=./padding_left "m" description='pad_left("m", "c")' stdin="c\n" expected_stdout="c\n"
+2  command=./padding_left "abmnef" description='pad_left("abmnef", "z")' stdin="z\n" expected_stdout="zabmne\n"
+3  command=./padding_left "abmnef" description='pad_left("abmnef", "z"); pad_left("zabmne", "y")' stdin="z\ny\n" expected_stdout="zabmne\nyzabmn\n"
+4  command=./padding_left "abmnef" description='pad_left("a", "z"); pad_left("z", "y")' stdin="z\ny\n" expected_stdout="zabmne\nyzabmn\n"

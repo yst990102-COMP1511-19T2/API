@@ -1,0 +1,95 @@
+{{ copy_a_file(name="musical_chairs.c", change_function="make_music") }}
+<p>
+Welcome to the Game of Chairs, where you either win or have your memory freed.
+<p>
+<b>musical_chairs</b> is written using the following structs that cannot be changed:
+<p>
+<pre>
+// player in the game of chairs
+struct player {
+    char name[MAX_NAME_LENGTH];
+};
+
+// A node in a linked list of chairs
+struct chair {
+    struct player *sitting;
+    struct chair *next;
+};
+</pre>
+<p>
+The <b>chair</b> struct is a linked list node.
+<p>
+The <b>player</b> struct represents a player that can sit on a chair
+(represented by the chair's pointer aiming at the player).
+<p>
+<b>make_music</b> is given a pointer to a <b>chair</b>, which is the
+first element in a list of chairs. It is also given an int <b>turns</b>
+which represents how many turns of movement there will be before
+the music stops.
+<p>Like the game of
+<a href="https://en.wikipedia.org/wiki/Musical_chairs">Musical Chairs</a>,
+this program will have players move along the linked list, changing
+which chair they're sitting in.
+<p>In <b>make_music</b>, every player moves <b>turns</b> spaces along
+the linked list. Anyone who moves off the end of the linked list, should
+then move to the head of the list, so the players will end up rotating
+through the list as if it's a loop. This would be similar to if the
+<b>next</b> of the last chair was aimed at the first chair.
+<p>Once all the players have finished moving, the head of the list of
+chairs is removed. This means both that chair and the player sitting in
+it are removed from the game. 
+<p><b>make_music</b> should then print out the name of the player that
+was removed.
+<p>Be careful to make sure you free all memory used in this game!
+<p>
+For example if a list of chairs called <b>thrones</b> looks like this:
+<p>
+<pre>
+throne points at the player named "Spoiler Alert"
+throne points at the player named "Eddard Stark"
+throne points at the player named "Joffrey Baratheon"
+throne points at the player named "Cersei Lannister"
+throne points at the player named "Robert Baratheon"
+</pre>
+<p>
+Then the following function is called:
+<p>
+<pre>
+make_music(3, thrones);
+</pre>
+<p>
+The output would be:
+<p>
+<pre>
+Joffrey Baratheon
+</pre>
+<p>
+and the resulting linked list would look like this:
+<p>
+<pre>
+(throne pointed at "Joffrey Baratheon" but was removed)
+throne points at the player named "Cersei Lannister"
+throne points at the player named "Robert Baratheon"
+throne points at the player named "Spoiler Alert"
+throne points at the player named "Eddard Stark"
+</pre>
+<p>
+In this list, all the players have moved down 3 chairs and are now sitting in
+different chairs. Anyone that moved past the end of the chairs was moved back
+to the top of the list of chairs.
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+<b>struct player</b> and <b>struct chair</b> cannot be edited. They must be
+used as they are.
+<p>
+The <b>be_seated</b> function will help you create chairs. It cannot be edited
+and must be used as it is.
+<p>
+You may not use arrays in this solution. Arrays are not necessary to 
+complete this task.
+<p>
+You must free all memory used in your program. Use 
+<code>dcc --leak-check</code> if you need to check for memory leaks. Autotest
+will also check your code for leaks
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

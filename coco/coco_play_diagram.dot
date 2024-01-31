@@ -1,0 +1,33 @@
+// Andrew Bennett, 2019-03-17
+// A graph to show which moves are valid at a given point in the game.
+//
+// Visible at: https://www.cse.unsw.edu.au/~andrewb/cs1511/19T1/coco.png
+//
+// Generate with:
+// `dot coco_play_diagram.dot -Tpng > coco_play_diagram.png`
+
+digraph {
+
+    node [fontname = "Roboto"];
+    graph [fontname = "Roboto"];
+    edge [fontname = "Roboto"];
+
+    "playing the first card in a round" -> "has a prime-numbered card been played yet?"
+    "has a prime-numbered card been played yet?" -> "play any card" [label="YES"]
+    "has a prime-numbered card been played yet?" -> "do you have a non-prime card?" [label="NO"]
+    "do you have a non-prime card?" -> "play that card" [label="YES"]
+    "do you have a non-prime card?" -> "play any card " [label="NO"]
+
+
+    "playing not-first in a round" -> "was the first card prime?"
+
+    "was the first card prime?" -> "do you have a prime card?" [label="YES"]
+    "do you have a prime card?" -> "play that card " [label="YES"]
+    "do you have a prime card?" -> " play any card " [label="NO"]
+
+    "was the first card prime?" -> "do you have a cocomposite card?" [label="NO"]
+    "do you have a cocomposite card?" -> " play that card " [label="YES"]
+    "do you have a cocomposite card?" -> " play any card  " [label="NO"]
+
+}
+

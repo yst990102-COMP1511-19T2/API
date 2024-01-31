@@ -1,0 +1,53 @@
+Write a C program <b>decode.c</b> which decrypts text encrypted by <b>substitution.c</b>
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">./decode qwertyuiopasdfghjklzxcvbnm</kbd>
+<kbd>O vql leqktr gy rtfzolzl qfr zit rqka</kbd>
+I was scared of dentists and the dark
+<kbd>O vql leqktr gy hktzzn uoksl qfr lzqkzofu egfctklqzogfl</kbd>
+I was scared of pretty girls and starting conversations
+<span class="eof"></span>
+<kbd class="shell">./decode abcdefghijklmnopqrstuvwxyz</kbd>
+<kbd>The identity cipher!!!</kbd>
+The identity cipher!!!
+<kbd class="shell">./decode bcdefghijklmnopqrstuvwxyza</kbd>
+<kbd>Uif Dbftbs djqifs jt b tvctfu pg uif tvctujuvujpo djqifs!</kbd>
+The Caesar cipher is a subset of the substitution cipher!
+<span class="eof"></span>
+</pre>
+
+Your program will only be tested with an appropriate command line argument -
+but a good programmer would check the command line argument is present and appropriate.
+
+<h4>Manually Cracking a Substitution Cipher</h4>
+
+This English  text was encrypted with a substitution cipher.
+
+<pre>
+Di jd, vdl'ht xtqa dh O qn
+Vdl rdlwk O'ss wdkith htqromu omkd ok
+O fhdwqwsv xdm'k
+Styk kd nv dxm rtzoetj
+Wlk kiqk'j kit royythtmet om dlh dfomodmj
+
+Vdl'ht q ndlkiyls
+Kiqk qndlmkj ydh qmdkith xtta dm nv dxm
+Mdx O'n q mdzts nqrt htjdlhetyls
+O jkqhk q eiqom xoki nv kidluik
+
+Kqsa oj eitqf, nv rqhsomu
+Xitm vdl'ht yttsomu houik qk idnt
+O xqmmq nqat vdl ndzt xoki edmyortmet
+O xqmmq wt xoki vdl qsdmt
+</pre>
+
+What  was  the original text?
+<p>
+<b>Hint</b>: use <b>frequency_analysis.c</b> on the encrypted text and compare the frequencies
+to <a href="https://en.wikipedia.org/wiki/Letter_frequency">English letter frequencies</a>
+and then try your guesses with <b>decode.c</b>
+<p>
+<div></div>
+</p></p></p>

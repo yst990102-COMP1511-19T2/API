@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=read_line.c
+compiler_args=-Dmain=_main read_line.c test_read_line.c -o test_read_line
+command=./test_read_line
+
+1 command=./test_read_line 16 stdin="hello-world\n" description='read_line buffer_len=16 input="hello-world"' expected_stdout="<hello-world>\n"
+2 command=./test_read_line 8 stdin="hello-world\n" description='read_line buffer_len=8 input="hello-world"' expected_stdout="<hello-w>\n"
+3 command=./test_read_line 1 stdin="hello-world\n" description='read_line buffer_len=1 input="hello-world"' expected_stdout="<>\n"
+4 command=./test_read_line 32 stdin="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n" description='read_line buffer_len=32 input="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"' expected_stdout="<abcdefghijklmnopqrstuvwxyzABCDE>\n"
+5 command=./test_read_line 64 stdin="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n" description='read_line buffer_len=64 input="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"' expected_stdout="<abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ>\n"

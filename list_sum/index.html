@@ -1,0 +1,67 @@
+{{ copy_a_file(name="list_sum.c", change_function="sum") }}
+
+<b>sum</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>sum</b> so that its returns the sum of the list.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+<b>sum</b> should return <b>120</b> because <code>1 + 7 + 8 + 9 + 13 + 19 + 21 + 42 = 120</code>.
+
+<h4>Testing</h4>
+
+<b>list_sum.c</b> also contains a <b>main</b> function which allows you to test your <b>sum</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_sum(head)</b>
+<li> prints the result.
+</ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_sum</b> function will be called directly in marking.  The main function is only to let you test your <b>list_sum</b> function
+<p>
+Here is how you use main function allows you to test <b>list_sum</b>:
+<p>
+
+<pre class="command_line">
+<kbd class="shell">dcc list_sum.c -o list_sum</kbd>
+<kbd class="shell">./list_sum 1 2 4 8 16 32 64 128 256</kbd>
+511
+<kbd class="shell">./list_sum 2 4 6 5 8 9</kbd>
+34
+<kbd class="shell">./list_sum 13 15 17 17 18</kbd>
+80
+<kbd class="shell">./list_sum 42 4</kbd>
+46
+<kbd class="shell">./list_sum</kbd>
+0
+</pre>
+
+
+
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+
+<b>sum</b> should return a single integer.
+<p>
+<b>sum</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>sum</b> should not use arrays.
+<p>
+<b>sum</b> should not call malloc.
+<p>
+<b>sum</b> should not call scanf (or getchar or fgets).
+<p>
+<b>sum</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.

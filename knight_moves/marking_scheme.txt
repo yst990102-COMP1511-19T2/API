@@ -1,0 +1,8 @@
+8/10 answers correct except not sorted 
+
++1 convert arguments to integer coordinates or otherwise process them appropriately
++1 generating sequence of moves                  
++1 appropriate strategy to find shortest sequence                   
++1 appropriate strategy to generate all equally shortest sequences
++1 appropriate strategy to sort sequences
++1 partially correct answers output

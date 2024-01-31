@@ -1,0 +1,28 @@
+Write a program <b>parrot.c</b> that uses <code>getchar()</code> and <code>putchar()</code> to echo the user's input.
+<p>
+<code>getchar()</code> reads the next character (byte) from standard input and returns it.
+If <code>getchar()</code> is unable to read a character it will return the special value <b>EOF</b> defined in <code>stdio.h</code>.
+This will happen for example when reading from a file when the end of the file is reached.
+<p>
+You can simulate the end of a file being reached  on a Linux (and Unix-like) terminal
+by holding the <kbd>Ctrl</kbd>key and pressing the <kbd>D</kbd> key - <span class="eof"></span>
+This will cause <code>getchar()</code> to return the special <b>EOF</b> value.
+<p>
+<code>putchar()</code> takes a single character (byte) as a parameter and prints it to standard output.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">dcc parrot.c -o parrot</kbd>
+<kbd class="shell">./parrot</kbd>
+<kbd>abc</kbd>
+abc
+<kbd>ABCabc123</kbd>
+ABCabc123
+<kbd>abc</kbd>
+abc
+<kbd>xyz</kbd>
+xyz
+<span class="eof"></span>
+</pre>
+

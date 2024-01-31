@@ -1,0 +1,9 @@
+max_cpu=3
+ignore_white_space=1
+command=./uppercase
+files=uppercase.c
+uc_0 stdin='abc\n' expected_stdout='ABC\n'
+uc_1 stdin='abcABC\n' expected_stdout='ABCABC\n'
+uc_2 stdin='123abc\n' expected_stdout='123ABC\n'
+uc_3 stdin='abcABC123\n!@#123\n' expected_stdout='ABCABC123\n!@#123\n'
+uc_4 stdin='qwertyuiopasdfghjklzxcvbnm\nQWERTYUIOPASDFGHJKLZXCVBNM\n' expected_stdout='QWERTYUIOPASDFGHJKLZXCVBNM\nQWERTYUIOPASDFGHJKLZXCVBNM\n'

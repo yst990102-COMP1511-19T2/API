@@ -1,0 +1,13 @@
+max_cpu=10
+
+files=species_count_list.c
+compiler_args=-Dmain=_main species_count_list.c test_species_count_list.c -o test_species_count_list
+
+0 command=./test_species_count_list whales.txt Orca expected_stdout="53 Orca pods containing 1245 whales in whales.txt\n"
+1 command=./test_species_count_list whales1.txt Orca expected_stdout="60 Orca pods containing 1228 whales in whales1.txt\n"
+2 command=./test_species_count_list whales.txt "Blue Whale" expected_stdout="0 Blue Whale pods containing 0 whales in whales.txt\n"
+3 command=./test_species_count_list whales1.txt "Humpback whale" expected_stdout="53 Humpback whale pods containing 1150 whales in whales1.txt\n"
+4 command=./test_species_count_list whales.txt "Indo-Pacific humpbacked dolphin" expected_stdout="43 Indo-Pacific humpbacked dolphin pods containing 897 whales in whales.txt\n"
+5 command=./test_species_count_list whales1.txt "Long-finned pilot whale" expected_stdout="60 Long-finned pilot whale pods containing 1151 whales in whales1.txt\n"
+6 command=./test_species_count_list whales.txt "Dwarf minke whale" expected_stdout="49 Dwarf minke whale pods containing 1080 whales in whales.txt\n"
+7 command=./test_species_count_list whales1.txt "Spinner dolphin" expected_stdout="56 Spinner dolphin pods containing 1246 whales in whales1.txt\n"

@@ -1,0 +1,8 @@
+max_cpu=10
+files=decode.c
+
+0 command=./decode asdfghjklqwertyuiopzxcvbnm expected_stdout="I was saying 'Boo-urns.'" stdin="L vap panltj 'Syy-xotp.'"
+1 command=./decode abcdefghijklmnopqrstuvwxyz expected_stdout="I was saying 'Boo-urns.'" stdin="I was saying 'Boo-urns.'"
+2 command=./decode qazwsxedcrfvtgbyhnujmikolp expected_stdout="Worst...\nepisode..\never...\n" stdin="Kbnuj...\nsycubws..\nsisn...\n"
+3 command=./decode dnujmikqazwsxeolpcrfvtgbyh expected_stdout="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" stdin="DNUJMIKQAZWSXEOLPCRFVTGBYH!@#$%^&*()dnujmikqazwsxeolpcrfvtgbyh_-+={}[]:;<>,.?/\n"
+4 command=./decode zwsxrfvdnujmikqatgbyheolpc expected_stdout="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." stdin="Wrzhyp nb yghyd, yghyd wrzhyp,\n- ydzy nb zmm Pr jkqo qk rzgyd, zkx zmm pr krrx yq jkqo."

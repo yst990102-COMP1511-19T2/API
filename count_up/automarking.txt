@@ -1,0 +1,12 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+command=./count_up
+
+0 stdin="111\n113\n" description="111 113" expected_stdout="Enter lower: Enter upper: 112\n"
+1 stdin="2001\n2002\n" description="2001 2002" expected_stdout="Enter lower: Enter upper: "
+2 stdin="75\n105\n" description="75 105" expected_stdout="Enter lower: Enter upper: 76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n101\n102\n103\n104\n"
+3 stdin="29\n34\n" description="29 34" expected_stdout="Enter lower: Enter upper: 30\n31\n32\n33\n"
+4 stdin="26\n42\n" description="26 42" expected_stdout="Enter lower: Enter upper: 27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n"

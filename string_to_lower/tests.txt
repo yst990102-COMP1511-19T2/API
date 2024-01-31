@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=string_to_lower.c
+compiler_args=-Dmain=_main string_to_lower.c test_string_to_lower.c -o test_string_to_lower
+command=./test_string_to_lower
+
+1 command=./test_string_to_lower "" description='string_to_lower("")' expected_stdout="\n"
+2 command=./test_string_to_lower "hello" description='string_to_lower("hello")' expected_stdout="hello\n"
+3 command=./test_string_to_lower "hello world" description='string_to_lower("hello world")' expected_stdout="hello world\n"
+4 command=./test_string_to_lower "Hello-World" description='string_to_lower("Hello-World")' expected_stdout="hello-world\n"
+5 command=./test_string_to_lower "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" description='string_to_lower("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")' expected_stdout="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\n"

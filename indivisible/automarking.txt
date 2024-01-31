@@ -1,0 +1,15 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+
+files="indivisible.c"
+command=./indivisible 
+
+0 stdin="101\n102\n103\n104\n105\n106\n107\n108\n109\n110\n" expected_stdout="Indivisible numbers: 101 102 103 104 105 106 107 108 109 110\n"
+1 stdin="222\n222\n222\n222\n224\n222\n222\n222\n222\n222\n" expected_stdout="Indivisible numbers: 224\n"
+2 stdin="10\n20\n30\n32\n40\n5\n" expected_stdout="Indivisible numbers: 32 5\n"
+3 stdin="999\n7\n998\n997\n996\n995\n995\n996\n997\n998\n999\n3\n" expected_stdout="Indivisible numbers: 7 3\n"
+4 stdin="2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n9\n10\n11\n12\n2\n3\n4\n13\n14\n15\n16\n17\n18\n19\n5\n6\n7\n8\n" expected_stdout="Indivisible numbers:\n"
+5 stdin="2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n2\n3\n4\n5\n6\n7\n6\n5\n4\n3\n2\n" expected_stdout="Indivisible numbers: 11 13 17 19\n"

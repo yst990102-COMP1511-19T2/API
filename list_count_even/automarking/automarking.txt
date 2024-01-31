@@ -1,0 +1,26 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_count_even.c
+compiler_args=-Dmain=_main list_count_even.c test_list_count_even.c -o test_list_count_even
+command=./test_list_count_even
+
+pre_compile_command="./symlink_exam_files.sh list_count_even; ./check_arrays_not_used.sh list_count_even.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_count_even 5 8 9 7 9 3 2 3 8 4 description="./list_count_even 5 8 9 7 9 3 2 3 8 4" expected_stdout="count_even([5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ncount_even returned: 4\n"
+2 command=./test_list_count_even 3 5 7 9 11 13 15 description="./list_count_even 3 5 7 9 11 13 15" expected_stdout="count_even([3, 5, 7, 9, 11, 13, 15])\ncount_even returned: 0\n"
+3 command=./test_list_count_even 6 5 6 7 description="./list_count_even 6 5 6 7" expected_stdout="count_even([6, 5, 6, 7])\ncount_even returned: 2\n"
+4 command=./test_list_count_even 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 8 description="./list_count_even 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 8" expected_stdout="count_even([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8])\ncount_even returned: 1\n"
+5 command=./test_list_count_even 4 3 1 3 7 9 description="./list_count_even 4 3 1 3 7 9" expected_stdout="count_even([4, 3, 1, 3, 7, 9])\ncount_even returned: 1\n"
+6 command=./test_list_count_even 30 18 5 52 50 7 23 60 14 61 description="./list_count_even 30 18 5 52 50 7 23 60 14 61" expected_stdout="count_even([30, 18, 5, 52, 50, 7, 23, 60, 14, 61])\ncount_even returned: 6\n"
+7 command=./test_list_count_even 68 32 76 93 7 85 62 29 77 29 description="./list_count_even 68 32 76 93 7 85 62 29 77 29" expected_stdout="count_even([68, 32, 76, 93, 7, 85, 62, 29, 77, 29])\ncount_even returned: 4\n"
+8 command=./test_list_count_even 30 91 89 19 11 23 98 68 32 47 description="./list_count_even 30 91 89 19 11 23 98 68 32 47" expected_stdout="count_even([30, 91, 89, 19, 11, 23, 98, 68, 32, 47])\ncount_even returned: 4\n"
+9 command=./test_list_count_even 84 84 5 13 22 28 50 88 90 85 description="./list_count_even 84 84 5 13 22 28 50 88 90 85" expected_stdout="count_even([84, 84, 5, 13, 22, 28, 50, 88, 90, 85])\ncount_even returned: 7\n"
+10 command=./test_list_count_even 3 3 2 2 3 3 4 4 description="./list_count_even 3 3 2 2 3 3 4 4" expected_stdout="count_even([3, 3, 2, 2, 3, 3, 4, 4])\ncount_even returned: 4\n"
+11 command=./test_list_count_even 96 40 33 80 56 34 45 23 7 73 28 78 76 66 16 72 68 13 7 30 64 67 48 7 74 63 78 68 27 9 42 34 description="./list_count_even 96 40 33 80 56 34 45 23 7 73 28 78 76 66 16 72 68 13 7 30 64 67 48 7 74 63 78 68 27 9 42 34" expected_stdout="count_even([96, 40, 33, 80, 56, 34, 45, 23, 7, 73, 28, 78, 76, 66, 16, 72, 68, 13, 7, 30, 64, 67, 48, 7, 74, 63, 78, 68, 27, 9, 42, 34])\ncount_even returned: 20\n"
+12 command=./test_list_count_even  description="./list_count_even " expected_stdout="count_even([])\ncount_even returned: 0\n"

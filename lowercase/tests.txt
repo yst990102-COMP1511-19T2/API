@@ -1,0 +1,9 @@
+max_cpu=3
+ignore_white_space=1
+command=./lowercase
+files=lowercase.c
+lc_0 stdin='ABC\n' expected_stdout='abc\n'
+lc_1 stdin='abc\n' expected_stdout='abc\n'
+lc_2 stdin='ABCabc123\n' expected_stdout='abcabc123\n'
+lc_3 stdin='123!@#\n' expected_stdout='123!@#\n'
+lc_4 stdin='qwertyuiopasdfghjklzxcvbnm\nQWERTYUIOPASDFGHJKLZXCVBNM\n' expected_stdout='qwertyuiopasdfghjklzxcvbnm\nqwertyuiopasdfghjklzxcvbnm\n'

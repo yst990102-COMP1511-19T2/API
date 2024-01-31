@@ -1,0 +1,81 @@
+Write a program <code>vector_permutation.c</code> that:
+
+<ul>
+<li> reads a positive integer <b>n</b>
+<li> reads <b>n</b> integers <b>p<sub>0</sub></b> <b>p<sub>1</sub></b> ...  <b>p<sub>n - 1</sub></b>
+<li> reads <b>n</b> integers <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n - 1</sub></b>
+<li> checks <b>q<sub>0</sub></b> ... <b>q<sub>n - 1</sub></b> are non-negative integers less than <b>n</b>
+<li> prints <b>p<sub>q<sub>0</sub></sub></b>, <b>p<sub>q<sub>1</sub></sub></b> ... <b>p<sub>q<sub>n - 1</sub></sub></b>
+</li></li></li></li></li></ul>
+<p>
+
+In other words the first <b>n</b> integers, <b>p<sub>0</sub></b> <b>p<sub>1</sub></b> ...  <b>p<sub>n-1</sub></b> specify a vector.
+<p>
+The second <b>n</b> integers, <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n-1</sub></b>,  specify how that vector should rearranged.
+<p>
+So for example if the vector has 5 elements and  <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n-1</sub></b> are <b>0 1 2 3 4</b> then the vector will be unchanged.
+<p>
+And if <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n - 1</sub></b> are  <b>4 3 2 1 0</b> then the vector will be reversed.
+<p>
+Match the example output below <b>EXACTLY</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o vector_permutation vector_permutation.c</kbd>
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>4</kbd>
+Enter vector: <kbd>42 43 44 45</kbd>
+Enter permutation: <kbd>3 1 2 0</kbd>
+45 43 44 42
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>6</kbd>
+Enter vector: <kbd>40 41 42 43 44 45</kbd>
+Enter permutation: <kbd>0 1 2 3 4 5</kbd>
+40 41 42 43 44 45
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>6</kbd>
+Enter vector: <kbd>40 41 42 43 44 45</kbd>
+Enter permutation: <kbd>5 4 3 2 1 0</kbd>
+45 44 43 42 41 40
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>1</kbd>
+Enter vector: <kbd>1024</kbd>
+Enter permutation: <kbd>0</kbd>
+1024
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>5</kbd>
+Enter vector: <kbd>48 36 48 24 12</kbd>
+Enter permutation: <kbd>4 3 1 0 2</kbd>
+12 24 36 48 48
+</pre>
+<p>
+In all the examples above, <b>q<sub>0</sub></b> <b>q<sub>1</sub></b> ... <b>q<sub>n</sub></b> is a <a href="https://en.wikipedia.org/wiki/Permutation">permutation</a> of the integers <b>0..n-1</b>.
+<p>
+You don't have to check this is the case.
+<p>
+However you do have to to check <b>q<sub>1</sub></b> ... <b>q<sub>n</sub></b> are all <b>&gt;= 0</b> and <b>&lt; n</b>.
+<p>
+Match the example output below <b>EXACTLY</b>:
+<pre class="command_line">
+<kbd class="shell">./vector_permutation</kbd>
+Enter vector length: <kbd>5</kbd>
+Enter vector: <kbd>48 36 48 24 12</kbd>
+Enter permutation: <kbd>4 3 5 0 2</kbd>
+Invalid permutation
+</pre>
+<p>
+<b>Hint</b>: use an arrays to store the vector and an array to store the permutation
+<p>
+<b>Hint</b>: use the values in permutation arrays as indices for the vector array after checking they are valid
+
+
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+You can assume <b>n</b> is a positive integer less than 1000.
+<p>
+You can assume you are given two vectors of <b>n</b> integers.
+<p>
+You can assume your input contains nothing but integers.
+<p>
+You may print an extra space at the end of the line when printing the permutation.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

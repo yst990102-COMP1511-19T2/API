@@ -1,0 +1,24 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_increasing.c
+compiler_args=-Dmain=_main list_increasing.c test_list_increasing.c -o test_list_increasing
+command=./test_list_increasing
+
+pre_compile_command="../check_arrays_not_used.sh list_increasing.c;./check_at_most_one_call_malloc.sh list_increasing.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_increasing 13 11 14 11 15 19 description="./list_increasing 13 11 14 11 15 19" expected_stdout="increasing([13, 11, 14, 11, 15, 19])\nincreasing returned: 0\n"
+2 command=./test_list_increasing 13 14 15 19 description="./list_increasing 13 14 15 19" expected_stdout="increasing([13, 14, 15, 19])\nincreasing returned: 1\n"
+3 command=./test_list_increasing  description="./list_increasing " expected_stdout="increasing([])\nincreasing returned: 1\n"
+4 command=./test_list_increasing 11 description="./list_increasing 11" expected_stdout="increasing([11])\nincreasing returned: 1\n"
+5 command=./test_list_increasing 11 11 description="./list_increasing 11 11" expected_stdout="increasing([11, 11])\nincreasing returned: 0\n"
+6 command=./test_list_increasing 11 12 description="./list_increasing 11 12" expected_stdout="increasing([11, 12])\nincreasing returned: 1\n"
+7 command=./test_list_increasing 11 11 12 13 description="./list_increasing 11 11 12 13" expected_stdout="increasing([11, 11, 12, 13])\nincreasing returned: 0\n"
+8 command=./test_list_increasing 11 12 13 13 description="./list_increasing 11 12 13 13" expected_stdout="increasing([11, 12, 13, 13])\nincreasing returned: 0\n"
+9 command=./test_list_increasing 11 12 13 14 15 16 17 18 19 1110 description="./list_increasing 11 12 13 14 15 16 17 18 19 1110" expected_stdout="increasing([11, 12, 13, 14, 15, 16, 17, 18, 19, 1110])\nincreasing returned: 1\n"
+10 command=./test_list_increasing 11 12 13 14 15 16 17 18 19 19 1110 description="./list_increasing 11 12 13 14 15 16 17 18 19 19 1110" expected_stdout="increasing([11, 12, 13, 14, 15, 16, 17, 18, 19, 19, 1110])\nincreasing returned: 0\n"

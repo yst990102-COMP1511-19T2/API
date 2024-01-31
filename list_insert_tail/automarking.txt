@@ -1,0 +1,22 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+files=list_insert_tail.c
+compiler_args=-Dmain=_main list_insert_tail.c test_list_insert_tail.c -o test_list_insert_tail
+command=./test_list_insert_tail
+
+pre_compile_command="../check_arrays_not_used.sh list_insert_tail.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_insert_tail 5 5 8 9 7 9 3 2 3 8 4 description="./list_insert_tail 5 5 8 9 7 9 3 2 3 8 4" expected_stdout="insert_tail(5, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ninsert_tail returned: [5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 5]\n"
+2 command=./test_list_insert_tail 5 5 8 9 7 9 3 2 3 8 4 description="./list_insert_tail 5 5 8 9 7 9 3 2 3 8 4" expected_stdout="insert_tail(5, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ninsert_tail returned: [5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 5]\n"
+3 command=./test_list_insert_tail 8 5 8 9 7 9 3 2 3 8 4 description="./list_insert_tail 8 5 8 9 7 9 3 2 3 8 4" expected_stdout="insert_tail(8, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ninsert_tail returned: [5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 8]\n"
+4 command=./test_list_insert_tail 9 5 8 9 7 9 3 2 3 8 4 description="./list_insert_tail 9 5 8 9 7 9 3 2 3 8 4" expected_stdout="insert_tail(9, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ninsert_tail returned: [5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 9]\n"
+5 command=./test_list_insert_tail 4 5 8 9 7 9 3 2 3 8 4 description="./list_insert_tail 4 5 8 9 7 9 3 2 3 8 4" expected_stdout="insert_tail(4, [5, 8, 9, 7, 9, 3, 2, 3, 8, 4])\ninsert_tail returned: [5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 4]\n"
+6 command=./test_list_insert_tail 15 3 5 7 9 11 13 15 description="./list_insert_tail 15 3 5 7 9 11 13 15" expected_stdout="insert_tail(15, [3, 5, 7, 9, 11, 13, 15])\ninsert_tail returned: [3, 5, 7, 9, 11, 13, 15, 15]\n"
+7 command=./test_list_insert_tail 6 5 description="./list_insert_tail 6 5" expected_stdout="insert_tail(6, [5])\ninsert_tail returned: [5, 6]\n"
+8 command=./test_list_insert_tail 6 6 description="./list_insert_tail 6 6" expected_stdout="insert_tail(6, [6])\ninsert_tail returned: [6, 6]\n"
+9 command=./test_list_insert_tail 45 description="./list_insert_tail 45" expected_stdout="insert_tail(45, [])\ninsert_tail returned: [45]\n"

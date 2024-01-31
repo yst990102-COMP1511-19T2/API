@@ -1,0 +1,20 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_print.c
+compiler_args=-Dmain=_main list_print.c test_list_print.c -o test_list_print
+command=./test_list_print
+
+pre_compile_command="../check_arrays_not_used.sh list_print.c;./check_at_most_one_call_malloc.sh list_print.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_print 13  11 15 19 11 14 description="./list_print 13  11 15 19 11 14" expected_stdout="print([13, 11, 15, 19, 11, 14])\n13 -> 11 -> 15 -> 19 -> 11 -> 14 -> X\n"
+2 command=./test_list_print 13 19 14 15 description="./list_print 13 19 14 15" expected_stdout="print([13, 19, 14, 15])\n13 -> 19 -> 14 -> 15 -> X\n"
+3 command=./test_list_print 11 12 description="./list_print 11 12" expected_stdout="print([11, 12])\n11 -> 12 -> X\n"
+4 command=./test_list_print 11 11 12 13 description="./list_print 11 11 12 13" expected_stdout="print([11, 11, 12, 13])\n11 -> 11 -> 12 -> 13 -> X\n"
+5 command=./test_list_print 11 12 13 14 15 16 17 1 19 1 description="./list_print 11 12 13 14 15 16 17 1 19 1" expected_stdout="print([11, 12, 13, 14, 15, 16, 17, 1, 19, 1])\n11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 1 -> 19 -> 1 -> X\n"
+6 command=./test_list_print 11 12 13 14 15 16 17 18 1 19 1 description="./list_print 11 12 13 14 15 16 17 18 1 19 1" expected_stdout="print([11, 12, 13, 14, 15, 16, 17, 18, 1, 19, 1])\n11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 1 -> 19 -> 1 -> X\n"

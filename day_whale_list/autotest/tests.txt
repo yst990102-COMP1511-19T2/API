@@ -1,0 +1,11 @@
+max_cpu=10
+
+files=day_whale_list.c
+compiler_args=-Dmain=_main day_whale_list.c test_day_whale_list.c -o test_day_whale_list
+
+0 command=./test_day_whale_list whales.txt 31/03/18 expected_stdout="11 Common dolphin\n9 Bryde's whale\n11 Dwarf sperm whale\n35 Pygmy right whale\n3 Common dolphin\n20 Long-finned pilot whale\n8 Dwarf sperm whale\n"
+1 command=./test_day_whale_list whales.txt 04/05/17 expected_stdout="33 Indo-Pacific humpbacked dolphin\n15 Common dolphin\n21 Dwarf minke whale\n39 Bryde's whale\n30 Orca\n33 Pygmy right whale\n2 Fin whale\n"
+2 command=./test_day_whale_list whales.txt 19/12/17 expected_stdout="37 Dwarf minke whale\n39 Striped dolphin\n30 Striped dolphin\n39 Striped dolphin\n8 Coastal bottlenose dolphin\n39 Bryde's whale\n"
+3 command=./test_day_whale_list whales1.txt 21/09/17 expected_stdout="27 Sei whale\n35 Fin whale\n36 Coastal bottlenose dolphin\n31 Dwarf minke whale\n18 Dwarf sperm whale\n41 Long-finned pilot whale\n23 Bryde's whale\n14 Pygmy right whale\n"
+4 command=./test_day_whale_list whales1.txt 07/11/17 expected_stdout="8 Southern right whale\n29 Coastal bottlenose dolphin\n31 Orca\n"
+5 command=./test_day_whale_list whales1.txt 01/03/18 expected_stdout="25 Dwarf minke whale\n"

@@ -1,0 +1,17 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=list_sum.c
+compiler_args=-Dmain=_main list_sum.c test_list_sum.c -o test_list_sum
+command=./test_list_sum
+
+pre_compile_command="../check_arrays_not_used.sh list_sum.c;./check_at_most_one_call_malloc.sh list_sum.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_sum 3 1 4 1 5 9 description="./list_sum 3 1 4 1 5 9" expected_stdout="sum([3, 1, 4, 1, 5, 9])\nsum returned: 23\n"
+2 command=./test_list_sum 3 4 5 9 description="./list_sum 3 4 5 9" expected_stdout="sum([3, 4, 5, 9])\nsum returned: 21\n"
+3 command=./test_list_sum 1 2 description="./list_sum 1 2" expected_stdout="sum([1, 2])\nsum returned: 3\n"
+4 command=./test_list_sum 42 description="./list_sum 42" expected_stdout="sum([42])\nsum returned: 42\n"
+5 command=./test_list_sum  description="./list_sum " expected_stdout="sum([])\nsum returned: 0\n"
+6 command=./test_list_sum 1 2 3 4 5 6 7 8 9 10 description="./list_sum 1 2 3 4 5 6 7 8 9 10" expected_stdout="sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\nsum returned: 55\n"

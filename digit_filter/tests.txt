@@ -1,0 +1,7 @@
+max_cpu=3
+command=./digit_filter
+files=digit_filter.c
+0 stdin="hello world\n" expected_stdout="..... .....\n"
+1 stdin="1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n" expected_stdout="1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n"
+2 stdin="1one2two3three4four100hundred\n" expected_stdout="1...2...3.....4....100.......\n"
+3 stdin="  1 !@#$%^&&**()   \n  2 two   3 three\n\nsbhfdsghfdshgtfdshgfs\n" expected_stdout="  1 ............   \n  2 ...   3 .....\n\n.....................\n"

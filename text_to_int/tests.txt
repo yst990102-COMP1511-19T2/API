@@ -1,0 +1,10 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+command=./text_to_int
+files=text_to_int.c
+tti_0 stdin='abc\n' expected_stdout='97\n98\n99\n10\n'
+tti_1 stdin='123\n' expected_stdout='49\n50\n51\n10\n'
+tti_2 stdin='Hello, world!\n17 is my favourite number.\n' expected_stdout='72\n101\n108\n108\n111\n44\n32\n119\n111\n114\n108\n100\n33\n10\n49\n55\n32\n105\n115\n32\n109\n121\n32\n102\n97\n118\n111\n117\n114\n105\n116\n101\n32\n110\n117\n109\n98\n101\n114\n46\n10\n'
+tti_3 stdin='This is a test.\n!@#$%^&*()<>{}[]\n,./;'"'"'\|`~\n' expected_stdout='84\n104\n105\n115\n32\n105\n115\n32\n97\n32\n116\n101\n115\n116\n46\n10\n33\n64\n35\n36\n37\n94\n38\n42\n40\n41\n60\n62\n123\n125\n91\n93\n10\n44\n46\n47\n59\n39\n92\n124\n96\n126\n10\n'
+tti_4 stdin='The quick, brown fox jumps over the lazy dog.\n' expected_stdout='84\n104\n101\n32\n113\n117\n105\n99\n107\n44\n32\n98\n114\n111\n119\n110\n32\n102\n111\n120\n32\n106\n117\n109\n112\n115\n32\n111\n118\n101\n114\n32\n116\n104\n101\n32\n108\n97\n122\n121\n32\n100\n111\n103\n46\n10\n'

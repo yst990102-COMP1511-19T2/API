@@ -1,0 +1,24 @@
+
+t Lair Ice 2 4
+t Lair not_Ice 1 4
+f Ic?* i
+e Lair AlphaEnemy 3
+e Lair BetaEnemy 2
+e Lair GammaEnemy 1
+p
+e not_Ice DeltaEnemy 3
+d
+n
+p
+e Lair KappaEnemy 5
+n
+p
+n
+p
+d
+n
+p
+d
+n
+p
+q

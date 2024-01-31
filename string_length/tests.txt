@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=string_length.c
+compiler_args=-Dmain=_main string_length.c test_string_length.c -o test_string_length
+command=./test_string_length
+
+1 command=./test_string_length "" description='string_length("")' expected_stdout="0\n"
+2 command=./test_string_length "hello" description='string_length("hello")' expected_stdout="5\n"
+3 command=./test_string_length "hello world" description='string_length("hello world")' expected_stdout="11\n"
+4 command=./test_string_length "hello-world" description='string_length("hello-world")' expected_stdout="11\n"
+5 command=./test_string_length "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" description='string_length("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")' expected_stdout="52\n"

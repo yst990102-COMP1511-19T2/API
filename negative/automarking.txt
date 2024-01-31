@@ -1,0 +1,16 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=negativepositivezero
+
+command=./negative
+files=negative.c
+positive_0 stdin='1\n' expected_stdout='You have entered a positive number.\n'
+positive_1 stdin='42\n' expected_stdout='You have entered a positive number.\n'
+positive_2 stdin='4242\n' expected_stdout='You have entered a positive number.\n'
+positive_3 stdin='424242\n' expected_stdout='You have entered a positive number.\n'
+negative_0 stdin='-1\n' expected_stdout='Don'"'"'t be so negative!\n'
+negative_1 stdin='-42\n' expected_stdout='Don'"'"'t be so negative!\n'
+negative_2 stdin='-4242\n' expected_stdout='Don'"'"'t be so negative!\n'
+negative_3 stdin='-424242\n' expected_stdout='Don'"'"'t be so negative!\n'
+zero stdin='0\n' expected_stdout='You have entered zero.\n'

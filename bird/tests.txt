@@ -1,0 +1,2 @@
+files=bird.c
+0 command=./bird expected_stdout="  ___\n ('v')\n((___))\n ^   ^\n"

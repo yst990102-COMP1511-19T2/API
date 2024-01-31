@@ -1,0 +1,12 @@
+max_cpu=3
+files=caesar.c
+
+0 command=./caesar 0 stdin="Are you saying 'Boo' or 'Boo-Urns'?" expected_stdout="Are you saying 'Boo' or 'Boo-Urns'?"
+1 command=./caesar 1 stdin="In this house, we obey the laws of thermodynamics!" expected_stdout="Jo uijt ipvtf, xf pcfz uif mbxt pg uifsnpezobnjdt!"
+2 command=./caesar 2 stdin="Good thing I drink plenty of... malk?" expected_stdout="Iqqf vjkpi K ftkpm rngpva qh... ocnm?"
+3 command=./caesar 5 stdin="I call the big one 'Bitey.'" expected_stdout="N hfqq ymj gnl tsj 'Gnyjd.'"
+4 command=./caesar 15 stdin="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree." expected_stdout="Hxbehdc, Wdbtg Hxbehdc\nWt'h iwt vgtpithi vjn xc wxhidgn\n Ugdb iwt\n Idlc du Hegxcvuxtas\n Wt'h pqdji id wxi p rwthicji igtt."
+5 command=./caesar 17 stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" expected_stdout="RSTUVWXYZABCDEFGHIJKLMNOPQ!@#$%^&*()rstuvwxyzabcdefghijklmnopq_-+={}[]:;<>,.?/\n"
+6 command=./caesar -15 stdin="Well, that's certainly specious reasoning, Dad.\n... Thank you, honey.\n" expected_stdout="Hpww, esle'd npceltywj dapntzfd cpldzytyr, Olo.\n... Eslyv jzf, szypj.\n"
+7 command=./caesar 100 stdin="Come, family. Let us all bathe in TV's warm glowing glowy glow" expected_stdout="Ykia, bwiehu. Hap qo whh xwpda ej PR'o swni chksejc chksu chks"
+8 command=./caesar -100 stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." expected_stdout="Fieyxc mw xvyxl, xvyxl fieyxc,\n- xlex mw epp Ci orsa sr ievxl, erh epp ci riih xs orsa."

@@ -1,0 +1,9 @@
+max_cpu=3
+command=./remove_repeated_lines
+files=remove_repeated_lines.c
+
+0 stdin="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree.\n" expected_stdout="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree.\n"
+1 stdin="Na, na, na, na, na\nNa, na, na\nNa, na, na, na, na\nNa, na, na\nDo, do, do, do, do,\nDo, do, do\nDo, do, do, do, do,\nDo, do, do\n" expected_stdout="Na, na, na, na, na\nNa, na, na\nDo, do, do, do, do,\nDo, do, do\n"
+2 stdin="I'm pickin' up good vibrations (Oom bop, bop, good vibrations)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations (Oom bop, bop, excitations)\n" expected_stdout="I'm pickin' up good vibrations (Oom bop, bop, good vibrations)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations (Oom bop, bop, excitations)\n"
+3 stdin="one\none\ntwo\none\ntwo\nthree\ntwo\none\ntwo\nthree\nfour\nthree\ntwo\none\n" expected_stdout="one\ntwo\nthree\nfour\n"
+4 stdin="hello world\nhello world\nhello\nhello world\nhello world\nhello world\nhello world\nhello world\nworld\nhello world\nhello world\n" expected_stdout="hello world\nhello\nworld\n"

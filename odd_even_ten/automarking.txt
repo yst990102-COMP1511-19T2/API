@@ -1,0 +1,13 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+files="odd_even_ten.c"
+compare_only_characters="0123456789"
+command=./odd_even_ten 
+
+0 stdin="101\n102\n103\n104\n105\n106\n107\n108\n109\n110\n" expected_stdout="Odd numbers were: 101 103 105 107 109\nEven numbers were: 102 104 106 108 110\n"
+1 stdin="222\n222\n222\n222\n224\n222\n222\n222\n222\n222\n" expected_stdout="Odd numbers were:\nEven numbers were: 222 222 222 222 224 222 222 222 222 222\n"
+2 stdin="221\n221\n221\n221\n225\n221\n221\n221\n221\n221\n" expected_stdout="Odd numbers were: 221 221 221 221 225 221 221 221 221 221\nEven numbers were:\n"
+3 stdin="999\n998\n997\n996\n995\n995\n996\n997\n998\n999\n" expected_stdout="Odd numbers were: 999 997 995 995 997 999\nEven numbers were: 998 996 996 998\n"
+4 stdin="999\n998\n998\n996\n999\n999\n996\n999\n998\n996\n" expected_stdout="Odd numbers were: 999 999 999 999\nEven numbers were: 998 998 996 996 998 996\n"

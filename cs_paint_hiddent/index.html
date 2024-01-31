@@ -1,0 +1,979 @@
+
+<style>
+h1, h2, h3, h4, h5 {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+</style>
+
+<h1>CS Paint</h1>
+
+<p>
+The year is 1985 . . . Microsoft has just released Windows 1.0 and packaged
+with it is a beautiful program called Paint, later referred to as MS Paint.
+For many people, this program is the beginning of a wonderful journey into the
+world of digital art.
+
+<img class="img img-responsive" src="Marc Chee - Artist.png" alt="Marc Chee - Artist">
+
+<p>
+In this assignment, you will be implementing CS Paint, COMP1511's answer to the
+venerable drawing program.
+CS Paint is a program that allows us to draw images to our terminal using a
+series of commands.
+The commands are made up of integers and are typed directly into our program.
+Each command will make some change to a digital canvas, a space for drawing.
+<p>
+CS Paint is already capable of setting up and drawing its canvas, it will be up
+to you to write code so that it can read commands and make the correct changes
+in the canvas.
+
+<p>
+<strong>Note:</strong> At time of release of this assignment (end of Week 3),
+COMP1511 has not yet covered all of the techniques and topics necessary to
+complete this assignment. At the end of Week 3, the course has covered enough
+content to be able to read in a single command and process its integers, but not
+enough to work with two dimensional arrays like the canvas or be able to handle
+multiple commands ending in End-of-Input (Ctrl-D). We will be covering these
+topics in the lectures, tutorials and labs of Week 4.
+
+
+<h2>The Canvas</h2>
+
+<p>
+The canvas is a two dimensional array (an array of arrays) of integers that
+represents the space we will be drawing in.
+We will be referring to individual elements of these arrays as pixels on the
+canvas.
+
+<p>
+The canvas is a fixed size and has <code>N_ROWS</code> rows, and
+<code>N_COLS</code> columns. Both of these are defined constants.
+
+<p>
+Both the rows and columns start at 0, not at 1.
+
+<p>
+The top left corner of the canvas is <code>(0, 0)</code> and the bottom right
+corner of the canvas is <code>(N_ROWS - 1, N_COLS - 1)</code>. Note that we are
+using rows as the first coordinate in pairs of coordinates.
+
+<p>
+For example, if we are given an input coordinate <code>5 10</code>, we will use
+that to find a particular cell in our canvas by accessing the individual element
+in the array: <code>canvas[5][10]</code>
+<p>
+<img style="max-width: 100%" src="Canvas.png" alt="The Canvas">
+
+<p>
+
+The integers in the pixels represent colours between black (which we call
+<code>0</code>) and white (which we call <code>4</code>).
+
+We will be starting with a white canvas and drawing black onto it, but as we
+progress, we will also be using shades of grey (not 50 of them, just a few).
+Note that these colours assume you have white text on a black background.
+
+<p>
+For reference, the shades are:
+<pre class="inverted-color mx-auto" style="font-size: 200%; width: 14em;">
+Black (0):    
+Dark  (1):  ░░
+Grey  (2):  ▒▒
+Light (3):  ▓▓
+White (4):  ██
+</pre>
+
+<p>
+An empty canvas is shown below.
+In this documentation, we will always show you two versions of the output.
+In the "Output" you can see the version that your program is expected to produce
+(numbers between 0 and 4).
+
+<p>
+In the "Output (Stylized)" tab you can see a more readable version with the
+numbers converted to shades.
+
+<p>
+Note that you are <em>not</em> expected to produce this stylized output - we
+have tools that will convert it for you.
+Your program only needs to print the grid of numbers, as shown in the "Output"
+tab.
+
+<p>
+{{ show_cs_paint_example_output('Empty Canvas', []) |safe}}
+
+<p>
+If you're curious, by the end of the assignment you'll be able to produce an
+image like this:
+
+<p>
+{{ show_cs_paint_example_output('Technicolour', [
+    "3 0", "2 0 0 19 35",
+    "3 1", "2 1 1 18 34",
+    "3 2", "2 2 2 17 33",
+    "3 3", "2 3 3 16 32",
+    "3 4", "2 4 4 15 31",
+    "3 3", "2 5 5 14 30",
+    "3 2", "2 6 6 13 29",
+    "3 1", "2 7 7 12 28",
+    "3 0", "2 8 8 11 27",
+    "3 1", "2 9 9 10 26",
+    "5 0 1 0 -1 2 -1 0 1 0",
+    "1 10 1 10 34"
+ ]) |safe }}
+
+
+<h2> The Commands</h2>
+
+<p>
+Each command given to the program will be a series of integers.
+
+<p>
+The first integer will always be the type of command, e.g. <code>1</code>
+means <strong>Draw Line</strong>.
+
+<p>
+Depending on what command the first integer specifies, you will then scan in
+some number of "arguments" (additional integers) that have a specific meaning
+for that command.
+
+<p>
+For example:
+
+<p>
+{{ show_cs_paint_example_text('1 5 5 10 5') | safe }}
+
+<p>
+(see below for more details on this and other commands).
+
+
+<h1 id="implementation">Your Task: Implementation</h1>
+
+<p>
+Your task for this assignment is to write a program that reads in one or more
+commands and outputs a canvas that shows the result of the commands.
+
+<p>
+Your program will be given commands as a series of integers on standard input.
+Your program will need to scan in these integers and then make the necessary
+changes in the canvas.
+
+<p>
+Initial tests will be with a single command per run of the program, but more
+advanced tests will expect the program to be able to scan and run multiple
+commands.
+</p>
+
+<h2 id="allowed-c-features">Allowed C Features</h2>
+
+<p>
+In this assignment, there are no restrictions on C Features, except for those in 
+<a href="https://cgi.cse.unsw.edu.au/~cs1511/19T2/resources/style_guide.html">the Style Guide</a>.
+
+<p>
+We <b>strongly</b> encourage you to complete the assessment using only features taught in
+    lectures up to and including Week 4. You can get full marks using the following features:
+<ul>
+    <li> <code>int</code> variables.
+    <li> <code>if</code> statements, including all relational and logical operators.
+    <li> <code>while</code> loops.
+    <li> <code>int</code> arrays.
+    <li> <code>printf</code> and <code>scanf</code>.
+    <li> functions.</li>
+</ul>
+
+Using any other features will not increase your marks (and will make it more likely you make style mistakes
+that cost you marks).
+/<p>
+Particularly, you do not need to use any pointers (or <code>malloc</code>) to gain full marks. They will
+only complicate the assignment. You also do not need to use <code>for</code> loops, and they are strongly discouraged.
+<p>
+If you choose to disregard this advice, you <b>must</b> still follow the Style Guide. You also may
+be unable to get help from course staff if you use features not taught in COMP1511.
+</p>
+
+<h2 id="starter-code">Starter Code</h2>
+
+<div class="alert alert-secondary">
+<a href="{{activities_url}}cs_paint/paint.c">
+<strong>Download the starter code (paint.c) here</strong>
+</a>
+or copy it to your CSE account using the following command:
+<pre class="command_line">
+<kbd class="shell">cp -n /web/cs1511/19T2/cs_paint/paint.c .</kbd>
+</pre>
+
+<br/>
+
+<a href="tests.zip">
+<strong>Download the test files (tests.zip) here</strong>
+</a>
+or copy it to your CSE account using the following command:
+<pre class="command_line">
+<kbd class="shell">cp -n /web/cs1511/19T2/cs_paint/tests.zip .</kbd>
+</pre>
+</div>
+
+<p>
+You should download the above files to start the assignment.
+
+<p>
+<code>paint.c</code> is the starting point for your CS Paint program. We've
+provided you with some starter code to construct a canvas and to display it on
+the screen; you'll be completing the rest of the program.
+
+<p>
+<code>tests.zip</code> is a collection of test files that you can use to test
+your program. Each test file contains a series of commands that your program can
+use to draw images on the canvas.
+
+
+<h2 id="input">Input Commands</h2>
+
+<p>
+Input to your program will be via standard input (similar to typing into a
+terminal).
+
+<p>
+You can assume that the input will always be integers and that you will always
+receive the correct number of arguments for a command.
+
+<p>
+You can assume that input will always finish with the "End of Input" signal
+(Ctrl-D in the terminal).
+
+<p>
+Details on each command that your program must implement are shown below.
+
+<h1 id="stage_one">Stage One</h1>
+<p>
+Stage One implements basic drawing functions, giving your program the ability to
+draw lines and rectangles.
+
+<h2 id="line_drawing">Line Drawing</h2>
+
+{{ show_summary(
+    "Line Drawing", "Draw Line", 1,
+    "start_row start_col end_row end_col", [
+        '1 10 3 10 10',
+        '1 1 1 9 1',
+        '1 9 1 1 1',
+        '1 2 2 2 2'
+     ])|safe
+}}
+
+<p>
+In Stage 1, you will be implementing the <strong>Draw Line</strong> command to
+draw horizontal and vertical lines.
+
+<p>
+The <strong>Draw Line</strong> command is given four additional integers, which
+describe two pixels: the <code>start</code> and <code>end</code> pixels of the
+line.
+
+<p>
+Each pixel consists of two numbers: the index of the <code>row</code>,
+and the index of the <code>column</code>.
+
+<p>
+For example, the command <code>1 10 3 10 10</code> tells your program to
+draw a line (<code>1</code>),
+starting at the pixel at row <code>10</code> and column <code>3</code>,
+and ending at the pixel at row <code>10</code> and column <code>10</code>.
+
+<p>
+When given the Draw Line command, your program should set the colour of the
+relevant elements in the canvas array, starting at the provided
+<code>start</code> pixel location, and continuing along the horizontal or
+vertical line until it reaches the <code>end</code> pixel location (including
+both the start and end pixels themselves).
+
+<h4>Hints</h4>
+<ul>
+<li><p>
+Your program will only be drawing either horizontal or vertical lines in
+Stage 1, which means that either <code>row1</code> and <code>row2</code>
+will be the same, or <code>col1</code> and <code>col2</code> will
+be the same.
+
+<li><p>
+If <code>row1 == row2 &amp;&amp; col1 == col2</code>, your program
+should draw a single pixel, at the location
+<code>(row1, col1), (row2, col2)</code>.
+</ul>
+
+
+<h4>Handling Invalid Input</h4>
+
+<ul>
+<li><p>
+If the given start and/or end pixels would cause a line to be drawn
+outside of the canvas (either partially or entirely), your program should
+ignore that <strong>Draw Line</strong> command and do nothing.
+
+<li><p>
+If the given start and end pixels
+would not give an entirely horizontal or vertical line,
+your program should ignore that <strong>Draw Line</strong> command
+and do nothing.
+
+</ul>
+
+
+<h4>Examples</h4>
+
+<div class="accordion">
+{{ show_cs_paint_example("Horizontal Line", ["1 1 1 1 9"])|safe }}
+
+{{ show_cs_paint_example("Vertical Line", ["1 9 1 1 1"])|safe }}
+
+{{ show_cs_paint_example("Box", [
+    "1 1 1 10 1",
+    "1 1 1 1 10",
+    "1 10 10 1 10",
+    "1 10 10 10 1"
+])|safe }}
+
+{{ show_cs_paint_example("Invalid Lines", [
+    "1 1 1 50 1",
+    "1 10 10 -1 10",
+    "1 5 5 8 7",
+    "1 63 58 -254 1"
+])|safe }}
+
+</div>
+
+<h2>Rectangle Drawing</h2>
+
+{{ show_summary(
+    "Rectangle Drawing", "Fill Rectangle", 2,
+    "start_row start_col end_row end_col", [
+        '2 0 0 10 10',
+        '2 6 2 2 2',
+        '2 2 2 6 2'
+    ])|safe
+}}
+
+<p>
+For the second part of Stage 1, you will be implementing
+the <strong>Fill Rectangle</strong> function, to draw rectangles.
+
+<p>
+The <strong>Fill Rectangle</strong> command is given four additional integers,
+which describe two pixels: the <code>start</code> and <code>end</code> pixels
+that make up two corners of the rectangle.
+
+<p>
+Each pixel consists of two numbers: the index of the <code>row</code>,
+and the index of the <code>column</code>.
+
+<p>
+For example, the command <code>2 0 0 10 10</code> tells your program to
+draw a rectangle (<code>2</code>),
+with one corner at the pixel at row <code>0</code> and column <code>0</code>,
+and with the opposing corner at the pixel at row <code>10</code> and column
+<code>10</code>.
+
+<p>
+When given the Fill Rectangle command, your program should colour all the pixels
+in the rectangle formed by the two corners <code>start</code> and
+<code>end</code>.
+You can assume that the edges of the rectangle are either vertical or
+horizontal, there are no rotated rectangles.
+
+
+<h4>Hints</h4>
+<ul>
+<li><p>
+Your program could be given the <code>start</code> and <code>end</code>
+points in any order, e.g. <code>2 6 2 2 2</code> is valid, and produces
+the same result as <code>2 2 2 6 2</code>.
+
+<li><p>
+If <code>row1 == row2 &amp;&amp; col1 == col2</code>, your program
+should draw a single pixel, at the location
+<code>(row1, col1), (row2, col2)</code>.
+</ul>
+
+
+
+<h4>Invalid Input</h4>
+
+<ul>
+<li><p>
+If the given start and/or end pixels would cause a rectangle to be drawn
+outside of the canvas (either partially or entirely), your program should
+ignore that <strong>Fill Rectangle</strong> command and do nothing.
+</ul>
+
+<h4>Examples</h4>
+
+<div class="accordion">
+{{ show_cs_paint_example("Small Square", ["2 1 1 3 3"])|safe }}
+
+{{ show_cs_paint_example("Big Rectangle", ["2 1 15 18 1"])|safe }}
+
+{{ show_cs_paint_example("Single Pixel Boxes", [
+    "2 1 1 1 1", "2 2 2 2 2",
+    "2 4 4 4 4", "2 1 8 1 8"
+])|safe }}
+</div>
+
+<h1 id="stage_two">Stage Two</h1>
+
+<p>
+In Stage 2, you will be extending the functionality of your
+<strong>Draw Line</strong> and <strong>Fill Rectangle</strong> commands from
+Stage 1.
+
+<p>
+We strongly recommend that you finish Stage 1 before attempting Stage 2, as it
+would be very hard to test whether Stage 2 is working without Stage 1.
+<p>
+Note that completing Stage 2 is not necessary to gain a passing mark in this
+assignment.
+
+<h2>Diagonals</h2>
+
+{{ show_summary(
+    "Line Drawing: Diagonals", "Draw Line", 1,
+    "start_row start_col end_row end_col", [
+        '1 0 0 9 9',
+        '1 1 1 2 2'
+    ])|safe
+}}
+
+<p>
+For the first part of Stage 2, you will be modifying your
+<strong>Draw Line</strong> command to be able to draw diagonal lines.
+<p>
+Your program must still be able to draw horizontal and vertical lines as
+specified in Stage 1.
+<p>
+
+<h4>Hints</h4>
+<ul>
+<li><p>
+Your program will only be required to draw diagonal lines that are on a
+45 degree angle.
+
+<li><p>
+In addition to horizontal and vertical lines, your program will now need
+to draw 45 degree lines. This means that your input checking will now
+need to test if two points are precisely diagonally oriented.
+
+<li><p>
+As before, if <code>row1 == row2 &amp;&amp; col1 == col2</code>, your
+program should draw a single pixel, at the location
+<code>(row1, col1), (row2, col2)</code>.
+</ul>
+
+</p>
+
+<h4>Invalid Input</h4>
+<ul>
+<li><p>
+If the given start and/or end pixels would cause a line to be drawn
+outside of the canvas (either partially or entirely), your program should
+ignore that <strong>Draw Line</strong> command and do nothing.
+
+<li><p>
+If the given start and end pixels would not give an entirely horizontal
+or vertical line, <strong>or a diagonal line on a 45 degree angle</strong>,
+your program should ignore that <strong>Draw Line</strong> command and
+do nothing.
+</ul>
+
+<h4>Examples</h4>
+<div class="accordion">
+{{ show_cs_paint_example("Diagonal Line", ["1 1 1 10 10"])|safe }}
+
+{{ show_cs_paint_example("Multiple Diagonal Lines", [
+    "1 1 1 10 10",
+    "1 1 10 10 1",
+    "1 10 1 15 6",
+    "1 10 10 15 5"
+])|safe }}
+
+{{ show_cs_paint_example("Other Angled Lines", [
+    "1 1 1 2 3",
+    "1 1 1 2 10",
+    "1 1 1 4 10",
+    "1 5 4 6 6"
+])|safe }}
+</div>
+
+<h2>Shade</h2>
+
+{{ show_summary("Shades", "Change Shade", 3, "new_shade", ['3 2', '3 1'])|safe }}
+
+<p>
+For the second part of Stage 2, you will be implementing the
+<strong>Change Shade</strong> command, which gives you access to both an eraser
+and different shades of grey.
+
+<p>In CS Paint there are a total of five shades, which we call
+<code>{BLACK, DARK, GREY, LIGHT, WHITE}</code>.
+They are each represented by a number between
+<code>0</code> (for <code>BLACK</code>) and
+<code>4</code> (for <code>WHITE</code>).
+
+<p>
+The <strong>Change Shade</strong> command is given one additional integer: the
+new shade that you will draw in all future commands, until the shade is changed
+again.
+
+<p>
+By default, your program should start with the shade <code>BLACK</code>.
+
+<h4>Hints</h4>
+<ul>
+<li><p>
+Painting over any other colours in the canvas replaces them with
+whatever colour the current shade is.
+<li><p>
+The new shade should be used for both
+the <strong>Draw Line</strong>
+and <strong>Fill Rectangle</strong> commands.
+</ul>
+
+<h4>Handling Invalid Input</h4>
+
+<ul>
+<li><p>
+If the given shade is invalid
+(i.e., if it is outside of the range 0 to 4),
+your program should ignore
+that <strong>Change Shade</strong> command and do nothing.
+</ul>
+
+<h4>Examples</h4>
+
+<div class="accordion">
+{{ show_cs_paint_example("Coloured Lines", [
+    "3 0", "1 1 1 1 10",
+    "3 1", "1 2 2 2 11",
+    "3 2", "1 3 3 3 12",
+    "3 3", "1 4 4 4 13",
+    "3 4", "1 4 4 1 4"
+])|safe }}
+
+{{ show_cs_paint_example("Coloured Boxes", [
+    "3 0", "2 1 1 10 10",
+    "3 1", "2 2 2 11 11",
+    "3 2", "2 3 3 12 12",
+    "3 3", "2 4 4 13 13",
+    "3 4", "2 5 5 7 7"
+])|safe }}
+
+</div>
+
+<h1>Stage Three</h1>
+<p>
+In Stage 3 and 4, you will be implementing more advanced commands.
+
+<p>
+Again, we strongly recommend that you finish Stage 1 and Stage 2 before
+attempting Stage 3.
+
+<p>
+Note that completing Stage 3 is not necessary to gain a passing mark in this
+assignment.
+
+<h2>Copy and Paste</h2>
+
+{{ show_summary(
+    "Copy and Paste", "Copy Paste", 4,
+    "start_row start_col end_row end_col target_row target_col", [
+    '4 0 0 9 9 0 10'
+    ])|safe
+}}
+
+<p>
+For Stage 3, you will be implementing the <strong>Copy Paste</strong> command,
+which allows you to <em>copy</em> a certain section of the canvas, and
+<em>paste</em> it elsewhere on the canvas.
+
+<p>
+The <strong>Copy Paste</strong> command is given six additional integers, which
+describe three pixels:  <code>start</code>, <code>end</code>, and
+<code>target</code>.
+
+<p>
+The first two pixels, <code>start</code> and <code>end</code> describe the
+corners of a rectangle. This is the region that will be copied.
+
+<p>
+The third pixel, <code>target</code> describes the top-left pixel of the
+position on the canvas where that rectangle will be pasted.
+
+<p>
+The diagram below describes what these points are:
+
+<img class="img img-responsive" src="CopyPaste.png" alt="Copy Paste Diagram">
+
+<p>
+After calling the <strong>Copy Paste</strong> command, every pixel in the
+rectangle bounded by <code>start</code> and <code>end</code> should be copied to
+a rectangle of the same size that has <code>target</code> as its top left pixel.
+
+
+<h4>Hints</h4>
+<ul>
+<li><p>
+As with the <strong>Fill Rectangle</strong> command,
+your program could be given the
+<code>start</code> and <code>end</code> points in any order: they
+may not necessarily describe the top-left and bottom-right pixels of the
+rectangle.
+
+<li><p>
+The pixels should be copied <em>exactly</em>,
+regardless of what the current shade is.
+
+<li><p>
+It <em>is</em> valid to paste into a rectangle that overlaps with the
+copied rectangle. This means that, to earn full marks for this stage,
+the program must read all pixels in the copy rectangle before writing
+any pixels to the target rectangle.
+This will likely require a separate array to store the copied pixels
+before they're written to the target rectangle.
+</ul>
+
+<h4>Invalid Input</h4>
+<ul>
+<li><p>
+If any of the given pixels would cause any part of the copying or pasting
+to go outside of the canvas, your program should ignore that
+<strong>Copy Paste</strong> command and do nothing.
+</ul>
+
+<h4>Examples</h4>
+<div class="accordion">
+{{ show_cs_paint_example('Copy Paste Line Colours', [
+    "3 0", "1 1 2 18 2",
+    "3 1", "1 1 4 18 4",
+    "3 2", "1 1 6 18 6",
+    "3 3", "1 1 8 18 8",
+    "4 2 0 17 9 2 10",
+    "4 3 0 16 10 3 20"
+]) |safe }}
+
+{{ show_cs_paint_example('Copy Paste Overlap', [
+    "3 0", "1 1 2 18 2",
+    "3 1", "1 1 4 18 4",
+    "3 2", "1 1 6 18 6",
+    "3 3", "1 1 8 18 8",
+    "4 2 0 17 9 4 4"
+]) |safe }}
+</div>
+
+<h1>Stage Four</h1>
+<p>
+In Stage 4, you will again be implementing more advanced commands.
+<p>
+Again, we strongly recommend that you finish Stage 1 and Stage 2 before
+attempting Stage 4.
+<p>
+Note that completing Stage 4 is not necessary to gain a passing mark in this
+assignment.
+
+<h2>Additive Brush</h2>
+
+{{ show_summary(
+    "Additive Brush", "Additive Brush", 5,
+    "shade[ 1][-1] shade[ 1][0] shade[ 1][1]<br />" +
+    "shade[ 0][-1] shade[ 0][0] shade[ 0][1]<br />" +
+    "shade[-1][-1] shade[-1][0] shade[-1][1]", [
+        "5 0 1 0 2 3 2 0 1 0"
+    ])|safe
+}}
+
+<p>
+The <strong>Additive Brush</strong> command gives CS Paint access to a special
+brush for the <strong>Draw Line</strong> command.
+
+<p>
+In addition to the existing one-pixel brush, you now have access to a nine pixel
+brush. This brush will affect a 9 pixel square for every pixel that the original
+brush would have drawn.
+
+<p>
+The <strong>Additive Brush</strong> command takes nine arguments, which
+represent the additions that should be made to each of the 9 pixels under the
+brush:
+
+<ul>
+<li><p>
+The first argument describes the shade to be added to the pixel located 
+diagonally above and to the left of the pixel currently being drawn on.
+<li><p>
+The second argument describes the shade to be added to the pixel directly above
+the pixel currently being drawn on.
+<li><p>
+The third argument describes the shade to be added to the pixel located
+diagonally above and to the right of the pixel currently being drawn on.
+<li><p>
+The third through fifth arguments describe the row below the first three 
+including the pixel currently being drawn on, and the sixth through eighth 
+describe the row below that.
+</ul>
+
+<p>
+This brush is <strong>additive</strong>, which means that instead of overwriting
+the shades on the canvas, it adds to (or removes) them.
+For every pixel that the brush touches, those pixels' values should change by
+the corresponding amount.
+
+<p>
+If this would cause any pixel to be outside of the valid range of shades, it
+should instead be changed to the closest valid shade (i.e. if a shade would
+cause a pixel to have value <code>-2</code>, that pixel should instead be given
+the value <code>0</code>).
+
+<p>
+This correction should happen once for every pixel the brush touches (i.e. as
+the brush moves, you should ensure the canvas is never in an invalid space.)
+
+<p>
+This brush should be used until either the <strong>Change Shade</strong> command
+is used (to return to a one-pixel brush of a given shade),
+or the <strong>Additive Brush</strong> command is called again to specify a new
+nine-pixel brush. This means that if you are given, for example the
+<strong>Draw Line</strong> command, you should use the Additive Brush to draw
+that line, rather than the 1 pixel brush.
+
+<h4>Handling Invalid Input</h4>
+<ul>
+<li><p>
+This function will never receive invalid input.
+
+<li><p>
+This may cause other commands to draw outside the canvas (even when the
+normal brush would not). In this case, those commands should be ignored.
+</ul>
+
+<h4>Examples</h4>
+<div class="accordion">
+{{ show_cs_paint_example('Single stamp brush', [
+    "5 1 -3 0 -1 -4 -1 1 -2 0",
+    "1 10 10 10 10"
+]) |safe }}
+
+
+{{ show_cs_paint_example('Technicolour (from above)', [
+    "3 0", "2 0 0 19 35",
+    "3 1", "2 1 1 18 34",
+    "3 2", "2 2 2 17 33",
+    "3 3", "2 3 3 16 32",
+    "3 4", "2 4 4 15 31",
+    "3 3", "2 5 5 14 30",
+    "3 2", "2 6 6 13 29",
+    "3 1", "2 7 7 12 28",
+    "3 0", "2 8 8 11 27",
+    "3 1", "2 9 9 10 26",
+    "5 0 1 0 -1 2 -1 0 1 0",
+    "1 10 1 10 34"
+ ]) |safe }}
+
+</div>
+
+<h1>Hall of Fame Challenges</h1>
+
+If you have completed these challenges, and at any point before the end of the term feel like returning to CS Paint,
+we have compiled below a list of extension challenges. You can feel free to invent your own challenges as well (and if they are at least as
+interesting as the ones below, we will list you on the Hall of Fame). Before starting these, you should have completed 
+the assignment, and be passing all autotests. If you have questions about it, ask your tutor, or post a query on Piazza.
+
+These challenges have no autotests, and completing them will only result in your name being
+on a hall of fame for the assignment. They are not worth any marks. They are not bound by normal COMP1511 rules about style and features,
+though if the course staff can't understand them; we will not be able to give them marks. To submit it for testing,
+you should send it to <a href="mailto:cs1511.challenge@cse.unsw.edu.au">cs1511.challenge@cse.unsw.edu.au</a> with
+the subject line "Hall of Fame Submission z5555555". Your email body should include a description of the challenge exercise, and 
+a guide to how to run and test your solution. 
+
+There are five challenges:
+
+<ul>
+  <li> Use the command <code>9</code> to mean "fill". It should take one pair of coordinates, and a new shade.
+    Then, find all the pixels of the same color that indirectly connect to that pixel (in this case, that means 
+    that they share an edge with that pixel - pixels that are only diagonally connected do not count).
+    Those pixels should all become the new shade mentioned in the command.
+    It should operate similar to the paint-bucket in MS Paint.</li>
+  <li> Use the command <code>8</code> to mean "undo". The undo should restore the previous shade below what was drawn.
+    Solutions should not just save the entire previous board state - the more "intelligent" your solution (that can undo the board with
+    less information), the better.</li>
+  <li> Use the command <code>7</code> to mean "draw solid circle". It should take one pair of coordinates to define the
+    circle's centre, followed by one number to define the circle's radius. Any pixels which which are closer to the centre
+    than the length specified in the radius should be set to the colour that a draw rectangle command would use.</li>
+  <li> Write a program (not necessarily in C) that takes an output canvas and converts it to a set of instructions that prints
+    a greyscale version of that image (without knowing what the input commands were). Programs that produce shorter
+    sequences of commands will be rewarded with adulation in the hall of fame. Your program should not just print out
+    pixel by pixel.</li>
+  <li> Write a program (not necessarily in C) that takes some image (in a format of your choice) and converts it to a set of instructions that prints
+    a greyscale version of that image. Again, the shorter output, the better (and it must not just print out pixel by pixel).</li>
+  <li> Write a program that performs the same actions as CS Paint, that would be worth of entry into the <a href="http://ioccc.org">IOCCC</a></li>
+</ul>
+
+
+These challenges are open to interpretation. If you have a question about how to complete it, ask on Piazza, or ask yourself
+"What would be cooler". Submitting an entry isn't a guarantee that you will make the hall of fame (but we will let you know
+if it does not make it, and why we have rejected it). 
+
+<h1 id="testing">Testing</h1>
+<p>
+It is important to test your code to make sure that your program can perform all
+the tasks necessary to become CS Paint!
+
+<p>
+There are a few different ways to test (that are described in detail below):
+
+<ul>
+<li><p>
+Typing in your own commands.
+You can use the commands shown above as examples,
+or workout your own.
+
+<li><p>
+Testing from a series of commands written in a file. We have provided a
+set of test files that cover nearly all possible situations and commands
+that CS Paint should implement.<br>
+<a href="tests.zip">
+    <strong>Download the test files for the assignment here.</strong>
+</a>
+
+<li><p>
+Using autotests to run through all the test files at once.
+
+<li><p>
+Running a Reference Implementation that we have created
+for you to compare against.
+</ul>
+
+<h2>Testing your code</h2>
+
+<p>
+If you are testing with your own commands or commands written in a file, you can
+either use numerical output or our canvas output.
+
+<h3>Getting raw numeric output</h3>
+
+<p>
+If you are debugging, or want to see the raw numbers as output, you can compile
+and run your program as follows:
+
+<pre class="command_line">
+<kbd class="shell">ls</kbd>
+paint.c        tests/
+<kbd class="shell">dcc -o cs_paint paint.c</kbd>
+<kbd class="shell">./cs_paint</kbd>
+<kbd><var>[type in your commands here, then type Control+D]</var></kbd>
+<var>[your canvas will print out]</var>
+</pre>
+
+<p>
+If you have an input file you want to run, you can specify them like this.
+
+<pre class="command_line">
+<kbd class="shell">ls</kbd>
+paint.c        test_file1.in        test_file2.in
+<kbd class="shell">dcc -o cs_paint paint.c</kbd>
+<kbd class="shell">./cs_paint &lt; <var>test_file1.in</var></kbd>
+<var>[the output of running the commands in test_file1.in]</var>
+</pre>
+
+<p>
+This approach is limited to one input file at a time.
+
+<h3>Coloured Blocks using <code>1511 canvas</code></h3>
+
+<p>
+You can run the command <code>1511 canvas</code> on CSE computers
+(including via VLAB) along with the name of your C file,
+and we will compile it and show you the stylized output
+similar to in our examples in the Stages above.
+
+
+<pre class="command_line">
+<kbd class="shell">1511 canvas paint.c</kbd>
+You have run canvas without specifying any tests.
+You may quit this program with Control + C
+You can type lines below, and then press Control + D to see what output those
+lines produce.
+
+<kbd><var>[type in your commands here, then press Control + D]</var></kbd>
+</pre>
+
+<p>
+If you have input files you want to run, you can specify them like this.
+
+<pre class="command_line">
+<kbd class="shell">ls</kbd>
+paint.c        test_file1.in        test_file2.in
+<kbd class="shell">1511 canvas paint.c <var>test_file1.in test_file2.in</var></kbd>
+==&gt; <var>test_file1.in</var> &lt;==
+<var>[the output of running the commands in test_file1.in]</var>
+==&gt; <var>test_file2.in</var> &lt;==
+<var>[the output of running the commands in test_file2.in]</var>
+</pre>
+
+<p>
+If you have many files you want to run, you can use the asterisk
+(<code>*</code>) instead of a name to mean "every".
+
+<pre class="command_line">
+<kbd class="shell">ls tests/</kbd>
+paint.c        directory1        directory2
+<kbd class="shell">ls directory1/tests/</kbd>
+test_file1.in        test_file2.in
+<kbd class="shell">ls directory2/</kbd>
+other_test1.in        other_test2.in
+<kbd class="shell">1511 canvas paint.c */*</kbd>
+==&gt; <var>directory1/test_file1.in</var> &lt;==
+<var>[the output of running the commands in directory1/test_file1.in]</var>
+==&gt; <var>directory1/test_file2.in</var> &lt;==
+<var>[the output of running the commands in directory1/test_file2.in]</var>
+==&gt; <var>directory2/test_file1.in</var> &lt;==
+<var>[the output of running the commands in directory2/test_file1.in]</var>
+==&gt; <var>directory2/test_file2.in</var> &lt;==
+<var>[the output of running the commands in directory2/test_file2.in]</var>
+<kbd class="shell">1511 canvas paint.c directory2/*</kbd>
+==&gt; <var>directory2/test_file1.in</var> &lt;==
+<var>[the output of running the commands in directory2/test_file1.in]</var>
+==&gt; <var>directory2/test_file2.in</var> &lt;==
+<var>[the output of running the commands in directory2/test_file2.in]</var>
+</pre>
+
+<h2>Automated Testing</h2>
+
+<p>
+On CSE computers (including via VLAB),
+the input files we have provided
+can all be checked at once using the command:
+
+<pre class="command_line">
+<kbd class="shell">1511 autotest cs_paint paint.c</kbd>
+</pre>
+
+<h2>Reference Implementation</h2>
+
+<p>
+If you have questions about what behaviour your program should exhibit,
+we have provided a sample solution for you to use.
+<p>
+You can use it by replacing the name of your C file with the word
+<code>solution</code> like so (on CSE Computers or via VLAB): </p>
+
+<pre class="command_line">
+<kbd class="shell">ls</kbd>
+test_file1.in        test_file2.in
+<kbd class="shell">1511 canvas solution <var>test_file1.in test_file2.in</var></kbd>
+==&gt; <var>test_file1.in</var> &lt;==
+<var>[the output of running the commands in test_file1.in]</var>
+==&gt; <var>test_file2.in</var> &lt;==
+<var>[the output of running the commands in test_file2.in]</var>
+</pre>
+
+<hr>
+<h1 id="h1-assessment" class="mb-3 mt-1">Assessment</h1>

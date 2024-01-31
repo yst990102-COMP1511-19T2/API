@@ -1,0 +1,20 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_length.c
+compiler_args=-Dmain=_main list_length.c test_list_length.c -o test_list_length
+command=./test_list_length
+
+pre_compile_command="../check_arrays_not_used.sh list_length.c;./check_at_most_one_call_malloc.sh list_length.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_length 13  11 15 19 11 14 description="./list_length 13  11 15 19 11 14" expected_stdout="length([13, 11, 15, 19, 11, 14])\nlength returned: 6\n"
+2 command=./test_list_length 13 19 14 15 description="./list_length 13 19 14 15" expected_stdout="length([13, 19, 14, 15])\nlength returned: 4\n"
+3 command=./test_list_length 11 12 description="./list_length 11 12" expected_stdout="length([11, 12])\nlength returned: 2\n"
+4 command=./test_list_length 11 11 12 13 description="./list_length 11 11 12 13" expected_stdout="length([11, 11, 12, 13])\nlength returned: 4\n"
+5 command=./test_list_length 11 12 13 14 15 16 17 1 19 1 description="./list_length 11 12 13 14 15 16 17 1 19 1" expected_stdout="length([11, 12, 13, 14, 15, 16, 17, 1, 19, 1])\nlength returned: 10\n"
+6 command=./test_list_length 11 12 13 14 15 16 17 18 1 19 1 description="./list_length 11 12 13 14 15 16 17 18 1 19 1" expected_stdout="length([11, 12, 13, 14, 15, 16, 17, 18, 1, 19, 1])\nlength returned: 11\n"

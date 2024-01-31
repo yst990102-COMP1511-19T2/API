@@ -1,0 +1,15 @@
+max_cpu=10
+ingore_white_space=1
+ignore_blank_lines=1
+ignore_case=1
+
+command=./reverse_lines
+files=reverse_lines.c
+
+
+0 stdin="Are you saying 'Boo' or 'Boo-Urns'?\n" expected_stdout="?'snrU-ooB' ro 'ooB' gniyas uoy erA\n"
+1 stdin="In this house, we obey the laws of thermodynamics!\n" expected_stdout="!scimanydomreht fo swal eht yebo ew ,esuoh siht nI\n"
+2 stdin="Good thing I drink plenty of... malk?\n" expected_stdout="?klam ...fo ytnelp knird I gniht dooG\n"
+3 stdin="I call the big one 'Bitey.'\n" expected_stdout="'.yetiB' eno gib eht llac I\n"
+4 stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know.\n" expected_stdout=",ytuaeb hturt ,hturt si ytuaeB\n.wonk ot deen ey lla dna ,htrae no wonk eY lla si taht -\n"
+5 stdin="Come, family.\nLet us all bathe in TV's\nwarm\nglowing\nglowy\nglow\n" expected_stdout=".ylimaf ,emoC\ns'VT ni ehtab lla su teL\nmraw\ngniwolg\nywolg\nwolg\n"

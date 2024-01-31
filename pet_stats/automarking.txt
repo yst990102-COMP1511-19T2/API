@@ -1,0 +1,7 @@
+max_cpu=10
+prediff_filter="sed 's/.*: *//'"
+files=pet_stats.c
+command=./pet_stats
+
+0 stdin="Charlie\nWonder Dog\n30\n10\n" expected_stdout="Charlie is a Wonder Dog who is 30 years old and weighs 10kg\n"
+1 stdin="Tardar Sauce\nGrumpy Cat\n7 5\n" expected_stdout="Tardar Sauce is a Grumpy Cat who is 7 years old and weighs 5kg\n"

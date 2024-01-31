@@ -1,0 +1,8 @@
+max_cpu=3
+command=./l
+files=l.c
+l_0 stdin="1\n" description=1 expected_stdout="Enter size: *\n"
+l_1 stdin="2\n" description=2 expected_stdout="Enter size: *\n**\n"
+l_2 stdin="4\n" description=4 expected_stdout="Enter size: *\n*\n*\n****\n"
+l_3 stdin="11\n" description=11 expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n***********\n"
+l_4 stdin="13\n" description=13 expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*************\n"

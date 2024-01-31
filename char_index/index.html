@@ -1,0 +1,37 @@
+<p class="alert alert-warning">You should make sure you have completed <b>read_line</b>
+before completing this task.
+
+{{ copy_a_file(name="char_index.c", change_function="char_index") }}
+
+Start by copying your <code>read_line</code> code into the provided
+function stub.
+<p>
+Note <b>char_index</b> takes a character and a string and should return the index (position) of the
+first appearance of the character in the string.
+<p>
+If the character doesn't appear in the string, <b>char_index</b> should return the value <code>NOT_IN_STRING</code> which has been already #defined for you.
+<p>
+
+<b>char_index.c</b> also contains a simple <b>main</b> function to help you test your <b>char_index</b> function.
+
+{{ include_code("char_index.c", function_only="main") }}
+
+This <code>main</code> function  reads in a string and a character.
+Here is how <b>char_index.c</b> should behave after you add the correct code to the function <b>char_index</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc char_index.c -o char_index</kbd>
+<kbd class="shell">./char_index</kbd>
+Enter a line: <kbd>Hello, world!</kbd>
+Enter a character: <kbd>w</kbd>
+Index of character 'w': 7
+<kbd class="shell">./char_index</kbd>
+Enter a line: <kbd>aaa</kbd>
+Enter a character: <kbd>a</kbd>
+Index of character 'a': 0
+<kbd class="shell">./char_index</kbd>
+Enter a line: <kbd>aaa</kbd>
+Enter a character: <kbd>b</kbd>
+Character 'b' is not in the string.
+</pre>
+

@@ -1,0 +1,33 @@
+
+<div class="alert alert-danger">
+You are not permitted to use arrays to answer this question - it can be completed with only the material taught in weeks 1 and 2.
+</div>
+<p>
+Write a C program  <code>upside_down.c</code> to read 3 numbers
+and indicate whether they are strictly increasing (called "up"), strictly decreasing (called "down"), or neither ("neither").
+
+
+Reminder: "Strictly Increasing" means that each number is <i>larger</i> than the previous (the sequence "3 4" is strictly increasing, but "3 3" is not).
+"Strictly Decreasing" means that each number is <i>less</i> than the previous (the sequence "3 2" is strictly decreasing, but "3 3" is not).
+</p>
+
+Your program should behave exactly like this example:
+
+
+<pre class="command_line">
+<kbd class="shell">dcc -o upside_down upside_down.c</kbd>
+<kbd class="shell">./upside_down</kbd>
+Please enter three numbers: <kbd>5.6 6.5 11.9</kbd>
+up
+<kbd class="shell">./upside_down</kbd>
+Please enter three numbers: <kbd>12.5 5.6 6.5</kbd>
+neither
+<kbd class="shell">./upside_down</kbd>
+Please enter three numbers: <kbd>1.5 1.5 2.5</kbd>
+neither
+<kbd class="shell">./upside_down</kbd>
+Please enter three numbers: <kbd>70.5 42.0 -1.5</kbd>
+down
+</pre>
+
+You can assume the user supplies 3 doubles.  You do not have to check if the input is valid.

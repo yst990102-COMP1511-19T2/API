@@ -1,0 +1,21 @@
+max_cpu=10
+prediff_filter="sed 's/.*: *//'"
+files=palindrome.c
+command=./palindrome
+ignore_blank_lines=1
+compare_only_characters="isnot"
+
+0 stdin="civic\n" expected_stdout="Enter a string: String is a palindrome\n"
+1 stdin="civil\n" expected_stdout="Enter a string: String is not a palindrome\n"
+2 stdin="level\n" expected_stdout="Enter a string: String is a palindrome\n"
+3 stdin="lavel\n" expected_stdout="Enter a string: String is not a palindrome\n"
+4 stdin="dodo dodo dodo odod odod odod\n" expected_stdout="Enter a string: String is a palindrome\n"
+5 stdin="odod odod odod dodo dodo dodo\n" expected_stdout="Enter a string: String is a palindrome\n"
+6 stdin="01299210\n" expected_stdout="Enter a string: String is a palindrome\n"
+7 stdin="019999210\n" expected_stdout="Enter a string: String is not a palindrome\n"
+8 stdin="\n" expected_stdout="Enter a string: String is a palindrome\n"
+9 stdin="012999910\n" expected_stdout="Enter a string: String is not a palindrome\n"
+10 stdin="0129999210\n" expected_stdout="Enter a string: String is a palindrome\n"
+11 stdin="012994210\n" expected_stdout="Enter a string: String is not a palindrome\n"
+12 stdin="dodo dodo dodo ddd odod odod odod\n" expected_stdout="Enter a string: String is a palindrome\n"
+13 stdin="dodo dodo dodo ddo odod odod odod\n" expected_stdout="Enter a string: String is not a palindrome\n"

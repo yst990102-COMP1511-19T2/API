@@ -1,0 +1,15 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+Farnarkle Rounds for {{zid}}
+{% endblock %}
+
+{% block body_contents %}
+<p>
+<table class="table table-bordered table-condensed  table-striped">
+<tr><th>Round<th>Turns To Guess Code<th>Full farnarkle_ai Output
+{% for (score, round, round_name) in rounds %}
+<tr><td>{{round_name}}<td>{{score}}<td><a href="{{round}}">details</a>
+{% endfor %}
+</table>
+{% endblock %}

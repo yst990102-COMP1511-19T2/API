@@ -1,0 +1,17 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=array_maximum.c
+compiler_args=-Dmain=_main array_maximum.c test_array_maximum.c -o array_maximum
+
+1 command=./array_maximum 1 2 3 4 5 description="array_maximum(5, {1, 2, 3, 4, 5})" expected_stdout="Array: [1, 2, 3, 4, 5]\nMaximum value: 5\n"
+2 command=./array_maximum 3 14 15 9 2 6 5 description="array_maximum(7, {3, 14, 15, 9, 2, 6, 5})" expected_stdout="Array: [3, 14, 15, 9, 2, 6, 5]\nMaximum value: 15\n"
+3 command=./array_maximum 1 2 4 8 16 32 64 128 256 512 description="array_maximum(10, {1, 2, 4, 8, 16, 32, 64, 128, 256, 512})" expected_stdout="Array: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]\nMaximum value: 512\n"
+4 command=./array_maximum 10 8 6 4 2 description="array_maximum(5, {10, 8, 6, 4, 2})" expected_stdout="Array: [10, 8, 6, 4, 2]\nMaximum value: 10\n"
+5 command=./array_maximum 1 2 3 2 1 description="array_maximum(5, {1, 2, 3, 2, 1})" expected_stdout="Array: [1, 2, 3, 2, 1]\nMaximum value: 3\n"
+6 command=./array_maximum 1 description="array_maximum(1, {1})" expected_stdout="Array: [1]\nMaximum value: 1\n"
+7 command=./array_maximum 100 200 100 description="array_maximum(3, {100, 200, 100})" expected_stdout="Array: [100, 200, 100]\nMaximum value: 200\n"
+8 command=./array_maximum 50 100 50 100 description="array_maximum(4, {50, 100, 50, 100})" expected_stdout="Array: [50, 100, 50, 100]\nMaximum value: 100\n"
+
+

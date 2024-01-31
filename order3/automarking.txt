@@ -1,0 +1,17 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=0123456789
+
+command=./order3
+
+0 stdin="14 15 16"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 14 15 16\n"
+1 stdin="199 150 11"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 11 150 199\n"
+2 stdin="145 199 187"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 145 187 199\n"
+3 stdin="1003 43 453"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 43 453 1003\n"
+4 stdin="950 960 920"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 920 950 960\n"
+5 stdin="1050 1030 1090"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 1030 1050 1090\n"
+6 stdin="10020 10020 10020"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 10020 10020 10020\n"
+7 stdin="10020 10020 10030"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 10020 10020 10030\n"
+8 stdin="10030 10030 10020"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 10020 10030 10030\n"
+9 stdin="10030 10020 10030"  expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 10020 10030 10030\n"

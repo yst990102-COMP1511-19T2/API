@@ -1,0 +1,9 @@
+max_cpu=30
+files=crack_caesar.c
+
+0 command=./crack_caesar /home/cs1511/public_html/18s1/activities/crack_caesar/wiki_sentences.txt stdin="Hxbehdc, Wdbtg Hxbehdc\nWt'h iwt vgtpithi vjn xc wxhidgn\n Ugdb iwt\n Idlc du Hegxcvuxtas\n Wt'h pqdji id wxi p rwthicji igtt." expected_stdout="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree."
+
+1 command=./crack_caesar /home/cs1511/public_html/18s1/activities/crack_caesar/wiki_sentences.txt stdin="Hpww, esle'd npceltywj dapntzfd cpldzytyr, Olo.\n... Eslyv jzf, szypj.\n" expected_stdout="Well, that's certainly specious reasoning, Dad.\n... Thank you, honey.\n"
+2 command=./crack_caesar /home/cs1511/public_html/18s1/activities/crack_caesar/wiki_sentences.txt stdin="Fieyxc mw xvyxl, xvyxl fieyxc,\n- xlex mw epp Ci orsa sr ievxl, erh epp ci riih xs orsa." expected_stdout="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know."
+
+3 command=./crack_caesar /home/cs1511/public_html/18s1/activities/crack_caesar/not_english.txt stdin="Lqao ao dut zmol iddkjce\nA qmle ld seez lqe zdre jelbeex uo kae\nJul al'o dret\nHuol qemt lqao mxk lqex A'zz id\nCdu imre ve vdte ld zare sdt\nVdte lqmx cdu'zz eret wxdb\n" expected_stdout="Ydnb nb qhg mzby vqqxwpr\nN dzyr yq frrm ydr mqer wryorrk hb xnr\nWhy ny'b qerg\nUhby drzg ydnb zkx ydrk N'mm vq\nPqh vzer ir iqgr yq mner fqg\nIqgr ydzk pqh'mm rerg jkqo\n"

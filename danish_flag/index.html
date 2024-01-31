@@ -1,0 +1,85 @@
+<p>In this task,
+you will create a program
+called <code>danish_flag.c</code>
+which will read in a size
+and display a Danish Flag
+of that size
+using the following algorithm
+and the <code>#</code> character.</p>
+<p>This exercise must be completed
+<b>without Arrays</b>.</p>
+<p>The Danish Flag
+is made up of 6 blocks.
+It is 3 blocks wide,
+and 2 blocks high.
+To display it using empty spaces
+and the character <code>#</code>,
+we will read in a value called <code>size</code>.
+Each block will be 3 times <code>size</code> wide,
+and 2 times <code>size</code> high.</p>
+<ul>
+<li>In the top left block,
+the right column
+and bottom row
+will be empty spaces.</li>
+<li>In the top middle block,
+the left column
+and bottom row
+will be empty spaces.</li>
+<li>In the top right block,
+the bottom row
+will be empty spaces.</li>
+<li>In the bottom left block,
+the right column
+and top row
+will be empty spaces.</li>
+<li>In the bottom middle block,
+the left column
+and top row
+will be empty spaces.</li>
+<li>In the bottom right block,
+the top row
+will be empty spaces.</li>
+<li>Every other position
+will be the <code>#</code> character.</li>
+</ul>
+<p>See the diagram below for details.</p>
+<img src="{{activity_url}}danishFlag.png"/>
+<p>For example</p>
+<pre class="command_line">
+<kbd class="shell">dcc -o danish_flag  danish_flag.c </kbd>
+<kbd class="shell">./danish_flag</kbd>
+Enter the flag size: <kbd><i>1</i></kbd>
+##  #####
+
+
+##  #####
+</pre>
+<pre class="command_line">
+<kbd class="shell">./danish_flag</kbd>
+Enter the flag size: <kbd><i>2</i></kbd>
+#####  ###########
+#####  ###########
+#####  ###########
+
+
+#####  ###########
+#####  ###########
+#####  ###########
+</pre>
+<pre class="command_line">
+<kbd class="shell">./danish_flag</kbd>
+Enter the flag size: <kbd><i>3</i></kbd>
+########  #################
+########  #################
+########  #################
+########  #################
+########  #################
+
+
+########  #################
+########  #################
+########  #################
+########  #################
+########  #################
+</pre>

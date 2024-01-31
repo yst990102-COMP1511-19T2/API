@@ -1,0 +1,32 @@
+
+t Lair Tower_of_Marc 3 3
+t Lair Tower_of_Andrew 2 2
+t Lair Tower_of_Tom 1 1
+t Lair Tower_of_Tammy 1 2
+t Lair Tower_of_Jamal 2 1
+t Lair Tower_of_Sabine 2 1
+t Lair Tower_of_Alli 1 2
+t Lair Tower_of_Amri 2 1
+t Lair Tower_of_Elizabeth 1 2
+t Lair Tower_of_Braedon 1 2
+t Lair Tower_of_Alvin 2 1
+t Lair Tower_of_Stephen 1 2
+t Lair Tower_of_Kane 1 2
+t Lair Tower_of_Helena 1 2
+t Lair Tower_of_Zac 2 1
+t Lair Tower_of_Gal 1 2
+t Lair Tower_of_Ollie 2 1
+t Lair Tower_of_Matthew 1 2
+t Lair Tower_of_Claire 2 1
+t Lair Tower_of_Dean 1 2
+t Lair Tower_of_Finbar 1 2
+t Lair Tower_of_Harrison 1 2
+t Lair Tower_of_Nathan 1 2
+t Lair Tower_of_Kangying 2 1
+t Lair Tower_of_Benjamin 1 2
+t Lair Tower_of_David 2 1
+p
+b Tower_of_* u -1
+b Tower_of_* p -1
+p
+q

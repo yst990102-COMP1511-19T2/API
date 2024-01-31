@@ -1,0 +1,8 @@
+max_cpu=10
+files=substitution.c
+
+0 command=./substitution asdfghjklqwertyuiopzxcvbnm stdin="I was saying 'Boo-urns.'" expected_stdout="L vap panltj 'Syy-xotp.'"
+1 command=./substitution abcdefghijklmnopqrstuvwxyz stdin="I was saying 'Boo-urns.'" expected_stdout="I was saying 'Boo-urns.'"
+2 command=./substitution qazwsxedcrfvtgbyhnujmikolp stdin="Worst...\nepisode..\never...\n" expected_stdout="Kbnuj...\nsycubws..\nsisn...\n"
+3 command=./substitution dnujmikqazwsxeolpcrfvtgbyh stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" expected_stdout="DNUJMIKQAZWSXEOLPCRFVTGBYH!@#$%^&*()dnujmikqazwsxeolpcrfvtgbyh_-+={}[]:;<>,.?/\n"
+4 command=./substitution zwsxrfvdnujmikqatgbyheolpc stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." expected_stdout="Wrzhyp nb yghyd, yghyd wrzhyp,\n- ydzy nb zmm Pr jkqo qk rzgyd, zkx zmm pr krrx yq jkqo."

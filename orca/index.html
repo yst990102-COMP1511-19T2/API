@@ -1,0 +1,68 @@
+A citizen science project monitoring whale populations
+has files of containing large numbers of whale observations.
+Each line in these files contains:
+
+<ul>
+<li> the date the observation was made
+<li> the number of whales in the pod
+<li> the species of whales
+</li></li></li></ul>
+
+Here is a <a href="{{activity_url}}/whales.txt">file of example data</a> which you can
+download to test your program. The first 10 lines are:
+
+<pre class="command_line">
+<kbd class="shell">head whales.txt</kbd>
+18/01/18  9 Pygmy right whale
+01/09/17 21 Southern right whale
+16/02/18  4 Striped dolphin
+02/07/17  4 Common dolphin
+19/02/18  4 Blue whale
+21/02/18 38 Dwarf sperm whale
+14/06/17 29 Southern right whale
+20/06/17  3 Spinner dolphin
+22/07/17 34 Indo-Pacific humpbacked dolphin
+20/03/18  7 Long-finned pilot whale
+...
+</pre>
+
+{{ copy_a_file(name="orca.c", change_function="count_orca_sightings") }}
+<p>
+<b>orca.c</b> already contains the functions which
+you discussed in your tutorial which read the file of whale sightings into an array of structs.
+You do not need need to change these functions.
+<p>
+The main function in <b>orca.c</b> has this code:
+
+<pre class="program">
+int n_orca_pods = count_orca_sightings(n_sightings, whale_sightings);
+printf("%d Orca sightings in %s\n", n_orca_pods, argv[1]);
+</pre>
+
+Your task in this exercise is only to complete <b>count_orca_sightings</b>
+<p>
+Do <b>not</b>  change any other function.
+<p>
+It should return a  count of the number of sightings of Orca pods in the file.
+<p>
+Note,  "pod" is the collective noun for a group of whales.
+<p>
+<b>count_orca_sightings</b> should return
+the number of Orca pods.  It does not have have to sum the number of individual whales in these pods.
+
+<p>
+When you have completed the function <b>count_orca_sightings</b> this is how <b>orca.c</b> should behave:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o orca orca.c</kbd>
+<kbd class="shell">./orca whales.txt</kbd>
+53 Orca sightings in whales.txt
+</pre>
+<b>Hint</b>: hint use <code>strcmp</code> from <code>string.h</code>
+<p>
+<b>Hint</b>: most of the work for this exercise is figuring out what to do - only a short loop containing an if statement is needed.
+<p>
+<b>Hint</b>: if you are having trouble understanding structs COMP1511 tutors Dean Wunder and Ben Pieters-Hawke take you through the basics in this video:
+<p>
+<iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="360" src="https://www.youtube.com/embed/RJUkGjY-1-M?list=PLbSaCpDlfd6qHRp1RVAB1kpRJ9zoQYuwV" width="640"></iframe>
+</p></p></p></p></p></p></p></p></p></p>

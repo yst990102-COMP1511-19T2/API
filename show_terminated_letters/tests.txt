@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=show_terminated_letters.c
+compiler_args=-Dmain=_main show_terminated_letters.c test_show_terminated_letters.c -o test_show_terminated_letters
+command=./test_show_terminated_letters
+
+1 command=./test_show_terminated_letters "" description='show_terminated_letters("")'
+2 command=./test_show_terminated_letters "hello" description='show_terminated_letters("hello")' expected_stdout="hello"
+3 command=./test_show_terminated_letters "hello world" description='show_terminated_letters("hello world")' expected_stdout="hello world"
+4 command=./test_show_terminated_letters "hello-world" description='show_terminated_letters("hello-world")' expected_stdout="hello-world"
+5 command=./test_show_terminated_letters "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" description='show_terminated_letters("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")' expected_stdout="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

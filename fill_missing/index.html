@@ -1,0 +1,54 @@
+Write a C program <b>fill_missing.c</b> which reads  integers  from standard input
+until it reaches end-of-input.
+<p>
+It should then print the <i>missing</i> integers.
+<p>
+The <i>missing</i> integers should be all positive integers which did not appear in the program's input
+and which are smaller than the largest integer which did appear in the program's input.
+<p>
+The <i>missing</i> integers should be printed in increasing order on a single line.
+<p>
+Match the the example below EXACTLY.
+
+<pre class="command_line">
+<kbd class="shell">./fill_missing</kbd>
+<kbd>1
+4
+1
+5
+9
+2
+6
+9</kbd>
+<span class="eof"></span>
+3 7 8
+<kbd class="shell"></kbd>
+</pre>
+<b>Explanation:</b> given the input <b>1 4 1 5 9 2 6 9</b>, your program should print <b>3 7 8</b>, as those
+are the <i>missing</i> values, because:
+<ul>
+<li>the largest value was <b>9</b>
+<li>the numbers that appeared were {<b>1, 2, 4, 5, 6, 9</b>}
+
+<li>and thus, the numbers that were missing are {<b>3, 7, 8</b>}.
+</li></li></li></ul>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+
+Your program must read until the end of-input.
+End of input is signalled on a Linux terminal by typing the <b>Ctrl</b> and <b>d</b> keys together.
+This is what <b>&lt;ctrl-d&gt;</b> indicates in the above examples.
+<p>
+You can assume the input will only only contain positive integers, one per line.
+<p>
+You can assume each line will contain one and only one integer.
+<p>
+You can assume your input contains at least one integer.
+<p>
+You can assume your input contains  no more than 10000 integers.
+<p>
+You can assume no integer will be smaller than 1.
+<p>
+You are free to write this program in any way you wish: there is no specific
+function that you need to implement. Note that your program will need to have a `main` function.
+
+</p></p></p></p></p></p></p></p></p></p>

@@ -1,0 +1,13 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+compilers="dcc:dcc --valgrind --leak-check"
+
+files=musical_chairs.c
+pre_compile_command=./check_arrays_not_used.sh musical_chairs.c
+compiler_args=-Dmain=_main -Dbe_seated=_be_seated musical_chairs.c test_musical_chairs.c -o test_musical_chairs
+
+0  command=./test_musical_chairs Robb Rickard Sansa Eddard Bran  description="musical_chairs(Starks)" stdin="2\n2\n2\n-1\n" expected_stdout="Rickard\nEddard\nRobb\n"
+1  command=./test_musical_chairs Robert Stannis Renly description="musical_chairs(Baratheon)" stdin="1\n2\n0\n-1\n" expected_stdout="Robert\nRenly\nStannis\n"
+2  command=./test_musical_chairs Tywin Cersei Jaime Tyrion Joffrey Myrcella Tommen description="musical_chairs(Lannister)" stdin="5\n3\n4\n1\n-1\n" expected_stdout="Joffrey\nTywin\nMyrcella\nTommen\n"

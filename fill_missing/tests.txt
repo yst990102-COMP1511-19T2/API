@@ -1,0 +1,16 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+files=fill_missing.c
+command=./fill_missing
+
+
+1 stdin="2\n" description="2" expected_stdout="1 \n"
+2 stdin="2\n2\n" description="2 2" expected_stdout="1 \n"
+3 stdin="3\n" description="3" expected_stdout="1 2 \n"
+4 stdin="5\n3\n7\n" description="5 3 7" expected_stdout="1 2 4 6 \n"
+5 stdin="3\n1\n4\n1\n5\n9\n2\n" description="3 1 4 1 5 9 2" expected_stdout="6 7 8 \n"
+6 stdin="9\n8\n7\n6\n5\n4\n3\n2\n" description="9 8 7 6 5 4 3 2" expected_stdout="1 \n"
+7 stdin="9\n7\n5\n1\n" description="9 7 5 1" expected_stdout="2 3 4 6 8 \n"
+8 stdin="1\n1\n2\n3\n5\n8\n13\n21\n34\n" description="1 1 2 3 5 8 13 21 34" expected_stdout="4 6 7 9 10 11 12 14 15 16 17 18 19 20 22 23 24 25 26 27 28 29 30 31 32 33 \n"
+

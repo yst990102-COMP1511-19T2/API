@@ -1,0 +1,64 @@
+{{ copy_a_file(name="list_contains.c", change_function="contains") }}
+
+<b>contains</b> is given  two  arguments, an int <b>value</b> and <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>contains</b> so that its returns 1 if <b>value</b> occurs in the linked and otherwise it returns 0.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+and <b>contains</b> is called with <b>value</b> of 9,
+<p>
+<b>contains</b> should return <b>1</b>.
+
+<h4>Testing</h4>
+<b>list_contains.c</b> also contains a <b>main</b> function which allows you to test your <b>contains</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the first command-line argument to <b>value</b>
+<li> converts the remaining command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_contains(value, head)</b>
+<li> prints the result.
+</li></li></li></li></li></ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_contains</b> function will be called directly in marking.  The main function is only to let you test your <b>list_contains</b> function
+<p>
+Here is how you use main function allows you to test <b>list_contains</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc list_contains.c -o list_contains</kbd>
+<kbd class="shell">./list_contains 3 1 2 3 4</kbd>
+1
+<kbd class="shell">./list_contains 42 1 2 3 4</kbd>
+0
+<kbd class="shell">./list_contains 17 15 17 17 18</kbd>
+1
+<kbd class="shell">./list_contains 21 15 17 17 18</kbd>
+0
+<kbd class="shell">./list_contains 42</kbd>
+0
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>contains</b> should return a single integer.
+<p>
+<b>contains</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>contains</b> should not use arrays.
+<p>
+<b>contains</b> should not call malloc.
+<p>
+<b>contains</b> should not call scanf (or getchar or fgets).
+<p>
+<b>contains</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

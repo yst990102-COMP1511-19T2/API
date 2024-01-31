@@ -1,0 +1,74 @@
+
+{{ copy_a_file(name="list_get_middle.c", change_function="get_middle") }}
+
+<b>get_middle</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>get_middle</b> so that its returns the middle value of the list.  If the list an even number of elements the first of the 2 elements in the middleof the list should be returned.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 7, 8, 9, 13, 19, 21, 42
+</pre>
+<p>
+<b>get_middle</b> should return <b>9</b> because 9 and 13 are the middle two elements/
+<p>
+And or example if the linked list contains these 8 elements:
+<p>
+<pre>
+1, 2, 8, 1,  42
+</pre>
+<p>
+<b>get_middle</b> should return <b>8</b> because it is the middle element.
+<p>
+<b>get_middle</b> can asusme the list is not empty.
+
+<h4>Testing</h4>
+<b>list_get_middle.c</b> also contains a <b>main</b> function which allows you to test your <b>get_middle</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_get_middle(head)</b>
+<li> prints the result.
+</li></li></li></li></ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_get_middle</b> function will be called directly in marking.  The main function is only to let you test your <b>list_get_middle</b> function
+<p>
+Here is how you use main function allows you to test <b>list_get_middle</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc list_get_middle.c -o list_get_middle</kbd>
+<kbd class="shell">./list_get_middle 1 2 4 8 16 32 64 128 256</kbd>
+16
+<kbd class="shell">./list_get_middle 2 4 6 5 8 9</kbd>
+6
+<kbd class="shell">./list_get_middle 13 15 17 19 18</kbd>
+17
+<kbd class="shell">./list_get_middle 42 4</kbd>
+42
+<kbd class="shell">./list_get_middle 42</kbd>
+42
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>get_middle</b> should return a single integer.
+<p>
+<b>get_middle</b> can assume the list has at least one element.
+<p>
+<b>get_middle</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>get_middle</b> should not use arrays.
+<p>
+<b>get_middle</b> should not call malloc.
+<p>
+<b>get_middle</b> should not call scanf (or getchar or fgets).
+<p>
+<b>get_middle</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

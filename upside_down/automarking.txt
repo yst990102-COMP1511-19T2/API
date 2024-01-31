@@ -1,0 +1,19 @@
+max_cpu=3
+files=upside_down.c
+ignore_case=1
+upside_down=1
+
+pre_compile_command="../check_features_used.sh upside_down.c"
+pre_compile_command_shell=1
+
+command=./upside_down 
+
+up_0 stdin="4.4 5.5 6.6" expected_stdout="Please enter three numbers: up\n"
+up_1 stdin="4.4 4.5 6.6" expected_stdout="Please enter three numbers: up\n"
+up_2 stdin="4.4 4.4 6.6" expected_stdout="Please enter three numbers: neither\n"
+neither_0 stdin="4.4 4.4 4.4" expected_stdout="Please enter three numbers: neither\n"
+neither_1 stdin="4.4 4.4 4.0" expected_stdout="Please enter three numbers: neither\n"
+neither_2 stdin="4.4 -4.4 4.0" expected_stdout="Please enter three numbers: neither\n"
+neither_3 stdin="4000.4 -40000.4 4.0" expected_stdout="Please enter three numbers: neither\n"
+down_0 stdin="4.4 4.05 4.0" expected_stdout="Please enter three numbers: down\n"
+down_1 stdin="4.4 4.05 -4.0" expected_stdout="Please enter three numbers: down\n"

@@ -1,0 +1,10 @@
+max_cpu=10
+ignore_white_space=1
+ignore_blank_lines=1
+files=decode.c
+
+0 command=./decode ghjklqwerasdftyuiopzxcvbnm stdin="R vgp pgnrtw 'Hyy-xotp.'" expected_stdout="I was saying 'Boo-urns.'"
+1 command=./decode jklmnopqrabcdefghistuvwxyz stdin="R wjs sjyrep 'Kff-uies.'" expected_stdout="I was saying 'Boo-urns.'"
+2 command=./decode edcrfvtgbqazwsxyhnujmikolp stdin="Kxnuj...\nfybuxrf..\nfifn...\n" expected_stdout="Worst...\nepisode..\never...\n"
+3 command=./decode jmikqadnuzwsxeolpcrfvtgbyh stdin="JMIKQADNUZWSXEOLPCRFVTGBYH!@#$%^&*()jmikqadnuzwsxeolpcrfvtgbyh_-+={}[]:;<>,.?/\n" expected_stdout="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n"
+4 command=./decode vdnujmikqatgbzwsxrfyheolpc stdin="Djvhyp qf yrhyk, yrhyk djvhyp,\n- ykvy qf vgg Pj tzwo wz jvryk, vzu vgg pj zjju yw tzwo." expected_stdout="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know."

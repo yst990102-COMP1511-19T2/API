@@ -1,0 +1,13 @@
+max_cpu=10
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters=abcdefghijklmnopqrstuvwxyz
+no_reproduce_command=1
+
+files=evolve_pokemon.c
+compiler_args=-Dmain=_main evolve_pokemon.c test_evolve_pokemon.c -o test_evolve_pokemon
+command=./test_evolve_pokemon
+
+0a  command=./test_evolve_pokemon Charmander Charmeleon Charizard description="evolve_pokemon(Charmander)" expected_stdout="Charmander\nCharmeleon\nCharizard\n"
+1a  command=./test_evolve_pokemon po poke pokem pokemon description="evolve_pokemon(poke text)" expected_stdout="po\npoke\npokem\npokemon\n"
+2a  command=./test_evolve_pokemon Exeggcute Exeggutor description="evolve_pokemon(Exeggcute Exeggutor)" expected_stdout="Exeggcute\nExeggutor\n"

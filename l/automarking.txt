@@ -1,0 +1,12 @@
+max_cpu=10
+command=./l
+compare_only_characters="*"
+ignore_blank_lines=1
+
+files=l.c
+
+13 stdin="13\n" expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*************\n"
+18 stdin="18\n" expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n******************\n"
+25 stdin="25\n" expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*************************\n"
+42 stdin="42\n" expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n******************************************\n"
+67 stdin="67\n" expected_stdout="Enter size: *\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*******************************************************************\n"

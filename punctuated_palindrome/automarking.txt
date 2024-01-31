@@ -1,0 +1,17 @@
+max_cpu=10
+prediff_filter="sed 's/.*: *//'"
+files=punctuated_palindrome.c
+command=./punctuated_palindrome
+ignore_blank_lines=1
+compare_only_characters="isnot"
+
+0 stdin="A nut for a JAR of    tuna.\n" expected_stdout="Enter a string: String is a palindrome\n"
+1 stdin="A nut for a ar of tunaa.\n" expected_stdout="Enter a string: String is not a palindrome\n"
+2 stdin=",,Borrow or    rob?\n" expected_stdout="Enter a string: String is a palindrome\n"
+3 stdin="Borroow or rob?\n" expected_stdout="Enter a string: String is not a palindrome\n"
+4 stdin="                   Was    it a car or a cat I saw?\n" expected_stdout="Enter a string: String is a palindrome\n"
+5 stdin="Was it a car or a dog I saw?\n" expected_stdout="Enter a string: String is not a palindrome\n"
+6 stdin="Ed, I saw Harpo Marx ram Oprah W. aside.\n" expected_stdout="Enter a string: String is a palindrome\n"
+7 stdin=".....aaaaa\n" expected_stdout="Enter a string: String is a palindrome\n"
+8 stdin="Yo, banana boy!\n" expected_stdout="Enter a string: String is a palindrome\n"
+9 stdin="Yo, ab boy!\n" expected_stdout="Enter a string: String is not a palindrome\n"

@@ -1,0 +1,13 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=string_to_upper.c
+compiler_args=-Dmain=_main string_to_upper.c test_string_to_upper.c -o test_string_to_upper
+command=./test_string_to_upper
+
+1 command=./test_string_to_upper "" description='string_to_upper("")' expected_stdout="\n"
+2 command=./test_string_to_upper "hello" description='string_to_upper("hello")' expected_stdout="HELLO\n"
+3 command=./test_string_to_upper "hello world" description='string_to_upper("hello world")' expected_stdout="HELLO WORLD\n"
+4 command=./test_string_to_upper "Hello-World" description='string_to_upper("Hello-World")' expected_stdout="HELLO-WORLD\n"
+5 command=./test_string_to_upper "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" description='string_to_upper("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")' expected_stdout="ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n"

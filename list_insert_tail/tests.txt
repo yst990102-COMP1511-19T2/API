@@ -1,0 +1,14 @@
+
+max_cpu=3
+no_reproduce_command=1
+files=list_insert_tail.c
+compiler_args=-Dmain=_main list_insert_tail.c test_list_insert_tail.c -o test_list_insert_tail
+command=./test_list_insert_tail
+
+pre_compile_command="../check_arrays_not_used.sh list_insert_tail.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_insert_tail 10 description="./list_insert_tail 10" expected_stdout="insert_tail(10, [])\ninsert_tail returned: [10]\n"
+2 command=./test_list_insert_tail 10 46 description="./list_insert_tail 10 46" expected_stdout="insert_tail(10, [46])\ninsert_tail returned: [46, 10]\n"
+3 command=./test_list_insert_tail 10 46 47 description="./list_insert_tail 10 46 47" expected_stdout="insert_tail(10, [46, 47])\ninsert_tail returned: [46, 47, 10]\n"
+4 command=./test_list_insert_tail 12 16 7 8 12 13 19 21 description="./list_insert_tail 12 16 7 8 12 13 19 21" expected_stdout="insert_tail(12, [16, 7, 8, 12, 13, 19, 21])\ninsert_tail returned: [16, 7, 8, 12, 13, 19, 21, 12]\n"

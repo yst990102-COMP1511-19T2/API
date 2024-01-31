@@ -1,0 +1,7 @@
+max_cpu=30
+ignore_case=1
+ignore_white_space=1
+files=coco.c
+command=./coco
+
+0 stdin="2\n9 2 0\n11 15 18 23 33 34 47 48 49\n25 20\n16 22 40 36\n37 38 39\n34 47 48\n" expected_stdout="15\n"

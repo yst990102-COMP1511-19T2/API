@@ -1,0 +1,14 @@
+
+max_cpu=3
+no_reproduce_command=1
+files=list_insert_head.c
+compiler_args=-Dmain=_main list_insert_head.c test_list_insert_head.c -o test_list_insert_head
+command=./test_list_insert_head
+
+pre_compile_command="../check_arrays_not_used.sh list_insert_head.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_insert_head 10 description="./list_insert_head 10" expected_stdout="insert_head(10, [])\ninsert_head returned: [10]\n"
+2 command=./test_list_insert_head 10 46 description="./list_insert_head 10 46" expected_stdout="insert_head(10, [46])\ninsert_head returned: [10, 46]\n"
+3 command=./test_list_insert_head 10 46 47 description="./list_insert_head 10 46 47" expected_stdout="insert_head(10, [46, 47])\ninsert_head returned: [10, 46, 47]\n"
+4 command=./test_list_insert_head 12 16 7 8 12 13 19 21 12 description="./list_insert_head 12 16 7 8 12 13 19 21 12" expected_stdout="insert_head(12, [16, 7, 8, 12, 13, 19, 21, 12])\ninsert_head returned: [12, 16, 7, 8, 12, 13, 19, 21, 12]\n"

@@ -1,0 +1,11 @@
+max_cpu=3
+files=difference.c
+ignore_case=1
+ignore_white_space=1
+command=./difference 
+0 stdin="3 15\n" expected_stdout="12\n"
+1 stdin="13 55\n" expected_stdout="42\n"
+2 stdin="19 19\n" expected_stdout="equal\n"
+3 stdin="7 15\n" expected_stdout="8\n"
+4 stdin="105 67\n" expected_stdout="38\n"
+5 stdin="42 42\n" expected_stdout="equal\n"

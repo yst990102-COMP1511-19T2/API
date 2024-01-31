@@ -1,0 +1,16 @@
+max_cpu=10
+ignore_white_space=1
+ignore_blank_lines=1
+command=./swap_case
+files=swap_case.c
+
+0 stdin="Are you saying 'Boo' or 'Boo-Urns'?" expected_stdout="aRE YOU SAYING 'bOO' OR 'bOO-uRNS'?"
+1 stdin="In this house, we obey the laws of thermodynamics!" expected_stdout="iN THIS HOUSE, WE OBEY THE LAWS OF THERMODYNAMICS!"
+2 stdin="Good thing I drink plenty of... malk?" expected_stdout="gOOD THING i DRINK PLENTY OF... MALK?"
+3 stdin="I call the big one 'Bitey.'" expected_stdout="i CALL THE BIG ONE 'bITEY.'"
+4 stdin="Simpson, Homer Simpson\nHe's the greatest guy in history\n From the\n Town of Springfield\n He's about to hit a chestnut tree." expected_stdout="sIMPSON, hOMER sIMPSON\nhE'S THE GREATEST GUY IN HISTORY\n fROM THE\n tOWN OF sPRINGFIELD\n hE'S ABOUT TO HIT A CHESTNUT TREE."
+5 stdin="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz_-+={}[]:;<>,.?/\n" expected_stdout="abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ_-+={}[]:;<>,.?/\n"
+6 stdin="Well, that's certainly specious reasoning, Dad.\n... Thank you, honey.\n" expected_stdout="wELL, THAT'S CERTAINLY SPECIOUS REASONING, dAD.\n... tHANK YOU, HONEY.\n"
+7 stdin="Come, family. Let us all bathe in TV's warm glowing glowy glow" expected_stdout="cOME, FAMILY. lET US ALL BATHE IN tv'S WARM GLOWING GLOWY GLOW"
+8 stdin="Beauty is truth, truth beauty,\n- that is all Ye know on earth, and all ye need to know." expected_stdout="bEAUTY IS TRUTH, TRUTH BEAUTY,\n- THAT IS ALL yE KNOW ON EARTH, AND ALL YE NEED TO KNOW."
+9 stdin="nvwlsnthsline\n" expected_stdout="NVWLSNTHSLINE\n"

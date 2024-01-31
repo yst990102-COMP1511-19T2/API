@@ -1,0 +1,67 @@
+This question was taken from a past exam paper. It is an example of the hardest
+question at the end of the paper and it is usually expected that less than 5%
+of students can complete this question within the time constraints.
+<p>
+Write a C program knight_moves.c which prints  sequences of moves which takes a knight from a specified
+square on a chessboard to another specified square on the chessboard.
+<p>
+A chessboard is an 8x8 square matrix.  We label each square as below:
+<p>
+<pre class="command_line">
+a8 b8 c8 d8 e8 f8 g8 h8
+a7 b7 c7 d7 e7 f7 g7 h7
+a6 b6 c6 d6 e6 f6 g6 h6
+a5 b5 c5 d5 e5 f5 g5 h5
+a4 b4 c4 d4 e4 f4 g4 h4
+a3 b3 c3 d3 e3 f3 g3 h3
+a2 b2 c2 d2 e2 f2 g2 h2
+a1 b1 c1 d1 e1 f1 g1 h1
+</pre>
+<p>
+A knight makes an L-shaped move.  It moves either two squares horizontally and one square vertically
+or two squares vertically and one square horizontally.
+<p>
+For example, a knight at <i>d4</i> can move to one of eight squares: <i>c2</i>, <i>e2</i>, <i>b3</i>, <i>b5</i>, <i>c6</i>, <i>e6</i>, <i>f3</i> or <i>f5</i>.
+<p>
+A move can not take a knight off the chessboard.  Hence, a knight on square near the edge of
+the board will have fewer possible moves.
+<p>
+For example, a knight at <i>a1</i> can move only to <i>c2</i> and <i>b3</i>.
+<p>
+Write a C program which takes  two arguments: a starting square and
+and a finishing square.
+<p>
+It should print a sequence of moves which take a knight from
+the starting square to the finishing square.
+This sequence of moves should be as short as possible.
+<p>
+In many cases there are multiple shortest sequences,
+your program must print all of the sequences in alphabetic order
+<p>
+For example:
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc -o knight_moves knight_moves.c</kbd>
+<kbd class="shell">./knight_moves d4 b3</kbd>
+d4 b3 
+<kbd class="shell">./knight_moves d4 a1</kbd>
+d4 b3 a1
+d4 c2 a1
+<kbd class="shell">./knight_moves g2 b2</kbd>
+g2 e1 d3 b2
+g2 e3 c4 b2
+g2 e3 d1 b2
+g2 f4 d3 b2
+</pre>
+<p>
+<b>Assumptions/Restrictions/Clarifications</b>
+<p>
+<p>
+Your program must complete in 60 seconds when executed with dcc --valgrind
+<p>
+Your can assume there are two command-line arguments and they correctly identify squares on the board.
+<p>
+You can assume the starting and finishing squares are different.
+<p>
+No error checking required
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

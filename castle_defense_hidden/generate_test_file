@@ -1,0 +1,25 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+cat > tests.txt <<- EOM
+max_cpu=30
+ignore_case=1
+ignore_white_space=0
+files=main.c realm.c
+command=./castle_defense
+EOM
+
+shopt -s globstar
+
+for file in automarking_tests/stage_one/**/*.in automarking_tests/stage_two*/**/*.in automarking_tests/stage_three*/**/*.in automarking_tests/stage_four*/**/*.in automarking_tests/stage_five*/**/*.in; do
+  name=$(echo $file | sed -E 's|automarking_tests/([^/]*)/(.+)\.in|\1__\2|g')
+  name=$(echo $name | sed -E 's|/|__|g')
+  desc=$(echo $file | sed 's|automarking_tests/||g;s|\.in||g')
+  file_text="$(cat $file | tr '[\r\n]' '\\' | sed 's|\\|\\n|g')"
+  echo "$name stdin='$file_text\n'" >> tests.txt
+done
+
+$DIR/../../scripts/autotest_update_from_solution
+
+mv tests.txt automarking/automarking.txt

@@ -1,0 +1,32 @@
+In this exercises you will add code to a program to calculate fun facts about circles.
+
+{{ copy_a_file(name="circle_facts.c", change_function=['area', 'circumference', 'diameter']) }}
+<p>
+Its <b>main</b> function is complete.  Do not change the <b>main</b> function.
+Complete these three functions:
+
+<pre class="command_line">
+double area(double radius);
+double circumference(double radius);
+double diameter(double radius);
+</pre>
+<p>Hint use the constant  <code>M_PI</code> defined in <code>math.h</code>
+<pre class="command_line">
+<kbd class="shell">dcc -o circle_facts  circle_facts.c </kbd>
+<kbd class="shell">./circle_facts </kbd>
+Enter circle radius: <kbd>1</kbd>
+Area          = 3.141593
+Circumference = 6.283185
+Diameter      = 2.000000
+<kbd class="shell">./circle_facts</kbd>
+Enter circle radius: <kbd>17</kbd>
+Area          = 907.920277
+Circumference = 106.814150
+Diameter      = 34.000000
+<kbd class="shell">./circle_facts</kbd>
+Enter circle radius: <kbd>0.0125</kbd>
+Area          = 0.000491
+Circumference = 0.078540
+Diameter      = 0.025000
+</pre>
+</p></p>

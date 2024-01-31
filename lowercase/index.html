@@ -1,0 +1,19 @@
+{{ copy_a_file(name="lowercase.c", change_function="lowercase") }}
+
+The function <b>lowercase</b>  takes in a character, <code>c</code> and if
+it is an uppercase letter, converts it to lowercase and returns that
+value. All other input values should be returned unchanged.
+<p>
+Here is how <b>lowercase.c</b> should behave after you add the correct code to the function <b>lowercase</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc lowercase.c -o lowercase</kbd>
+<kbd class="shell">./lowercase</kbd>
+<kbd>ABC</kbd>
+abc
+<kbd>ABCabc123</kbd>
+abcabc123
+<kbd>123!@#</kbd>
+123!@#
+</pre>
+

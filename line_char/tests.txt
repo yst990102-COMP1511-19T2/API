@@ -1,0 +1,8 @@
+max_cpu=3
+command=./line_char
+files=line_char.c
+0 stdin="hello world\n0\n" expected_stdout="The character in position 0 is 'h'\n"
+1 stdin="hello world\n4\n" expected_stdout="The character in position 4 is 'o'\n"
+2 stdin="hello world\n5\n" expected_stdout="The character in position 5 is ' '\n"
+3 stdin="1one2two3three4four100hundred1000\n32\n" expected_stdout="The character in position 32 is '0'\n"
+4 stdin="0123456789\n5\n" expected_stdout="The character in position 5 is '5'\n"

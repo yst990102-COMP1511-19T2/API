@@ -1,0 +1,6 @@
+max_cpu=3
+command=./swap_case
+files=swap_case.c
+0 stdin="Beauty is truth, truth beauty\n" expected_stdout="bEAUTY IS TRUTH, TRUTH BEAUTY\n"
+1 stdin="I like the way this Snrub thinks!\n" expected_stdout="i LIKE THE WAY THIS sNRUB THINKS!\n"
+2 stdin="If anyone needs me,\nI'll be in my room.\n" expected_stdout="iF ANYONE NEEDS ME,\ni'LL BE IN MY ROOM.\n"

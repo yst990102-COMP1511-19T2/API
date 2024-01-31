@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ln -s /web/cs1511/activities/castle_defense/main.c .
+ln -s /web/cs1511/activities/castle_defense/realm.h .
+[[ -e /web/cs1511/activities/castle_defense/realm.c ]] && echo "Will not overwrite existing file: realm.c"
+cp -n /web/cs1511/activities/castle_defense/realm.c .
+[[ -e /web/cs1511/activities/castle_defense/test_realm.c ]] && echo "Will not overwrite existing file: test_realm.c"
+cp -n /web/cs1511/activities/castle_defense/test_realm.c .

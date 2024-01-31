@@ -1,0 +1,16 @@
+
+
+max_cpu=40
+files=vector_best_permutation.c
+ignore_case=1
+ignore_white_space=1
+ignore_blank_lines=1
+command=./vector_best_permutation
+
+1 stdin="4\n6 8 15 11\n42 43 17 3\n" description="4  6 8 15 11  42 43 17 3" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 3 2 1 0\nEuclidean distance = 42.836900\n"
+2 stdin="6\n18 16 19 11 42 32\n77 64 11 99 21 42\n" description="6  18 16 19 11 42 32  77 64 11 99 21 42" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 5 2 3 4 1 0\nEuclidean distance = 88.881944\n"
+3 stdin="32\n34 56 42 44 35 38 39 50 62 61 58 43 45 32 33 48 46 52 63 57 55 37 53 49 59 41 51 47 40 54 60 36\n23 30 13 16 14 33 25 41 15 32 35 26 28 40 31 38 39 11 19 21 37 18 27 12 36 17 24 34 22 20 10 29\n" description="32  34 56 42 44 35 38 39 50 62 61 58 43 45 32 33 48 46 52 63 57 55 37 53 49 59 41 51 47 40 54 60 36  23 30 13 16 14 33 25 41 15 32 35 26 28 40 31 38 39 11 19 21 37 18 27 12 36 17 24 34 22 20 10 29" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 12 17 4 5 31 20 27 18 21 29 19 15 7 8 22 30 9 14 25 11 24 28 23 0 10 6 16 1 3 2 13 26\nEuclidean distance = 124.450793\n"
+
+4 stdin="4\n34 45 12 17\n5 3 1 9\n" description="4  34 45 12 17  5 3 1 9" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 0 3 2 1\nEuclidean distance = 49.537864\n"
+5 stdin="6\n1 2 3 4 5 6\n6 5 4 3 2 1\n" description="6  1 2 3 4 5 6  6 5 4 3 2 1" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 5 4 3 2 1 0\nEuclidean distance = 0.000000\n"
+6 stdin="41\n20 3 32 12 33 24 11 16 39 9 13 2 26 18 8 40 34 10 38 7 25 36 17 6 30 22 15 19 37 21 1 35 23 41 5 31 4 29 28 27 14\n13 40 3 39 26 35 5 12 10 36 24 22 42 2 38 27 4 9 8 21 7 29 11 6 41 18 30 14 16 32 34 37 15 20 33 17 28 31 25 23 19\n" description="41  20 3 32 12 33 24 11 16 39 9 13 2 26 18 8 40 34 10 38 7 25 36 17 6 30 22 15 19 37 21 1 35 23 41 5 31 4 29 28 27 14  13 40 3 39 26 35 5 12 10 36 24 22 42 2 38 27 4 9 8 21 7 29 11 6 41 18 30 14 16 32 34 37 15 20 33 17 28 31 25 23 19" expected_stdout="Enter vector length: Enter vector1: Enter vector2: Optimal permutation: 3 8 11 18 20 16 36 6 9 31 32 29 33 30 28 12 1 14 19 0 23 38 17 34 15 22 37 10 26 35 4 21 40 27 2 7 39 24 5 25 13\nEuclidean distance = 6.403124\n"

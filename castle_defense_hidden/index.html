@@ -1,0 +1,882 @@
+<style>
+h1, h2, h3, h4, h5 {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+</style>
+{% macro autotest_stage(stage) %}
+<div class="alert alert-secondary">
+<strong>Run the tests for this stage with: </strong>
+<pre class="command_line">
+<kbd class="shell">1511 autotest-stage {{ stage }} ass2_castle_defense</kbd>
+</pre>
+<small>Please note, the files you test <strong>must</strong> be named correctly, or this test will not work properly.</small>
+</div>
+{% endmacro %}
+
+{% macro card(title, id, text) %}
+<div class="card">
+<div class="card-header" id="{{id}}_head">
+<h4 class="panel-title">
+<a aria-controls="{{id}}_collapse" aria-expanded="false" class="btn btn-link collapsed" data-target="#{{id}}_collapse" data-toggle="collapse" href="#{{id}}" id="#{{id}}">
+        Show Example: {{ title }}
+      </a>
+</h4>
+</div>
+<div aria-labelledby="{{id}}_collapse" class="collapse" data-parent="#{{id}}_collapse" id="{{id}}_collapse" style="">
+<div class="card-body thinner">
+<pre class="inverted-color command_line"><kbd class="inverted-color shell">dcc -o castle_defense main.c realm.c</kbd>
+<kbd class="inverted-color shell">./castle_defense </kbd>
+{{ text|safe }}          
+</pre>
+</div>
+</div>
+</div>
+{% endmacro %}
+
+
+<h1 id="introduction">Castle Defense</h1>
+<p>
+Attention brave and noble engineers! Castle CSE is under attack by
+our Enemies from The Lair. King Marc of House Chee, First of His 
+Name, Protector of the Realm, has commissioned you to build His 
+defenses and protect His Castle.
+
+<p>
+In this assignment, you will be implementing Castle Defense, a program
+that simulates an imaginary Realm that is under attack. You will be
+creating Lands in the Realm as well as building Towers to defend
+a Castle. 
+
+<p>
+The Enemies will spawn from their Lair and move towards the Castle
+through the Lands.
+As the Enemies move, they will be attacked by the towers, which both harms
+the Enemies and depletes the towers. If the Enemies reach the Castle, 
+they will damage it.
+
+<p>
+Your program will be managing Enemy movement as they pass through the
+Lands. It will also be managing the use of Towers against the Enemies 
+and any damage the Castle receives.
+
+<p>
+<strong>Note:</strong> If this assignment appears daunting, fear not!
+The King himself (Marc in lectures) will be demonstrating many of the 
+techniques necessary to begin your tasks. His loyal retainers (the
+Tutors) will also be teaching some of the techniques in detail in Labs.
+During Week 8, a great deal of the course will be dedicated to helping
+you get started with this assignment.
+
+<h2 id="realm">The Realm</h2>
+<p>
+The realm is a struct that contains all of the objects that will be
+used in this assignment. Those are: Lands, The Lair, The Castle, Towers
+and Enemies.
+
+Your job is to manage the Realm, and everything it contains.
+
+<img alt="Realm Structure" class="img img-responsive" src="{{activities_url}}/castle_defense/Castle Defense Overall.png" style="max-width: 100%"/>
+<p>
+The Realm struct has pointers to The Lair (where all the Enemies 
+live), and The Castle (where King Marc and His loyal subjects live).
+
+Every location in the Realm lies on a linked list that starts at The 
+Lair, and goes on to The Castle. Locations can have one of three types:
+<ul>
+<li><i>Land</i>: A place where Enemies can gather.</li>
+<li><i>Tower</i>: A defense, built by you, to attack Enemies</li>
+<li>
+<i>Castle</i>: The Castle, which is always the last node in the
+    linked list. If the Enemies can reach The Castle, they will deal
+    damage to it.
+  </li>
+</ul>
+</p>
+<p>Your code should ensure that at the start of the program,
+the Lair points to the Castle, and the Castle points to <code class="lang-clike">NULL</code>.
+Your code should then ensure that the Lair is always connected (through other locations)
+to the Castle; and that the Castle points to <code class="lang-clike">NULL</code>.</p>
+<p>
+To ensure this is true, you will never be given a test case where you are asked to put a
+tower after the Castle.
+</p>
+<p>
+As an additional restriction to make the assignment's rules simpler,
+there will never be two locations with the same name.
+</p>
+<h2 id="enemies">Enemies</h2>
+<p>
+In these dark times, the realm is under attack. Foul Enemies regularly
+appear at their Lair and make their way, one location at a time, towards
+The Castle.
+</p>
+<img alt="Enemies" class="img img-responsive" src="{{activities_url}}/castle_defense/Enemies.png" style="max-width: 100%"/>
+<p>
+An Enemy is represented by a struct which records their name, their maximum
+health and their current health (as integers). These structs should also be
+set up so that the Enemies can be joined together in a linked list.
+
+<p>
+Enemies will always be at a location, which is represented by a linked list
+of Enemies at every location in The Realm. Linked lists of Enemies are always
+listed in alphabetical order.
+</p>
+<p>
+An Enemy dies when it has zero or less health. It then is removed from the
+linked list that contained it and its memory is freed.
+</p>
+<p>
+There will never be two enemies in the realm with the same name.
+</p>
+<h2 id="towers">Towers</h2>
+<img alt="Tower and Location detail" class="img img-responsive" src="{{activities_url}}/castle_defense/Tower and Location.png" style="max-width: 100%"/>
+<p>
+As mentioned before, locations in the realm can be Towers. Towers are able to
+reduce the HP of any Enemy at their Location. They can only be used a fixed
+number of times. When they run out of uses, they convert back into lands.
+</p>
+<p>Towers have two important properties:</p>
+<ul>
+<li><i>Power</i>: How much an Enemy's HP is reduced when the Tower attacks. This is a whole number, greater than zero.</li>
+<li><i>Uses</i>: A count of how many times a Tower can be used before it 
+    reverts to being a land. This is a whole number, greater than zero.</li>
+</ul>
+<h2 id="castle">The Castle</h2>
+<p>
+At the end of the list is The Castle. Enemies that manage to reach The
+Castle will be removed from the game and deal damage to The Castle.
+<p>
+The Castle starts off with <code class="lang-clike">STARTING_CASTLE_HP</code> health.
+If an Enemy damages The Castle, it causes The Castle's health
+to decrease by that Enemy's remaining health. 
+
+</p>
+<div class="alert alert-warning"><strong>Note: </strong> Nothing special should happen 
+ when the castle goes below 0 HP. It can go negative if enough damage is dealt to it.</div>
+<h2 id="game">The Game</h2>
+<p>
+When the game starts, two locations are automatically created - the Lair
+and the Castle. You will then be given a list of locations on standard 
+input, one per line.
+These locations will be strings that do not contain any spaces. 
+When the list of locations is complete, an empty line will be input.
+</p>
+<p>
+After this, a prompt will appear. You will type in commands to indicate
+changes to the state of the Realm. These commands will all start with a
+character as the command, then a space, then possibly some additional
+information about the command. There are three special commands, which
+are already implemented in the Starter Code provided. They consist of:
+</p>
+<ul>
+<li><code class="lang-clike">?</code>: Print a list of all possible commands.</li>
+<li><code class="lang-clike">q</code>: Quit the program.</li>
+<li><code class="lang-clike">/</code>: Do nothing, this line is treated as a comment.</li>
+</ul>
+<h1 id="implementation">Your Task: Implementation</h1>
+<p>
+Your task for this assignment is to write the functions that will manage
+the state of the Realm. All of these functions are contained inside the file
+<code class="lang-clike">realm.c</code>. 
+
+<h2 id="starter-code">Starter Code</h2>
+<div class="alert alert-secondary">
+<a href="{{activities_url}}castle_defense/castle_defense.zip">
+<strong>Download the starter code (castle_defense.zip) here</strong>
+</a>
+or copy it to your CSE account using the following command:
+<pre class="command_line">
+<kbd class="shell">1511 setup-castle-defense</kbd>
+</pre>
+</div>
+<br/>
+<p>
+The starter code consists of the following files:
+<p>
+<a href="{{activities_url}}castle_defense/main.c"><code class="lang-clike">main.c</code></a> contains the main function for the assignment.
+It will scan the program's input, then call the functions you will write.
+<strong>You must not change this file.</strong>
+<p>
+<a href="{{activities_url}}castle_defense/realm.h"><code class="lang-clike">realm.h</code></a> contains the definitions of all the functions
+you will be writing. It also contains useful constants and type definitions.
+<strong>You must not change this file.</strong>
+<p>
+<a href="{{activities_url}}castle_defense/realm.c"><code class="lang-clike">realm.c</code></a> contains empty functions which you will need to implement.
+It already contains some functions. It is <i>strongly recommended</i> that you use these.
+<strong>This file is where you will write your own code.</strong>
+<!-- TODO: example test_realm.c -->
+<p>
+<a href="{{activities_url}}castle_defense/test_realm.c"><code class="lang-clike">test_realm.c</code></a> contains an empty main function which you can use to test
+your own code. You should not do any scanning in this file. 
+<strong>This file is where you will write your own test cases.</strong>
+<p>
+<h2 id="allowed-c-features">Allowed C Features</h2>
+<p>
+In this assignment, there are two restrictions on C Features:
+</p>
+<ul>
+<li>
+  You must follow the rules explained in
+  <a href="https://cgi.cse.unsw.edu.au/~cs1511/19T2/resources/style_guide.html">the Style Guide</a>.
+</li>
+<li>
+  You may not use the function <code class="lang-clike">fnmatch</code>, or import <code class="lang-clike">fnmatch.h</code>.
+</li>
+</ul>
+<p>
+It is recommended to only use features that have been taught in COMP1511.
+Course work in Week 8 will have a particular focus on assistance for this assignment and
+you will not need any of the subject material from Weeks 9 or 10.
+
+<p>
+If you choose to disregard this advice, you <b>must</b> still follow the Style Guide. You also may
+be unable to get help from course staff if you use features not taught in COMP1511.
+</p>
+<h2 id="input">Input Commands</h2>
+<p>
+Input to your program will be via standard input (similar to typing into a
+terminal). You <strong>do not</strong> need to read this input yourself.
+
+<p>
+Your code should not print or scan from the terminal (standard input or output). 
+Do not use or add any <code class="lang-clike">printf </code>or <code class="lang-clike">scanf </code>in <code class="lang-clike">realm.c</code>.
+All printing and scanning has already been implemented for you in the starter code.
+</p>
+<p>
+You can assume that input will be handled for you, and that you will never be given
+an invalid argument to one of your functions (except as described below).
+
+<p>
+Details of how this input will relate to the functions you call are given below:
+
+<h1 id="stage_one">Stage One</h1>
+<p>
+Stage one involves adding new locations to the realm, as well as being able to
+print out the game state.
+
+<h2 id="add_location">Adding to the Realm</h2>
+<p>
+In <code class="lang-clike">realm.c</code> you have been given two function stubs (a stub is an unimplemented function):
+<pre>
+<code class="lang-clike">
+static Location new_location(char *name) {
+    return NULL;
+}
+
+void add_location(Realm realm, char *name) {
+
+}
+</code>
+</pre>
+<p>
+These two functions should be implemented as described below. 
+</p>
+<p>
+<code class="lang-clike">new_location</code> should use malloc to allocate memory for a new
+Location node. It should then set up it's name
+(and any other fields you decide you need throughout the assignment). 
+<ul>
+<li>
+Note that the word "static" on this function will make it accessible within this
+file, but not elsewhere. We often use static on helper functions that are
+not part of the header file and aren't used by any other parts of the program.
+Static will not significantly change how you will use this function. 
+</li>
+<li>
+The <code class="lang-clike">new_realm</code> function (already implemented in the starter code)
+uses the <code class="lang-clike">new_location</code> function. The <code class="lang-clike">new_realm</code> 
+function does not need changing, but you may want to add code to it at a later
+stage.
+</li>
+</ul>
+<p>
+<code class="lang-clike">add_location</code> will be given a Realm and a Location name.
+It will then insert a new location node directly
+before the <code class="lang-clike">Castle</code> in the linked list of locations.
+</p>
+<p>
+These functions will never receive invalid inputs. 
+
+<img alt="Add Location" class="img img-responsive" src="{{activities_url}}/castle_defense/Insertion.png" style="max-width: 100%"/>
+<h2 id="print_realm">Printing Out the Realm</h2>
+<p>
+In <code class="lang-clike">realm.c</code> you have been given the function stub:</p>
+<pre>
+void print_realm(Realm realm) {
+
+}
+</pre>
+
+as well as four fully implemented functions:
+
+<pre>
+<code class="lang-clike">
+void print_tower(char *name, int power, int uses, Effect effect);
+void print_land(char *name);
+void print_castle(char *name, int defense);
+void print_enemy(char *name, int cur_hp, int max_hp);
+</code>
+</pre>
+<code class="lang-clike">print_realm</code> will be given a realm, and will print out information
+about that realm.
+You should use the functions given in the starter code to print it out,
+instead of calling printf yourself.
+<p>
+Specifically, <code class="lang-clike">print_realm</code> will list locations in order from The 
+Lair to The Castle. If there are any enemies at a location, it will list them in
+order before listing the next location.
+
+<p>
+One thing to note is that you may be able to start without implementing some of this function.
+For instance, if you have not yet implemented enemy health, just print out 0's.
+For the castle, you can print out <code class="lang-clike">STARTING_CASTLE_HP</code>
+rather than keeping track of the castle's current HP yourself.
+</p>
+
+{{ card("Stage 1 Example", 's1a', '''
+Welcome, brave and noble engineer.
+Describe the realm below. Locations may not contain spaces.
+When you are done, enter an empty line:
+<kbd>K17</kbd>
+<kbd>J17</kbd>
+<kbd >Electrical_Engineering</kbd>
+<kbd >Matthews_A</kbd>
+
+
+Well done, now you may enter commands:
+
+Enter Command: <kbd>p</kbd>
+                            Lair [____________________]
+                             K17 [____________________]
+                             J17 [____________________]
+          Electrical_Engineering [____________________]
+                      Matthews_A [____________________]
+                          Castle [Castle Defenses: 100]
+
+Enter Command: <kbd>q</kbd>
+Goodbye, brave and noble engineer.
+''') }}
+
+{{ autotest_stage("01") }}
+
+<h1 id="stage_two">Stage Two</h1>
+<p>
+Stage Two has two new commands. They involve adding defensive Towers to the 
+Realm and simulating Enemy movement.
+</p>
+<h2 id="new_tower">New Towers</h2>
+
+When running the program, you can use the following command to add a new tower:
+
+<pre>
+t prev_name name power uses
+// for instance
+t Lair NewTower 2 2
+</pre>
+<p>
+Which means "Create a new tower, directly after the Location <code class="lang-clike">prev_name </code>,
+called <code class="lang-clike">name</code>, that causes <code class="lang-clike">power</code> damage to 
+each enemy at it, and that can be used <code class="lang-clike">uses</code> times".
+</p>
+
+You have been given the function stub, which will be called by <code class="lang-clike">main.c</code>:
+<pre>
+<code class="lang-clike">
+int new_tower(Realm realm, char *prev_name, char *name, int power, int uses){
+
+}
+</code>
+</pre>
+
+Your job is to implement this function, such that the code does the following:
+
+<p>
+Given a realm, the name of a Location in the realm, and some stats about a
+new tower, you should:
+</p>
+<ul>
+<li>
+    Find the Location called prev_name. If one does not exist, return <code class="lang-clike">ERROR_NO_LOCATION</code>
+</li>
+<li> 
+    Ensure that the stats you have been given for power and uses are not below 1.
+    If they are, return <code class="lang-clike">ERROR_INVALID_STAT</code>.
+  </li>
+<li>
+   Place a new tower, with the given stats, directly after the location which you found above.
+   This tower is inserted into the linked list, which adds an element and does not replace the
+   Location prev_name.
+  </li>
+<li>
+   Return <code class="lang-clike">SUCCESS</code> to indicate success.
+  </li>
+</ul>
+<img alt="Adding a Tower" class="img img-responsive" src="{{activities_url}}/castle_defense/New Tower.png" style="max-width: 100%"/>
+<h2 id="add_enemies">Add Enemies</h2>
+
+When running the program, you can use the following command to add a new enemy:
+
+<pre>
+e location_name name HP
+# for instance
+e Lair EnemyName 4
+</pre>
+<p>
+Which means "Create a new enemy, at the location <code class="lang-clike">location_name</code>,
+called <code class="lang-clike">name</code>, that with maximum HP <code class="lang-clike">hp</code>.
+</p>
+<p>
+You have been given the function stub, which will be called by <code class="lang-clike">main.c
+</code> when the above comand has been given:
+</p>
+<pre>
+<code class="lang-clike">
+int new_enemy(Realm realm, char *location_name, char *name, int hp) {
+
+}
+</code>
+</pre>
+
+Your job is to implement this function, such that the code does the following:
+
+<p>
+Given a realm, the name of a Location in the realm, and some stats about a
+new enemy, you should:
+</p>
+<ul>
+<li>
+    Find the Location called <code class="lang-clike">location_name</code>.
+    If one does not exist, return <code class="lang-clike">ERROR_NO_LOCATION</code>
+</li>
+<li> 
+    Ensure that the stats you have been given for HP are not below 1.
+    If they are, return <code class="lang-clike">ERROR_INVALID_STAT</code>.
+  </li>
+<li>
+   Place a new enemy, with the given stats, directly after the last enemy at the location you found above.
+  </li>
+<li>
+   Return <code class="lang-clike">SUCCESS</code> to indicate success.
+  </li>
+</ul>
+<p>
+You are guaranteed that you will only receive enemies in sorted order, and will never 
+recieve the same enemy name twice. You do not need to check this. This means that for any list of enemies,
+<code class="lang-clike">strcmp(enemy-&gt;name, enemy-&gt;next-&gt;name)</code> will be <i>strictly less than zero</i>.
+This guarantee will only be relevant for Stage 4.
+</p>
+<h2 id="advance_enemies">Advancing Enemies</h2>
+
+When running the program, you can use the following command to move all enemies along.
+
+<pre>n</pre>
+<p>
+This is called a "tick" in game design (as in, the "tick" of a clock). You have also been given the following function stub:
+</p>
+<pre>
+<code class="lang-clike">
+int advance_enemies(Realm realm) {
+
+}
+</code>
+</pre>
+<p>
+<code class="lang-clike">advance_enemies</code> will go through the realm, moving each enemy from
+their current Location to the next Location in the linked list.
+Should any enemies go beyond the castle, they should be removed from the 
+realm, and destroyed. You should return the number of enemies removed this way at the end of the function.
+The Lair should be empty of enemies after this, all of them having moved to the
+next Location in the list.
+
+<img alt="Advancing Enemies" class="img img-responsive" src="{{activities_url}}/castle_defense/Advance.png" style="max-width: 100%"/>
+
+{{ card("Stage 2 -  Printing Example With Towers/Enemies", 's2a', '''
+Welcome, brave and noble engineer.
+Describe the realm below. Locations may not contain spaces.
+When you are done, enter an empty line:
+<kbd>Roundhouse</kbd>
+<kbd>Tyree</kbd>
+<kbd>OMB</kbd>
+<kbd>Optometry</kbd>
+
+
+Well done, now you may enter commands:
+
+Enter Command: <kbd>p</kbd>
+                            Lair [____________________]
+                      Roundhouse [____________________]
+                           Tyree [____________________]
+                             OMB [____________________]
+                       Optometry [____________________]
+                          Castle [Castle Defenses: 100]
+
+Enter Command: <kbd>t Lair BusStop 10 10</kbd>
+
+Enter Command: <kbd>p</kbd>
+                            Lair [____________________]
+                         BusStop [pow:  10 | uses:  10] {n}
+                      Roundhouse [____________________]
+                           Tyree [____________________]
+                             OMB [____________________]
+                       Optometry [____________________]
+                          Castle [Castle Defenses: 100]
+
+Enter Command: <kbd>e Lair eehCcraM 100 100</kbd>
+
+Enter Command: <kbd>p</kbd>
+                            Lair [____________________]
+                                eehCcraM [hp: 100/100]
+                         BusStop [pow:  10 | uses:  10] {n}
+                      Roundhouse [____________________]
+                           Tyree [____________________]
+                             OMB [____________________]
+                       Optometry [____________________]
+                          Castle [Castle Defenses: 100]
+
+Enter Command: <kbd>q</kbd>
+Goodbye, brave and noble engineer.''')}}
+
+
+{{ autotest_stage("02") }}
+<h1 id="stage_three">Stage Three</h1>
+<p>
+Stage Three involves dealing damage, and destroying the realm.
+</p>
+<h2 id="apply_damage">Damage</h2>
+<p>
+When running the program, you can use the following command to deal damage to 
+Enemies and The Castle. It will also use up "uses" from any Towers that deal
+damage to enemies.
+</p>
+<p>You can deal damage using the following command:</p>
+<pre>d</pre>
+<p>This will call the following function stub:</p>
+<pre>
+<code class="lang-clike">
+int apply_damage(Realm realm) {
+
+}
+</code>
+</pre>
+<p>
+Go through each Location in the realm, and do the following if the Location is a Tower:
+</p>
+<ul>
+<li> Go through each Enemy at that Tower, and reduce it's HP by 
+  the Tower's power. If an enemy's HP is below zero, remove
+  it from the list of Enemies at that location
+<li> Reduce that Tower's number of uses left by 1, if it did damage to an enemy.
+<li> If that Tower now has no uses remaining, convert it into a Land.
+  It should no longer have any effect on passing enemies.
+</li></li></li></ul>
+</p>
+<p><code class="lang-clike">apply_damage</code> should also cause the Castle's defense to decrease, 
+by the sum of the HP of each enemy. For instance, if the castle had an enemy with 3 HP, and one with 5 HP,
+the Castle's defense would decrease by 8.</p>
+<p><code class="lang-clike">apply_damage</code> returns the number of enemies damaged this way.</p>
+<h3>Before Applying Damage</h3>
+<img alt="Before Damage" class="img img-responsive" src="{{activities_url}}/castle_defense/Before Damage.png" style="max-width: 100%"/>
+<h3>After Applying Damage</h3>
+<img alt="After Damage" class="img img-responsive" src="{{activities_url}}/castle_defense/After Damage.png" style="max-width: 100%"/>
+<h2 id="destroy">Freeing Memory and Destroying the Realm</h2>
+
+When you quit the program (using the special command <code class="lang-clike">q</code>), the following stub function
+will be called to free your list.
+
+<pre>
+<code class="lang-clike">
+void destroy_realm(Realm realm);
+</code>
+</pre>
+<p>calling this function should free:</p>
+<ul>
+<li> Each Enemy</li>
+<li> Each Location</li>
+<li> The Realm struct</li>
+<li> Any other memory you have allocated using malloc</li>
+</ul>
+
+{{ autotest_stage("03") }}
+
+<h1 id="stage_four">Stage Four</h1>
+
+Stage Four involves applying buffs ("changes in stats") to different parts of the realm.
+It also uses the concept of a "search", which is described below:
+
+<h2 id="searching">Searching</h2>
+<p>
+Stage Four and Five rely on the concept of a search, described by a 
+<code class="lang-clike">search_term</code>. The simplest case is just a word, which should try
+find an exact match. For instance, searching for "hi" in the array
+<code class="lang-clike">{"hiya", "JBhi-fi", "JBHi-Fi", "hi", "HI", "phi"}</code> would only find <code class="lang-clike">"hi"</code>.
+</p>
+<p>
+There are two special characters we can use in a search, however: '?' and '*'.
+</p>
+<p></p>
+ '?' means "any ONE character". For instance, the search "?a" in the array
+ {"ha", "haha", "Ha", "sa"} would find {"ha", "Ha", "sa"}. A search for "a?a?" in array
+ {"ahah", "ajaP", "aba", "aaPP"} would find {"ahah", "ajaP"}. We may give you more than one
+ '?' in a search term.  In simple terms: it's a "blank" character that could match any
+ other single character.</p>
+<p>
+ '*' means "zero or more characters". For instance, the search "h*a"
+ in the array {"ha", "haaaaa", "hA3!a"} would find every element.
+ You may assume that you will never get more than one '*' in any search term.
+</p>
+<p>One special case of the "*" is that if it is the first character, it matches anything
+that has the specified suffix. For instance, "*abc" matches any string that ends "abc".
+Similarly, "abc*" matches any string that starts "abc".</p>
+<p>
+For the avoidance of doubt: We may give you a string that contains any number of "?"s, and 
+at most one "*". For instance, we might give "?abc*z?" (which, for instance, would match "mabcdeuabcza").
+</p>
+<h2 id="buffs">Buffs</h2>
+<p>You may use the following command to apply a buff. It is explained below</p>
+<pre>
+b search_term buff_type buff_amount
+</pre>
+<p>Using this command will call the following function stub:</p>
+<pre>
+<code class="lang-clike">
+int apply_buff(Realm realm, char *search_term, Buff buff, int amount) {
+
+}
+</code>
+</pre>
+<p>This means to apply the buff described by <code class="lang-clike">buff_type</code> to 
+everything matching <code class="lang-clike">search_term</code></p>
+<p>There are three seperate Buffs, each of which behaves differently.</p>
+<table class="table">
+<thead>
+<tr>
+<td>Name</td>
+<td>Character (part of the command)</td>
+<td>Buff Hash Define (defined in realm.h)</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buff Enemy HP</td>
+<td><code class="lang-clike">h</code></td>
+<td><code class="lang-clike">BUFF_ENEMY_HP</code></td>
+<td>
+<p>
+          Find all Enemies in the Realm with a name that matches the search
+          described by search_name. You should then increase each of their
+          HP by the specified amount. Return the number of enemies you found
+          this way.
+        </p>
+<p>
+          This amount can be negative. If a negative amount would cause an
+          Enemy to drop to zero or less HP, it dies (as if had been killed after
+          the apply_damage function).
+        </p>
+<p>
+          An Enemy can have more current HP than its maximum HP. This buff 
+          should not change the maximum HP of an Enemy.
+        </p>
+</td>
+</tr>
+<tr>
+<td>Buff Tower Power</td>
+<td><code class="lang-clike">p</code></td>
+<td><code class="lang-clike">BUFF_TOWER_POWER</code></td>
+<td>
+<p>
+          Find all towers in the Realm with a name that matches the search
+          described by search_name. You should then increase each of their
+          power by the specified amount. Return the number of towers you
+          found this way.
+        </p>
+<p>
+          This amount can be negative. If a negative amount would cause an
+          tower to drop below 1 power, it should be converted to a land,
+          (as if had run out of uses after the apply_damage function).
+        </p>
+</td>
+</tr>
+<tr>
+<td>Buff Tower Uses</td>
+<td><code class="lang-clike">u</code></td>
+<td><code class="lang-clike">BUFF_TOWER_USES</code></td>
+<td>
+<p>
+          Find all towers in the Realm with a name that matches the search
+          described by search_name. You should then increase each of their
+          uses by the specified amount. Return the number of towers you
+          found this way.
+        </p>
+<p>
+          This amount can be negative. If a negative amount would cause an
+          tower to drop below 1 use remaining, it should be converted to a land,
+          (as if had run out of uses after the apply_damage function).
+        </p>
+</td>
+</tr>
+</tbody>
+</table>
+{{ autotest_stage("04") }}
+<h1 id="stage_five">Stage Five</h1>
+<h2 id="Effects">Effects</h2>
+<p>You may use the following command to change a tower's effect. It is explained below.</p>
+<pre>
+f search_term effect_type 
+</pre>
+<p>Using this command will call the following function stub:</p>
+<pre>
+<code class="lang-clike">
+int apply_effect(Realm realm, char *search_term, Effect effect) {
+
+}
+</code>
+</pre>
+<p>This means to apply the effect described by <code class="lang-clike">effect_type</code> to 
+every tower matching <code class="lang-clike">search_term</code></p>
+<p>
+This function should return the number of towers that match the <code class="lang-clike">search_term</code>
+</p>
+<p>There are two effects you can apply, as well as the <code class="lang-clike">EFFECT_NONE</code> which removes any special effect from a tower.</p>
+<p>All towers start with <code class="lang-clike">EFFECT_NONE</code> when they are created. 
+Enemies move from that Tower to the next as normal.</p>
+<p>
+When a tower's effect becomes something other than <code class="lang-clike">EFFECT_NONE</code>, 
+enemies move from that Tower in a different way.  The specifics depend on which effect
+is applied to a tower, and is described below
+</p>
+<p>Note that these Effects only change the way Enemies move. A Tower that has 
+an effect will still deal damage and lose uses when applying damage, 
+regardless of any effect they have. A Tower that is reduced to 0 uses and 
+reverts to a Land will lose any Effects it has.
+
+<table class="table">
+<thead>
+<tr>
+<td>Name</td>
+<td>Character (part of the command)</td>
+<td>Effect Hash Define (defined in realm.h)</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code class="lang-clike">n</code></td>
+<td><code class="lang-clike">EFFECT_NONE</code></td>
+<td>
+<p>
+          All Towers start off with this effect. Enemies at this Tower move to 
+          the next Location normally when all enemies are moved.
+        </p>
+</td>
+</tr>
+<tr>
+<td>Ice Tower</td>
+<td><code class="lang-clike">i</code></td>
+<td><code class="lang-clike">EFFECT_ICE</code></td>
+<td>
+<p>
+         If an Enemy would move from the Tower with this effect ("the current tower")
+         to the next Location, and that enemy has HP less than or equal to the current tower's power,
+         it stays at the current Tower. Enemies at other locations (which don't have effects)
+         move normally.
+        </p>
+<p>
+          Enemies at every Location must be sorted alphabetically. You should 
+          ensure that this movement preserves the alphabetical ordering of 
+          enemies.
+        </p>
+</td>
+</tr>
+<tr>
+<td>Bounce Tower</td>
+<td><code class="lang-clike">b</code></td>
+<td><code class="lang-clike">EFFECT_BOUNCE</code></td>
+<td>
+<p>
+          If an Enemy would move from a Tower with this effect ("the current tower")
+          to the next Location, it instead moves backwards to the nearest Tower
+          before the current one. (the 
+          enemy may skip over multiple lands to reach that Tower). If there 
+          are no Towers between the current one and the Lair, the Enemies move 
+          back to the Lair.
+        </p>
+<p>
+          Enemies at every Location must be sorted alphabetically. You should 
+          ensure that this movement preserves the alphabetical ordering of 
+          Enemies.
+        </p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Ice Effect Diagram</h3>
+<img alt="Ice Tower" class="img img-responsive" src="{{activities_url}}/castle_defense/Ice Tower.png" style="max-width: 100%"/>
+<h3>Bounce Effect Diagram</h3>
+<img alt="Bounce Tower" class="img img-responsive" src="{{activities_url}}/castle_defense/Bounce Tower.png" style="max-width: 100%"/>
+
+{{ autotest_stage("05") }}
+
+<h1 id="testing">Testing</h1>
+It is important to test your program thoroughly to make sure it can manage 
+different situations. We have written a full guide to
+<a href="{{ url_root + 'resources/testing_adts.html'}}">Testing ADTs!</a>
+<h2 id="test_realm">Writing your own Automated Tests</h2>
+<p>
+As you implement functions in <b>realm.c</b>, you should add tests to
+<a href="{{activity_url}}test_realm.c">test_realm.c</a>.
+
+<p>
+<code class="lang-clike">test_realm.c</code> is a file that contains a main 
+function that is not the same as the interactive program in <code class="lang-clike">main.c</code>. Instead, it runs a series of automatic tests on 
+the functionality provided by <code class="lang-clike">realm.h</code> and <code class="lang-clike">realm.c</code>.
+<p>
+You should add code to this file that tests each function separately. This 
+will allow you to run automated tests to find out exactly which parts of your 
+program are functioning correctly and which aren't.
+
+<pre class="command_line">
+<kbd class="shell">dcc -o test_castle test_realm.c realm.c</kbd>
+<kbd class="shell">./test_castle</kbd>
+================== Castle Defense Tests ==================
+&gt;&gt; Testing new_realm
+... Creating new realm.
+... Checking it is not null.
+... Destroying realm.
+&gt;&gt; Testing print_realm
+... This should show an empty realm - it should not crash.
+... Destroying realm.
+&gt;&gt; Testing add_location.
+... Adding locations.
+... This should show an realm with three extra locations.
+... Destroying realm.
+</pre>
+<h2 id="autotests">Autotests</h2>
+<p>
+As usual autotest is available with some simple tests - but your own tests
+in <b>test_realm</b> will be more useful at pinpointing exactly which 
+functions are and aren't working.
+
+<pre class="command_line">
+<kbd class="shell">1511 autotest castle_defense</kbd>
+</pre>
+<p>
+If you wish to use autotest to view only a specific stage of the assignment, 
+you can use autotest-stage. The following example shows how to autotest stage
+1 but you can replace the stage number with any stage you would like to test.
+
+<pre class="command_line">
+<kbd class="shell">1511 autotest-stage 01 castle_defense</kbd>
+</pre>
+<h2 id="Reference_Implementation">Reference Implementation</h2>
+<p>
+If you have questions about what behaviour your program should exhibit,
+we have provided a sample solution for you to use.
+<p>
+<pre class="command_line">
+<kbd class="shell">1511 castle_defense</kbd>
+</pre>
+<h1 class="mb-3 mt-1" id="h1-assessment">Assessment</h1>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

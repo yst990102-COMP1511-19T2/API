@@ -1,0 +1,15 @@
+
+max_cpu=10
+no_reproduce_command=1
+
+files=strings_equal.c
+compiler_args=-Dmain=_main strings_equal.c test_strings_equal.c -o test_strings_equal
+command=./test_strings_equal
+
+1 command=./test_strings_equal "hello" "world" description='strings_equal("hello", "world")' expected_stdout="0\n"
+2 command=./test_strings_equal "hello" "hello" description='strings_equal("hello", "hello")' expected_stdout="1\n"
+3 command=./test_strings_equal "hello" "hell" description='strings_equal("hello", "hell")' expected_stdout="0\n"
+4 command=./test_strings_equal "hell" "hello" description='strings_equal("hell", "hello")' expected_stdout="0\n"
+5 command=./test_strings_equal "hello" "" description='strings_equal("hello", "")' expected_stdout="0\n"
+6 command=./test_strings_equal "" "hello" description='strings_equal("", "hello")' expected_stdout="0\n"
+7 command=./test_strings_equal "" "" description='strings_equal("", "")' expected_stdout="1\n"

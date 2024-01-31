@@ -1,0 +1,19 @@
+Drum
+Lyre
+
+t Drum Scientia 2 2
+t Scientia SecLab 1 3
+e Lair Henchman1 1
+e Lair Henchman1
+n
+p
+e Lair Henchwoman1 1
+e Lair Henchwoman2 1
+n
+p
+e Lair HenchHound 1
+n
+p
+n
+p
+q

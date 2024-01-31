@@ -1,0 +1,16 @@
+max_cpu=10
+ignore_white_space=1
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+
+files=species_count.c
+compiler_args=-Dmain=_main species_count.c test_species_count.c -o test_species_count
+
+0 command=./test_species_count whales2.txt "Strap-toothed beaked whale" expected_stdout="19 Strap-toothed beaked whale pods containing 386 whales in whales2.txt\n"
+1 command=./test_species_count whales3.txt "Sei whale" expected_stdout="23 Sei whale pods containing 390 whales in whales3.txt\n"
+2 command=./test_species_count whales2.txt "Arnoux's beaked whale" expected_stdout="22 Arnoux's beaked whale pods containing 464 whales in whales2.txt\n"
+3 command=./test_species_count whales3.txt "Hourglass dolphin" expected_stdout="23 Hourglass dolphin pods containing 517 whales in whales3.txt\n"
+4 command=./test_species_count whales2.txt "Dusky dolphin" expected_stdout="20 Dusky dolphin pods containing 397 whales in whales2.txt\n"
+5 command=./test_species_count whales3.txt "Coastal bottlenose dolphin" expected_stdout="25 Coastal bottlenose dolphin pods containing 517 whales in whales3.txt\n"
+6 command=./test_species_count whales2.txt "Cuvier's beaked whale" expected_stdout="24 Cuvier's beaked whale pods containing 466 whales in whales2.txt\n"
+7 command=./test_species_count whales3.txt "True's beaked whale" expected_stdout="21 True's beaked whale pods containing 569 whales in whales3.txt\n"

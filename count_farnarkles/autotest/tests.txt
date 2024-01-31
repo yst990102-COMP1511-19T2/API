@@ -1,0 +1,25 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+
+files=farnarkle.c
+compiler_args=-Dmain=_main farnarkle.c count_farnarkles_test.c -o farnarkle
+command=./farnarkle
+
+farnarkle_0 stdin="4 4 4 4 4 4 4 4" description="sequence1: 4 4 4 4, sequence2: 4 4 4 4" expected_stdout="4 farnarkles\n"
+farnarkle_1 stdin="1 1 1 1 4 4 4 4" description="sequence1: 1 1 1 1, sequence2: 4 4 4 4" expected_stdout="0 farnarkles\n"
+farnarkle_2 stdin="1 4 1 1 4 4 1 4" description="sequence1: 1 4 1 1, sequence2: 4 4 1 4" expected_stdout="2 farnarkles\n"
+farnarkle_3 stdin="1 1 4 1 4 4 1 4" description="sequence1: 1 1 4 1, sequence2: 4 4 1 4" expected_stdout="0 farnarkles\n"
+farnarkle_4 stdin="1 2 3 4 4 3 2 1" description="sequence1: 1 2 3 4, sequence2: 4 3 2 1" expected_stdout="0 farnarkles\n"
+farnarkle_5 stdin="1 2 3 4 2 1 3 4" description="sequence1: 1 2 3 4, sequence2: 2 1 3 4" expected_stdout="2 farnarkles\n"
+farnarkle_6 stdin="5 6 7 8 6 6 7 7" description="sequence1: 5 6 7 8, sequence2: 6 6 7 7" expected_stdout="2 farnarkles\n"
+farnarkle_7 stdin="1 8 2 7 7 8 1 2" description="sequence1: 1 8 2 7, sequence2: 7 8 1 2" expected_stdout="1 farnarkles\n"
+farnarkle_8 stdin="1 1 2 3 4 1 1 1" description="sequence1: 1 1 2 3, sequence2: 4 1 1 1" expected_stdout="1 farnarkles\n"
+farnarkle_9 stdin="1 2 2 1 2 2 2 2" description="sequence1: 1 2 2 1, sequence2: 2 2 2 2" expected_stdout="2 farnarkles\n"
+
+pre_compile_command="cp farnarkle.c farnarkle1.c;cp count_farnarkles_test.c count_farnarkles_test1.c; perl -pi -e 's/^\s*#\s*define\s+N_TILES.*/#define N_TILES 6/;s/^\s*#\s*define\s+MAX_TILE.*/#define MAX_TILE 10/' farnarkle1.c count_farnarkles_test1.c"
+pre_compile_command_shell=1
+compiler_args=-Dmain=___main farnarkle1.c count_farnarkles_test1.c -o farnarkle
+command=./farnarkle
+check_using_defines stdin="10 10 10 10 10 10 10 10 10 10 10 10" description="sequence1: 10 10 10 10 10 10, sequence2: 10 10 10 10 10 10" expected_stdout="6 farnarkles\n"

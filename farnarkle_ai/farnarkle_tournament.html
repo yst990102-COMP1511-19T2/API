@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+{{course_code}} Farnarkle Leader Board
+{% endblock %}
+
+{% block body_contents %}
+<p>
+<table class="table table-bordered table-condensed  table-striped">
+<tr><th>Position<th>Average Score<th>Number of Rounds Averaged<th>Name
+{% for (position, average, n, zid) in table_rows %}
+<tr><td>{% if position < 0 %}-{% else %}{{position}}{% endif %}<td>{{"%.2f" % average}}<td>{{n}}<td>{{zid}}
+{% endfor %}
+</table>
+<p>
+<ul>
+<li>
+The full output from your farnarkle_player can be found  <a href="{{url_root}}farnarkle_tournament/me/">here</a>.
+<li>
+Submit your farnarkle_player with <b>give</b> to take part.
+<li>
+Note you need to pass the farnarkle_player autotest to take part in  the tournament.
+<li>
+You need to successfully complete {{min_rounds_counted}} rounds before you appear on the leader board.
+<li>
+Only at most your last {{max_rounds_counted}} rounds are averaged to calculate your score.
+<li>
+There is a 3 minute CPU limit on your player completing a game.
+<li>
+Questions in class forum.
+</ul>
+
+{% endblock %}

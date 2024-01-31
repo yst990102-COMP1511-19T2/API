@@ -1,0 +1,14 @@
+max_cpu=3
+ignore_case=True
+ignore_white_space=True
+no_reproduce_command=1
+
+files=list_delete_ordered.c
+pre_compile_command=./check_arrays_not_used.sh list_delete_ordered.c
+compiler_args=-Dmain=_main list_delete_ordered.c test_list_delete_ordered.c -o test_list_delete_ordered
+
+0  command=./test_list_delete_ordered 1 2 description="list_delete_ordered(1 2)" expected_stdout="1 2\n"
+1  command=./test_list_delete_ordered 1 4 2 3 description="list_delete_ordered(1 4 2 3)" expected_stdout="1 2 3\n"
+2  command=./test_list_delete_ordered 1 4 5 2 3 description="list_delete_ordered(1 4 5 2 3)" expected_stdout="1 2 3\n"
+3  command=./test_list_delete_ordered 1 4 2 3 1 5 description="list_delete_ordered(1 4 2 3 1 5)" expected_stdout="1 1 5\n"
+

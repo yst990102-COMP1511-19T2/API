@@ -1,0 +1,31 @@
+{{ copy_a_file(name="species_count.c", change_function="species_count") }}
+<p>
+<b>species_count.c</b> already contains the functions which
+you discussed in your tutorial which reads the file of whale sightings into an array of structs.
+You do not need need to change these functions.
+<p>
+The main function in <b>species_count.c</b> has this code:
+
+<pre class="program">
+int pod_count;
+int whale_count;
+species_count(species, n_sightings, whale_sightings, &amp;pod_count, &amp;whale_count);
+printf("%d %s pods containing %d whales in %s\n", pod_count, species, whale_count, filename);
+</pre>
+
+Your task in this exercise is to complete <b>species_count</b>.
+<p>
+Do <b>not</b>  change any other function.
+<p>
+<b>species_count</b> should assign the number of pods of the given species to <code>*n_pods</code> and  the total number of whales of the given species to <code>*n_whales</code>
+<p>
+When you have completed the function <b>species_count</b> this is how <b>species_count.c</b> should behave:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o species_count species_count.c</kbd>
+<kbd class="shell">./species_count whales.txt "Blue whale"</kbd>
+51 Blue whale pods containing 1171 whales in whales.txt
+<kbd class="shell">./species_count whales.txt "Indo-Pacific humpbacked dolphin"</kbd>
+43 Indo-Pacific humpbacked dolphin pods containing 897 whales in whales.txt
+</pre>
+</p></p></p></p></p>

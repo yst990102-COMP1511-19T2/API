@@ -1,0 +1,38 @@
+Write a C program <b>substitution.c</b> which reads characters from its input
+and writes the  characters to its output encrypted with a <a href="https://en.wikipedia.org/wiki/Substitution_cipher">Substitution cipher</a>.
+<p>
+A <a href="https://en.wikipedia.org/wiki/Substitution_cipher">Substitution cipher</a> maps each letter to
+another letter.
+<p>
+The mapping will be given to your program as a single command line argument.
+This command line argument will contain 26 characters:
+an ordering of the letters 'a'..'z'.
+<p>
+Characters other than letters should not be encrypted.
+<p>
+Your program should stop only at the end of input.
+<p>
+Your program should contain at least one function other than main.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">./substitution qwertyuiopasdfghjklzxcvbnm</kbd>
+<kbd>I was scared of dentists and the dark</kbd>
+O vql leqktr gy rtfzolzl qfr zit rqka
+<kbd>I was scared of pretty girls and starting conversations</kbd>
+O vql leqktr gy hktzzn uoksl qfr lzqkzofu egfctklqzogfl
+<span class="eof"></span>
+<kbd class="shell">./substitution abcdefghijklmnopqrstuvwxyz</kbd>
+<kbd>The identity cipher!!!</kbd>
+The identity cipher!!!
+<span class="eof"></span>
+<kbd class="shell">./substitution bcdefghijklmnopqrstuvwxyza</kbd>
+<kbd>The Caesar cipher is a subset of the substitution cipher!</kbd>
+Uif Dbftbs djqifs jt b tvctfu pg uif tvctujuvujpo djqifs!
+<span class="eof"></span>
+</pre>
+
+Your program will only be tested with an appropriate command line argument -
+but a good programmer would check the command line argument is present and appropriate.
+</p></p></p></p></p></p>

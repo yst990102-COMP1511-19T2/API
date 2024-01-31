@@ -1,0 +1,10 @@
+max_cpu=10
+ignore_white_space=1
+igmore_case=1
+
+files=orca.c
+compiler_args=-Dmain=_main orca.c test_orca.c -o test_orca
+
+0 command=./test_orca whales.txt expected_stdout="53 Orca sightings in whales.txt\n"
+1 command=./test_orca whales1.txt expected_stdout="60 Orca sightings in whales1.txt\n"
+2 command=./test_orca whales2.txt expected_stdout="33 Orca sightings in whales2.txt\n"

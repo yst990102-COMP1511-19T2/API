@@ -1,0 +1,17 @@
+# generated from tests.py by /home/cs1511/public_html/19T1/scripts/autotest_update_from_solution
+
+max_cpu=3
+no_reproduce_command=1
+compilers="dcc:dcc --valgrind:dcc --leak-check"
+files=list_delete_first.c
+compiler_args=-Dmain=_main list_delete_first.c test_list_delete_first.c -o test_list_delete_first
+command=./test_list_delete_first
+
+pre_compile_command="../../check_arrays_not_used.sh list_delete_first.c;./check_at_most_one_call_malloc.sh list_delete_first.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_delete_first 3 1 4 1 5 9 2 6 5 3 description="./list_delete_first 3 1 4 1 5 9 2 6 5 3" expected_stdout="delete_first([3, 1, 4, 1, 5, 9, 2, 6, 5, 3])\ndelete_first returned: [1, 4, 1, 5, 9, 2, 6, 5, 3]\n"
+2 command=./test_list_delete_first 2 7 1 8 description="./list_delete_first 2 7 1 8" expected_stdout="delete_first([2, 7, 1, 8])\ndelete_first returned: [7, 1, 8]\n"
+3 command=./test_list_delete_first 45 56 description="./list_delete_first 45 56" expected_stdout="delete_first([45, 56])\ndelete_first returned: [56]\n"
+4 command=./test_list_delete_first 10 description="./list_delete_first 10" expected_stdout="delete_first([10])\ndelete_first returned: []\n"
+5 command=./test_list_delete_first  description="./list_delete_first " expected_stdout="delete_first([])\ndelete_first returned: []\n"

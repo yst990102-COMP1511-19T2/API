@@ -1,0 +1,20 @@
+
+max_cpu=10
+ignore_case=True
+ignore_white_space=True
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=list_get_middle.c
+compiler_args=-Dmain=_main list_get_middle.c test_list_get_middle.c -o test_list_get_middle
+command=./test_list_get_middle
+
+pre_compile_command="../check_arrays_not_used.sh list_get_middle.c;./check_at_most_one_call_malloc.sh list_get_middle.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_get_middle 13  11 15 19 11 14 description="./list_get_middle 13  11 15 19 11 14" expected_stdout="get_middle([13, 11, 15, 19, 11, 14])\nget_middle returned: 15\n"
+2 command=./test_list_get_middle 13 19 14 15 description="./list_get_middle 13 19 14 15" expected_stdout="get_middle([13, 19, 14, 15])\nget_middle returned: 19\n"
+3 command=./test_list_get_middle 11 12 description="./list_get_middle 11 12" expected_stdout="get_middle([11, 12])\nget_middle returned: 11\n"
+4 command=./test_list_get_middle 11 11 12 13 description="./list_get_middle 11 11 12 13" expected_stdout="get_middle([11, 11, 12, 13])\nget_middle returned: 11\n"
+5 command=./test_list_get_middle 11 12 13 14 15 16 17 1 19 1 description="./list_get_middle 11 12 13 14 15 16 17 1 19 1" expected_stdout="get_middle([11, 12, 13, 14, 15, 16, 17, 1, 19, 1])\nget_middle returned: 15\n"
+6 command=./test_list_get_middle 11 12 13 14 15 16 17 18 1 19 1 description="./list_get_middle 11 12 13 14 15 16 17 18 1 19 1" expected_stdout="get_middle([11, 12, 13, 14, 15, 16, 17, 18, 1, 19, 1])\nget_middle returned: 16\n"

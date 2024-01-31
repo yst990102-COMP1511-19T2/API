@@ -1,0 +1,49 @@
+Write a C program <code>line_char.c</code> which reads a line from its input
+then reads an integer <b>n</b> from its input.
+<p>
+It should write the character in position <b>n</b> from the line in the format given in the examples below.
+<p>
+Your program should then exit - it should not read more lines.
+<p>
+For example:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o line_char line_char.c</kbd>
+<kbd class="shell">./line_char</kbd>
+<kbd>abcdefghijklmnopqrstuvwxyz
+0</kbd>
+The character in position 0 is 'a'
+<kbd class="shell">./line_char</kbd>
+<kbd>abcdefghijklmnopqrstuvwxyz
+13</kbd>
+The character in position 13 is 'n'
+<kbd class="shell">./line_char</kbd>
+<kbd>abcdefghijklmnopqrstuvwxyz
+25</kbd>
+The character in position 25 is 'z'
+<kbd class="shell">./line_char</kbd>
+<kbd>Andrew Rocks!
+6</kbd>
+The character in position 6 is ' '
+<kbd class="shell">./line_char</kbd>
+<kbd>Andrew Rocks!
+7</kbd>
+The character in position 7 is 'R'
+<kbd class="shell">./line_char</kbd>
+<kbd>Andrew Rocks!
+12</kbd>
+The character in position 12 is '!'
+<kbd class="shell"></kbd>
+</pre>
+
+No error checking is necessary.
+<p>
+You can assume a line can be read.
+<p>
+You can assume the line will contain at most 256 characters.
+<p>
+You can assume a positive integer <b>n</b> can be read.
+<p>
+You can assume the line read has at least <b>n</b> characters.
+
+</p></p></p></p></p></p></p>

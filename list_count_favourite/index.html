@@ -1,0 +1,65 @@
+{{ copy_a_file(name="list_count_favourite.c", change_function="count_favourite") }}
+
+<b>count_favourite</b> is given  one argument, <b>head</b>, which is the pointer to the first node in a linked list.
+<p>
+Add code to <b>count_favourite</b> so that its returns the number of elements divisible by 17 in the list.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+51, 7, 8, 9, 34, 19, 34, 42
+</pre>
+<p>
+<b>count_favourite</b> should return <b>3</b> because  51, 34 and 34 are divisible by 17.
+
+<h4>Testing</h4>
+
+<b>list_count_favourite.c</b> also contains a <b>main</b> function which allows you to test your <b>count_favourite</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>list_count_favourite(head)</b>
+<li> prints the result.
+</ul>
+<p>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_count_favourite</b> function will be called directly in marking.  The main function is only to let you test your <b>list_count_favourite</b> function
+<p>
+Here is how you use main function allows you to test <b>list_count_favourite</b>:
+<p>
+
+<pre class="command_line">
+<kbd class="shell">dcc list_count_favourite.c -o list_count_favourite</kbd>
+<kbd class="shell">./list_count_favourite 51 7 8 9 34 19 34 42</kbd>
+3
+<kbd class="shell">./list_count_favourite 2 4 6 5 8 9</kbd>
+0
+<kbd class="shell">./list_count_favourite 17 34 51 68 85 102 119 136 153</kbd>
+9
+<kbd class="shell">./list_count_favourite</kbd>
+0
+</pre>
+
+
+
+
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+
+<b>count_favourite</b> should return a single integer.
+<p>
+<b>count_favourite</b> should not change the linked list it is given.
+Your function should not change the next or data fields of list nodes.
+<p>
+<b>count_favourite</b> should not use arrays.
+<p>
+<b>count_favourite</b> should not call malloc.
+<p>
+<b>count_favourite</b> should not call scanf (or getchar or fgets).
+<p>
+<b>count_favourite</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.

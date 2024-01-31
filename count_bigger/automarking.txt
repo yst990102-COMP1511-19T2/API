@@ -1,0 +1,21 @@
+max_cpu=10
+ignore_case=True
+ignore_whitespace=True
+ignore_blank_lines=1
+compare_only_characters="0123456789"
+no_reproduce_command=1
+
+files=count_bigger.c
+compiler_args=-Dmain=_main count_bigger.c test_count_bigger.c -o test_count_bigger
+command=./test_count_bigger
+
+0a  command=./test_count_bigger 141 500 92 600 535 -89 -752 -3 description="count_bigger(8, {141, 500, 92, 600, 535, -89, -752, -3})" expected_stdout="5\n"
+1a  command=./test_count_bigger 92 description="count_bigger(1, {92})" expected_stdout="0\n"
+2a  command=./test_count_bigger 420 description="count_bigger(1, {420})" expected_stdout="1\n"
+3a  command=./test_count_bigger -712 description="count_bigger(1, {-712})" expected_stdout="1\n"
+4a  command=./test_count_bigger 556 -712 description="count_bigger(2, {556, -712})" expected_stdout="2\n"
+5a  command=./test_count_bigger 11256 99 -99 -11512 description="count_bigger(4, {11256, 99, -99, -11512})" expected_stdout="2\n"
+6a  command=./test_count_bigger 111256 99 -99 -111512 description="count_bigger(4, {111256, 99, -99, -111512})" expected_stdout="2\n"
+7a  command=./test_count_bigger 106 95 96 97 98 99 100 101 102 103 104 105 description="count_bigger(12, {106, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105})" expected_stdout="7\n"
+8a  command=./test_count_bigger -106 -95 -96 -97 -98 -99 -100 -101 -102 -103 -104 -105 description="count_bigger(12, {-106, -95, -96, -97, -98, -99, -100, -101, -102, -103, -104, -105})" expected_stdout="7\n"
+9a  command=./test_count_bigger -99 100 96 -96 97 -97 98 -98 99 -99 100 -100 101 -101 102 -102 103 -103 104 -104 105 -105 description="count_bigger(22, {-99,100,96,-96,97,-97,98,-98,99,-99,100,-100,101,-101,102,-102,103,-103,104,-104,105,-105})" expected_stdout="13\n"

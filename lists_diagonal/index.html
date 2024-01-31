@@ -1,0 +1,63 @@
+{{ copy_a_file(name="lists_diagonal.c", change_function="has_diagonal") }}
+
+<b>lists_diagonal</b> is written using the following structs that cannot be changed:
+<p>
+<pre>
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct list_node {
+    struct node *my_list;
+    struct list_node *next;
+};
+</pre>
+<p>
+The <b>node</b> struct is a normal linked list node.
+<p>
+The <b>list_node</b> struct is used to make a linked list where each element 
+contains a list of <b>node</b>s.
+<p>
+<b>has_diagonal</b> should take a pointer to the head of a <b>list_node</b> list
+and return a 1 if it finds a diagonal or a 0 if it doesn't. A diagonal in this
+exercise means that the first number in the first list is the same as the second
+number in the second list and the third number in the third list and so on.
+<p>
+For example if the list of lists looks like this:
+<p>
+<pre>
+list_node 0 contains the list {5, 0, 0}
+list_node 1 contains the list {0, 5, 0}
+list_node 2 contains the list {0, 0, 5}
+</pre>
+<p>
+<b>has_diagonal</b> should return 1.
+<p>However, if the list of lists looks like this:
+<p>
+<pre>
+list_node 0 contains the list {5, 0, 0, 0}
+list_node 1 contains the list {0, 4, 0, 0}
+list_node 2 contains the list {0, 0, 5, 0}
+list_node 3 contains the list {0, 0, 0, 5}
+</pre>
+<p>
+<b>has_diagonal</b> should return 0, because the 2nd element of the second list
+does not equal the value of the first element of the first list.
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+<b>struct node</b> and <b>struct list_node</b> cannot be edited. They must be used 
+as they are.
+<p>
+You may not use arrays in this solution. Arrays are not necessary to complete this
+task.
+<p>
+You can assume that you'll never receive an empty list of <b>list_node</b>s.
+<p>
+You can assume that all lists of <b>node</b>s are also not empty.
+<p>
+You can assume that there will always be the same number of <b>node</b>s in each
+list and that will be the same number of <b>list_node</b>s. That is to say, the
+2D grid formed by the lists will always be square.
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

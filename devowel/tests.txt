@@ -1,0 +1,6 @@
+max_cpu=3
+command=./devowel
+files=devowel.c
+0 stdin="Beauty is truth, truth beauty\n" expected_stdout="Bty s trth, trth bty\n"
+1 stdin="I like the way this Snrub thinks!\n" expected_stdout="I lk th wy ths Snrb thnks!\n"
+2 stdin="If anyone needs me,\nI'll be in my room.\n" expected_stdout="If nyn nds m,\nI'll b n my rm.\n"

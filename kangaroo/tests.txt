@@ -1,0 +1,2 @@
+files=kangaroo.c
+0 command=./kangaroo expected_stdout="\n  /\\\\   ___\n <__\\\\_/    \\\\\n    \\\\_  /  _\\\\\n      \\\\_\\\\ / \\\\\\\\\n        //   \\\\\\\\\n      =//     \\\\==\n\n"

@@ -1,0 +1,9 @@
+
+e Lair Enemy1 1
+e Lair Enemy2 1
+e Lair OtherEnemy 1
+b Enemy? h 1
+p
+b ?????En?my h 2
+p
+q

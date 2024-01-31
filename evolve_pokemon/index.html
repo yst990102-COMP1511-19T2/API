@@ -1,0 +1,57 @@
+{{ copy_a_file(name="evolve_pokemon.c", change_function=['create_pokemon', 'evolve_pokemon', 'print_evolution']) }}
+
+<b>evolve_pokemon</b> is written using the following struct that cannot be changed:
+<p>
+<pre>
+struct pokemon {
+    char name[MAX_NAME_SIZE];
+    struct pokemon *evolution;
+};
+</pre>
+<p>
+<b>create_pokemon</b> should allocate memory for a pokemon struct, set its
+name to the input string and return a pointer to it. The evolution pointer
+should be set to NULL.
+<p>
+<b>evolve_pokemon</b> should take two pointers to pokemon. It should set the
+second as the evolution of the first. 
+<p>
+<b>print_evolution</b> should take a pointer to a pokemon. It should print out
+the name of the pokemon, then the name of what it evolves to and the name of
+what that pokemon evolves to until it reaches a pokemon that doesn't evolve into
+anything else. It should print each name on its own line.
+<p>
+For example if we create two pokemon using the strings "Pikachu" and "Raichu"
+<p>
+<pre>
+struct pokemon *pikachu = create_pokemon("Pikachu");
+struct pokemon *raichu = create_pokemon("Raichu");
+</pre>
+<p>
+Then we set pikachu's evolution to be raichu and print the evolution
+<p>
+<pre>
+evolve_pokemon(pikachu, raichu);
+print_evolution(pikachu);
+</pre>
+<p>
+The output of this will be:
+<p>
+<pre>
+Pikachu
+Raichu
+</pre>
+<p>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<p>
+<b>struct pokemon</b> cannot be edited. It must be used as it is.
+<p>
+<b>create_pokemon</b> should call malloc() to allocate memory.
+<p>
+<b>evolve_pokemon</b> should not print anything. It should not call printf.
+<p>
+<b>print_evolution</b> should continue printing names on separate lines until
+it reaches a <b>NULL</b> evolution then it will stop.
+<p>
+Your submitted file may contain a main function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

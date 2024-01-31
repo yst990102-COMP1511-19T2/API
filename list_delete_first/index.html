@@ -1,0 +1,71 @@
+{{ copy_a_file(name="list_delete_first.c", change_function="delete_first") }}
+
+Note <b>list_delete_first.c</b> uses the following familiar data type:
+
+<pre class="program">
+struct node {
+    struct node *next;
+    int          data;
+};
+</pre>
+<b>delete_first</b> is given  one argument, <b>head</b>, which is the pointer to the first node in the linked list.
+<p>
+Add code to <b>delete_first</b> so that it deletes the first node from list.
+<p>
+<b>delete_first</b> should return a pointer to the new first node in the list.
+<p>
+If the list is now empty <b>delete_first</b> should return <b>NULL</b>.
+<p>
+<b>delete_first</b> should call <b>free</b> to free the memory of the node it deletes.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+16, 7, 8, 12, 13, 19, 21, 12
+</pre>
+<p>
+<b>delete_first</b> should return a pointer to a list with these elements:
+<p>
+<pre>
+7, 8, 12, 13, 19, 21, 12
+</pre>
+<p>
+<b>Hint</b>: this is a simple task requiring only a few lines of code.
+
+<h4>Testing</h4>
+<b>list_delete_first.c</b> also contains a <b>main</b> function which allows you to test your <b>delete_first</b> function.
+It converts command-line arguments to a linked list, calls <b>delete_first</b>, and then prints the result.
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>delete_first</b> function will be called directly in marking.  The main function is only to let you test your <b>delete_first</b> function
+<p>
+Here is how you the main function allows you to test <b>delete_first</b>:
+<p>
+<pre class="command_line">
+<kbd class="shell">cp -n {{activity_directory}}list_delete_first.c .</kbd>
+<kbd class="shell">dcc list_delete_first.c -o list_delete_first</kbd>
+<kbd class="shell">./list_delete_first 16 7 8 12 13 19 21 12</kbd>
+[7, 8, 12, 13, 19, 21, 12]
+<kbd class="shell">./list_delete_first 2 4 6 2 4 6</kbd>
+[4, 6, 2, 4, 6]
+<kbd class="shell">./list_delete_first 42</kbd>
+[]
+<kbd class="shell">./list_delete_first</kbd>
+[]
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>delete_first</b> should call <b>free</b> to free the memory for the node it deletes
+<p>
+<b>delete_first</b> should not change the data fields of list nodes.
+<p>
+<b>delete_first</b> should not use arrays.
+<p>
+<b>delete_first</b> should not call malloc.
+<p>
+<b>delete_first</b> should not call scanf (or getchar or fgets).
+<p>
+<b>delete_first</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

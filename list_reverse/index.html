@@ -1,0 +1,71 @@
+{{ copy_a_file(name="list_reverse.c", change_function="reverse") }}
+
+Note <b>list_reverse.c</b> uses the following familiar data type:
+
+<pre class="program">
+struct node {
+    struct node *next;
+    int          data;
+};
+</pre>
+<b>list_reverse</b> is given  one argument, <b>head</b>, which is the pointer to the first node in the linked list.
+<p>
+Add code to <b>reverse</b> which rearranges the list to be in reverse order.
+<p>
+<b>reverse</b> should return a pointer to the new list.
+<p>
+<b>reverse</b> must rearrange the list by changing the <b>next</b> fields of nodes.
+<p>
+<b>reverse</b> must not change the <b>data</b> fields of nodes.
+<p>
+For example if the linked list contains these 8 elements:
+<p>
+<pre>
+16, 7, 8, 12, 13, 19, 21, 12
+</pre>
+<p>
+<b>reverse</b> should return a pointer to a list with these elements:
+<p>
+<pre>
+12, 21, 19, 13, 12, 8, 7, 16
+</pre>
+<h4>Testing</h4>
+<b>list_reverse.c</b> also contains a <b>main</b> function which allows you to test your <b>list_reverse</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>reverse(head)</b>
+<li> prints the result.
+</li></li></li></li></ul>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>list_reverse</b> function will be called directly in marking.  The main function is only to let you test your <b>list_reverse</b> function
+<p>
+<pre class="command_line">
+<kbd class="shell">cp -n {{activity_directory}}list_reverse.c .</kbd>
+<kbd class="shell">dcc list_reverse.c -o list_reverse</kbd>
+<kbd class="shell">./list_reverse 16 7 8 12 13 19 21 12</kbd>
+[12, 21, 19, 13, 12, 8, 7, 16]
+<kbd class="shell">./list_reverse 2 4 6 2 4 6</kbd>
+[6, 4, 2, 6, 4, 2]
+<kbd class="shell">./list_reverse 42</kbd>
+[42]
+<kbd class="shell">./list_reverse</kbd>
+[]
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>list_reverse</b> should not change the data fields of list nodes.
+<p>
+<b>list_reverse</b> should not use arrays.
+<p>
+<b>list_reverse</b> should not call malloc.
+<p>
+<b>list_reverse</b> should not call scanf (or getchar or fgets).
+<p>
+<b>list_reverse</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

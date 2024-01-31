@@ -1,0 +1,13 @@
+max_cpu=10
+ingore_white_space=1
+ignore_blank_lines=1
+ignore_case=1
+
+command=./remove_repeated_lines
+files=remove_repeated_lines.c
+
+0 stdin="Come, family.\nLet us all bathe in TV's\nwarm\nglowing\nglow\nglow\n" expected_stdout="Come, family.\nLet us all bathe in TV's\nwarm\nglowing\nglow\n"
+1 stdin="Na, na, na, na, na\nNa, na, na\nNa, na, na\nNa, na, na, na, na\nNa, na, na\nDo, do, do, do, do,\nNa, na, na, na, na\nDo, do, do\nDo, do, do, do, do,\nDo, do, do\n" expected_stdout="Na, na, na, na, na\nNa, na, na\nDo, do, do, do, do,\nDo, do, do\n"
+2 stdin="I'm pickin' up good vibrations (Oom bop, bop, good vibrations)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations (Oom bop, bop, excitations)\nI'm pickin' up good vibrations (Oom bop, bop, good vibrations)\nI'm pickin' up good vibrations (Oom bop, bop, good vibrations)\n" expected_stdout="I'm pickin' up good vibrations (Oom bop, bop, good vibrations)\nShe's giving me excitations(Oom bop, bop, excitations)\nGood good good good vibrations (Oom bop, bop)\nShe's giving me excitations (Oom bop, bop, excitations)\n"
+3 stdin="one\none\ntwo\none\ntwo\nthree\ntwo\none\nfive\ntwo\nthree\nfour\nthree\ntwo\none\nfive\n" expected_stdout="one\ntwo\nthree\nfive\nfour\n"
+4 stdin="hello\nhello world\nhello world hello world hello world\nhello\nhello world\nhello world\nhello world hello world hello world\nhello world\nhello world\nworld\nhello world\nhello world hello world\nhello world\n" expected_stdout="hello\nhello world\nhello world hello world hello world\nworld\nhello world hello world\n"

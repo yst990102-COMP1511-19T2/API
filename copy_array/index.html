@@ -1,0 +1,28 @@
+
+<p class="alert alert-warning">You should make sure you have completed
+<b>show_array</b>
+and <b>scan_array</b>
+before completing this task.
+
+{{ copy_a_file(name="copy_array.c", change_function="copy_array") }}
+
+<p>Copy your <code>scan_array</code> and <code>show_array</code> and into <code>copy_array.c</code>
+
+<p>You will be implementing an array copying function <b>copy_array</b>
+which should copy the values from the <code>from_array</code> to the <code>to_array</code>.
+<p>
+Here is how <b>copy_array.c</b> should behave after you add the correct code to the function <b>copy_array</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc copy_array.c -o copy_array</kbd>
+<kbd class="shell">./copy_array</kbd>
+Enter array size: <kbd>3</kbd>
+Enter array values: <kbd>1 2 3</kbd>
+[1, 2, 3]
+[1, 2, 3]
+<kbd class="shell">./copy_array</kbd>
+Enter array size: <kbd>1</kbd>
+Enter array values: <kbd>17</kbd>
+[17]
+[17]
+</pre>

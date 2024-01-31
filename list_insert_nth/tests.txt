@@ -1,0 +1,29 @@
+
+max_cpu=3
+no_reproduce_command=1
+files=list_insert_nth.c
+compiler_args=-Dmain=_main list_insert_nth.c test_list_insert_nth.c -o test_list_insert_nth
+command=./test_list_insert_nth
+
+pre_compile_command="../check_arrays_not_used.sh list_insert_nth.c"
+pre_compile_command_shell=1
+
+1 command=./test_list_insert_nth 0 10 description="./list_insert_nth 0 10" expected_stdout="insert_nth(0, 10, [])\ninsert_nth returned: [10]\n"
+2 command=./test_list_insert_nth 1 10 description="./list_insert_nth 1 10" expected_stdout="insert_nth(1, 10, [])\ninsert_nth returned: [10]\n"
+3 command=./test_list_insert_nth 2 10 description="./list_insert_nth 2 10" expected_stdout="insert_nth(2, 10, [])\ninsert_nth returned: [10]\n"
+4 command=./test_list_insert_nth 42 10 description="./list_insert_nth 42 10" expected_stdout="insert_nth(42, 10, [])\ninsert_nth returned: [10]\n"
+5 command=./test_list_insert_nth 0 10 46 description="./list_insert_nth 0 10 46" expected_stdout="insert_nth(0, 10, [46])\ninsert_nth returned: [10, 46]\n"
+6 command=./test_list_insert_nth 1 10 46 description="./list_insert_nth 1 10 46" expected_stdout="insert_nth(1, 10, [46])\ninsert_nth returned: [46, 10]\n"
+7 command=./test_list_insert_nth 2 10 46 description="./list_insert_nth 2 10 46" expected_stdout="insert_nth(2, 10, [46])\ninsert_nth returned: [46, 10]\n"
+8 command=./test_list_insert_nth 42 10 46 description="./list_insert_nth 42 10 46" expected_stdout="insert_nth(42, 10, [46])\ninsert_nth returned: [46, 10]\n"
+9 command=./test_list_insert_nth 0 10 46 47 description="./list_insert_nth 0 10 46 47" expected_stdout="insert_nth(0, 10, [46, 47])\ninsert_nth returned: [10, 46, 47]\n"
+10 command=./test_list_insert_nth 1 10 46 47 description="./list_insert_nth 1 10 46 47" expected_stdout="insert_nth(1, 10, [46, 47])\ninsert_nth returned: [46, 10, 47]\n"
+11 command=./test_list_insert_nth 2 10 46 47 description="./list_insert_nth 2 10 46 47" expected_stdout="insert_nth(2, 10, [46, 47])\ninsert_nth returned: [46, 47, 10]\n"
+12 command=./test_list_insert_nth 42 10 46 47 description="./list_insert_nth 42 10 46 47" expected_stdout="insert_nth(42, 10, [46, 47])\ninsert_nth returned: [46, 47, 10]\n"
+13 command=./test_list_insert_nth 0 12 16 7 8 12 13 19 21 description="./list_insert_nth 0 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(0, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [12, 16, 7, 8, 12, 13, 19, 21]\n"
+14 command=./test_list_insert_nth 1 12 16 7 8 12 13 19 21 description="./list_insert_nth 1 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(1, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 12, 7, 8, 12, 13, 19, 21]\n"
+15 command=./test_list_insert_nth 4 12 16 7 8 12 13 19 21 description="./list_insert_nth 4 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(4, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 7, 8, 12, 12, 13, 19, 21]\n"
+16 command=./test_list_insert_nth 7 12 16 7 8 12 13 19 21 description="./list_insert_nth 7 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(7, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 7, 8, 12, 13, 19, 21, 12]\n"
+17 command=./test_list_insert_nth 8 12 16 7 8 12 13 19 21 description="./list_insert_nth 8 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(8, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 7, 8, 12, 13, 19, 21, 12]\n"
+18 command=./test_list_insert_nth 9 12 16 7 8 12 13 19 21 description="./list_insert_nth 9 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(9, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 7, 8, 12, 13, 19, 21, 12]\n"
+19 command=./test_list_insert_nth 42 12 16 7 8 12 13 19 21 description="./list_insert_nth 42 12 16 7 8 12 13 19 21" expected_stdout="insert_nth(42, 12, [16, 7, 8, 12, 13, 19, 21])\ninsert_nth returned: [16, 7, 8, 12, 13, 19, 21, 12]\n"

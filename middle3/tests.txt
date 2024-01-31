@@ -1,0 +1,14 @@
+max_cpu=3
+ignore_case=1
+ignore_white_space=1
+command=./middle3
+middle3_0 stdin="1\n2\n3\n" description="1 2 3" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 2\n"
+middle3_1 stdin="99\n50\n1\n" description="99 50 1" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 50\n"
+middle3_2 stdin="45\n99\n87\n" description="45 99 87" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 87\n"
+middle3_3 stdin="100\n4\n45\n" description="100 4 45" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 45\n"
+middle3_4 stdin="50\n60\n20\n" description="50 60 20" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 50\n"
+middle3_5 stdin="50\n30\n90\n" description="50 30 90" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 50\n"
+middle3_6 stdin="20\n20\n20\n" description="20 20 20" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 20\n"
+middle3_7 stdin="20\n20\n30\n" description="20 20 30" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 20\n"
+middle3_8 stdin="30\n30\n20\n" description="30 30 20" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 30\n"
+middle3_9 stdin="30\n20\n30\n" description="30 20 30" expected_stdout="Enter integer: Enter integer: Enter integer: Middle: 30\n"

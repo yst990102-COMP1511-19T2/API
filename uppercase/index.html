@@ -1,0 +1,19 @@
+{{ copy_a_file(name="uppercase.c", change_function="uppercase") }}
+
+The function <b>uppercase</b>  takes in a character, <code>c</code> and if
+it is an uppercase letter, converts it to uppercase and returns that
+value. All other input values should be returned unchanged.
+<p>
+Here is how <b>uppercase.c</b> should behave after you add the correct code to the function <b>uppercase</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc uppercase.c -o uppercase</kbd>
+<kbd class="shell">./uppercase</kbd>
+<kbd>abc</kbd>
+ABC
+<kbd>ABCabc123</kbd>
+ABCABC123
+<kbd>123!@#</kbd>
+123!@#
+</pre>
+

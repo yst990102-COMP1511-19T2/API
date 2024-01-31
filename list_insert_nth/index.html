@@ -1,0 +1,73 @@
+{{ copy_a_file(name="list_insert_nth.c", change_function="insert_nth") }}
+
+<b>insert_nth</b> is given three arguments, <b>n</b>, <b>value</b> and <b>head</b>.
+<b>n</b> is an int.
+<b>value</b> is an int.
+<b>head</b> is the pointer to the first node in a linked list.
+<p>
+Add code to <b>insert_nth</b> so that it creates a new list node (using malloc) containing value
+and places it before  position <b>n</b> of the list.
+<p>
+The elements are counted in the same manner as array elements (zero-based),
+so the first element in the list is regarded as at position 0, the second element position 1 and so on.
+<p>
+If there are less than  <code>n</code> elements in the list, the new list node should be appended to the list.
+<p>
+<b>insert_nth</b> should return a pointer to the new list.
+<p>
+For example if <b>n</b> is 1 and <b>value</b> is <b>12</b> and the linked list contains these 3 elements:
+<p>
+<pre>
+16, 7, 8
+</pre>
+<p>
+<b>insert_nth</b> should return a pointer to a list with these elements:
+<p>
+<pre>
+16, 12, 7, 8
+</pre>
+<h4>Testing</h4>
+<b>list_insert_nth.c</b> also contains a <b>main</b> function which allows you to test your <b>insert_nth</b> function.
+<p>
+This main function:
+<ul>
+<li> converts the first command-line argument to <b>n</b>
+<li> converts the second command-line argument to <b>value</b>
+<li> converts the remaining command-line arguments to a linked list
+<li> assigns a pointer to the first node in the linked list to <b>head</b>
+<li> calls <b>insert_nth(n, value, head)</b>
+<li> prints the result.
+</li></li></li></li></li></li></ul>
+<p>
+Do not change this main function.  If you want to change it, you have misread the question.
+<p>
+Your <b>insert_nth</b> function will be called directly in marking.  The main function is only to let you test your <b>insert_nth</b> function
+<p>
+<pre class="command_line">
+<kbd class="shell">dcc list_insert_nth.c -o list_insert_nth</kbd>
+<kbd class="shell">./list_insert_nth 0 12  16 7 8</kbd>
+[12, 16, 7, 8]
+<kbd class="shell">./list_insert_nth 1 12  16 7 8</kbd>
+[16, 12, 7, 8]
+<kbd class="shell">./list_insert_nth 2 12  16 7 8</kbd>
+[16, 7, 12, 8]
+<kbd class="shell">./list_insert_nth 3 12  16 7 8</kbd>
+[16, 7, 8, 12]
+<kbd class="shell">./list_insert_nth 42 12  16 7 8</kbd>
+[16, 7, 8, 12]
+<kbd class="shell">./list_insert_nth 0 16  42</kbd>
+[16, 42]
+<kbd class="shell">./list_insert_nth 0 2</kbd>
+[2]
+<kbd class="shell">./list_insert_nth 10 2</kbd>
+[2]
+</pre>
+<h4>Assumptions/Restrictions/Clarifications.</h4>
+<b>insert_nth</b> should not use arrays.
+<p>
+<b>insert_nth</b> should not call scanf (or getchar or fgets).
+<p>
+<b>insert_nth</b> should not print anything. It should not call printf.
+<p>
+Do not change the supplied <b>main</b> function. It will not be tested or marked.
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p>

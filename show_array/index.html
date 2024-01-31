@@ -1,0 +1,26 @@
+{{ copy_a_file(name="show_array.c", change_function="show_array") }}
+
+You are to implement
+the <b>void show_array</b>
+function which should print the given array surround by square brackets and with value separated by commas, e.g.
+<code>
+[1, 2, 3]
+</code>
+<p>
+The file <code>show_array.c</code> contains a main function
+which reads values into an array and calls <b>show_array</b>.
+<p>
+Here is how <b>show_array.c</b> should behave after you add the correct code to the function <b>show_array</b>:
+
+<pre class="command_line">
+<kbd class="shell">dcc show_array.c -o show_array</kbd>
+<kbd class="shell">./show_array</kbd>
+Enter array size: <kbd>3</kbd>
+Enter array values: <kbd>1 2 3</kbd>
+[1, 2, 3]
+<kbd class="shell">./show_array</kbd>
+Enter array size: <kbd>1</kbd>
+Enter array values: <kbd>17</kbd>
+[17]
+</pre>
+

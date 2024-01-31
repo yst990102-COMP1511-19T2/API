@@ -1,0 +1,17 @@
+max_cpu=10
+ignore_case=1
+ignore_blank_lines=1
+compare_only_characters=onetwothreefourfive
+command=./numberWords
+files=numberWords.c
+num_1 stdin='1\n' expected_stdout="Please enter an integer: You entered one.\n"
+num_2 stdin='2\n' expected_stdout="Please enter an integer: You entered two.\n"
+num_3 stdin='3\n' expected_stdout="Please enter an integer: You entered three.\n"
+num_4 stdin='4\n' expected_stdout="Please enter an integer: You entered four.\n"
+num_5 stdin='5\n' expected_stdout="Please enter an integer: You entered five.\n"
+less_1 stdin='0\n' expected_stdout="Please enter an integer: You entered a number less than one.\n"
+less_2 stdin='-12\n' expected_stdout="Please enter an integer: You entered a number less than one.\n"
+less_3 stdin='-40000\n' expected_stdout="Please enter an integer: You entered a number less than one.\n"
+greater_1 stdin='16\n' expected_stdout="Please enter an integer: You entered a number greater than five.\n"
+greater_2 stdin='42\n' expected_stdout="Please enter an integer: You entered a number greater than five.\n"
+greater_3 stdin='42000\n' expected_stdout="Please enter an integer: You entered a number greater than five.\n"

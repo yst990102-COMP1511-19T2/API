@@ -1,0 +1,48 @@
+In this exercise, you will read some pet information from standard input
+and relay it in a human readable format.
+
+{{ copy_a_file(name="pet_stats.c") }}
+<p>
+<b>pet_stats.c</b> already contains a struct for a pet and a main function. You
+cannot change either of these and can only make changes to the functions: 
+<b>setup_pet()</b> and <b>print_pet()</b>.
+<p>
+Your task in this exercise is first to complete the function <b>setup_pet()</b> 
+so that it:
+<ul>
+<li>
+Reads in a line from standard input and stores it in the name field
+<li>
+Reads in a line from standard input and stores it in the type field
+<li>
+Reads in an int from standard input and stores it in the age field
+<li>
+Reads in an int from standard input and stores it in the weight feild
+</li></li></li></li></ul>
+<p>
+<b>Hint</b>: don't use <b>scanf</b>, use  <b>fgets</b> to read the name and type strings.
+<p>
+You can assume each line contains at most 50 characters.
+<p>
+You will then need to complete the function <b>print_pet()</b> so that it writes
+out a single line of text describing the pet, like: "Mr Snuffle-uffle-kins is a 
+cat who is 4 years old and weighs 6kg\n"
+<p>
+When you have completed the functions <b>setup_pet()</b> and <b>print_pet()</b>
+ this is how <b>pet_stats.c</b> should behave:
+
+<pre class="command_line">
+<kbd class="shell">dcc -o pet_stats pet_stats.c</kbd>
+<kbd class="shell">./pet_stats </kbd>
+Mr Snuffle-uffle-kins
+cat
+4
+6
+Mr Snuffle-uffle-kins is a cat who is 4 years old and weighs 6kg
+<kbd class="shell">./pet_stats </kbd>
+007
+British Short-hair
+35 78
+007 is a British Short-hair who is 35 years old and weighs 78kg
+</pre>
+</p></p></p></p></p></p>

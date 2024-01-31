@@ -1,0 +1,6 @@
+max_cpu=10
+files=pet_stats.c
+command=.pet_stats
+
+0 stdin="Pet McPetFace\nDog\n4\n18\n" expected_stdout="Pet McPetFace is a Dog who is 4 years old and weighs 18kg\n"
+1 stdin="Nemo\nClown Fish\n5 1\n" expected_stdout="Nemo is a Clown Fish who is 5 years old and weighs 1kg\n"

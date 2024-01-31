@@ -1,0 +1,19 @@
+max_cpu=30
+ignore_case=1
+ignore_white_space=1
+command=./order3_challenge2
+
+pre_compile_command="../check_features_used.sh order3_challenge2.c && ./check_3_variables.sh order3_challenge2.c"
+pre_compile_command_shell=1
+
+
+order3_0 stdin="1\n2\n3\n" description="1 2 3" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 1 2 3\n"
+order3_1 stdin="99\n50\n1\n" description="99 50 1" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 1 50 99\n"
+order3_2 stdin="45\n99\n87\n" description="45 99 87" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 45 87 99\n"
+order3_3 stdin="100\n4\n45\n" description="100 4 45" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 4 45 100\n"
+order3_4 stdin="50\n60\n20\n" description="50 60 20" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 20 50 60\n"
+order3_5 stdin="50\n30\n90\n" description="50 30 90" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 30 50 90\n"
+order3_6 stdin="20\n20\n20\n" description="20 20 20" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 20 20 20\n"
+order3_7 stdin="20\n20\n30\n" description="20 20 30" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 20 20 30\n"
+order3_8 stdin="30\n30\n20\n" description="30 30 20" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 20 30 30\n"
+order3_9 stdin="30\n20\n30\n" description="30 20 30" expected_stdout="Enter integer: Enter integer: Enter integer: The integers in order are: 20 30 30\n"
